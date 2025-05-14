@@ -30,4 +30,9 @@ class Proposal extends Model
     {
         return $this->hasMany(ProposalStatus::class);
     }
+
+    public function academicCalendar()
+    {
+        return $this->belongsTo(AcademicCalendar::class);
+    }
 }

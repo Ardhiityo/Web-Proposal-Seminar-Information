@@ -9,36 +9,48 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item dropdown {{ 'bootstrap' === 'dashboard' ? 'active' : '' }}">
-                <a href="#"
-                    class="nav-link">
+            <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="menu-header">Starter</li>
-            <li class="nav-item dropdown {{ 'bootstrap' === 'layout' ? 'active' : '' }}">
-                <a href="#"
-                    class="nav-link has-dropdown"
-                    data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+
+            <li class="menu-header">Informasi Umum</li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-columns"></i>
+                    <span>Data Dosen</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-columns"></i>
+                    <span>Data Mahasiswa</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-columns"></i>
+                    <span>Data Program Studi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-columns"></i>
+                    <span>Data Ruangan</span>
+                </a>
+            </li>
+
+            <li class="menu-header">Informasi Sidang</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
+                    <span>Tahun Akademik</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('layout-default-layout') ? 'active' : '' }}">
-                        <a class="nav-link"
-                            href="{{ url('layout-default-layout') }}">Default Layout</a>
-                    </li>
-                    <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
-                        <a class="nav-link"
-                            href="{{ url('transparent-sidebar') }}">Transparent Sidebar</a>
-                    </li>
-                    <li class="{{ Request::is('layout-top-navigation') ? 'active' : '' }}">
-                        <a class="nav-link"
-                            href="{{ url('layout-top-navigation') }}">Top Navigation</a>
+                    <li class="active">
+                        <a class="nav-link" href="{{ url('components-article') }}">2024-2025</a>
                     </li>
                 </ul>
-            </li>
-            <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                <a class="nav-link"
-                    href="{{ url('blank-page') }}"><i class="far fa-square"></i> <span>Blank Page</span></a>
             </li>
         </ul>
     </aside>
