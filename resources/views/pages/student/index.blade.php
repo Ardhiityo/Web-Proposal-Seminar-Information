@@ -37,15 +37,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Darpi Supriyanto</td>
-                                            <td>0896-5055-7420</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($students as $student)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $student->nim }}</td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <a href="#" class="btn btn-danger">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

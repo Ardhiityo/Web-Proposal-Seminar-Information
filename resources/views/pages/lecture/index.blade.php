@@ -43,7 +43,8 @@
                                                 <td>{{ $lecture->name }}</td>
                                                 <td>{{ $lecture->phone }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <a href="{{ route('lectures.edit', ['lecture' => $lecture->id]) }}"
+                                                        class="btn btn-warning">Edit</a>
                                                     <button id="btn-delete" class="btn btn-danger">Hapus</button>
                                                     <form id="form-delete"
                                                         action="{{ route('lectures.destroy', ['lecture' => $lecture->id]) }}"

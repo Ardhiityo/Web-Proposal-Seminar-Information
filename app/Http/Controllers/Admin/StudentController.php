@@ -3,17 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Student\StoreStudentRequest;
+use App\Services\Interfaces\StudentInterface;
+use App\Services\Interfaces\StudyProgramInterface;
 
 class StudentController extends Controller
 {
+
+    public function __construct(
+        private StudentInterface $studentRepository,
+        private StudyProgramInterface $studyProgramRepository
+    ) {}
+
+
     public function index()
     {
-        return view('pages.student.index');
+        $students = $this->studentRepository->getAllStudents();
+
+        return view('pages.student.index', compact('students'));
     }
 
     public function create()
     {
-        return view('pages.student.create');
+        $studyPrograms = $this->studyProgramRepository->getAllStudyPrograms();
+
+        return view('pages.student.create', compact('studyPrograms'));
+    }
+
+    public function store(StoreStudentRequest $request)
+    {
+        //
     }
 }

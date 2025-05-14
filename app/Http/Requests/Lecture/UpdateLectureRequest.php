@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Lecture;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreLectureRequest extends FormRequest
+class UpdateLectureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +23,8 @@ class StoreLectureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:lectures,name',
-            'phone' => 'required|numeric|digits_between:10,15|starts_with:08',
+            'name' => ['required', 'string', 'max:255', Rule::unique('lectures', 'name')->ignore($this->route('lecture'))],
+            'phone' => ['required', 'numeric', 'digits_between:10,15', 'starts_with:08', Rule::unique('lectures', 'name')->ignore($this->route('lecture'))],
         ];
     }
 }

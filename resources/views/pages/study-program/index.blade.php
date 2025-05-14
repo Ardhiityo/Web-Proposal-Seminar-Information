@@ -31,21 +31,21 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Narahubung</th>
+                                            <th scope="col">Program Studi</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Darpi Supriyanto</td>
-                                            <td>0896-5055-7420</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($studyPrograms as $studyProgram)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $studyProgram->name }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <a href="#" class="btn btn-danger">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
