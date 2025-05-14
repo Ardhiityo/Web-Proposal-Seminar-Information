@@ -23,31 +23,39 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>
-                                    <a href="{{ route('lectures.create') }}" class="btn btn-primary">Tambah Data Dosen</a>
+                                    <a href="{{ route('lectures.create') }}" class="btn btn-primary">Tambah Data</a>
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Narahubung</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Darpi Supriyanto</td>
-                                            <td>0896-5055-7420</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                @forelse ($lectures as $item)
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Narahubung</th>
+                                                <th scope="col">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($lectures as $lecture)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $lecture->name }}</td>
+                                                    <td>{{ $lecture->phone }}</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-warning">Edit</a>
+                                                        <a href="#" class="btn btn-danger">Hapus</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @empty
+                                    <div class="alert alert-primary">
+                                        Ups, Data Dosen belum tersedia...
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>

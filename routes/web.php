@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AcademicCalendarController;
 use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\StudentController;
-use App\Http\Controllers\Admin\StudyProgram;
 use App\Http\Controllers\Admin\StudyProgramController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;

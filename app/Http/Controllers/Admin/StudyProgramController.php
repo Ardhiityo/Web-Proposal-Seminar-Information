@@ -11,4 +11,9 @@ class StudyProgramController extends Controller
     {
         return view('pages.study-program.index');
     }
+
+    public function create()
+    {
+        return view('pages.study-program.create');
+    }
 }

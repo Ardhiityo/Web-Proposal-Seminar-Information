@@ -11,4 +11,9 @@ class AcademicCalendarController extends Controller
     {
         return view('pages.academic-calendar.index');
     }
+
+    public function create()
+    {
+        return view('pages.academic-calendar.create');
+    }
 }

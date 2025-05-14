@@ -24,8 +24,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>
-                                    <a href="{{ route('lectures.create') }}" class="btn btn-primary">Tambah Data
-                                        Sidang Proposal</a>
+                                    <a href="{{ route('academic-calendars.create') }}" class="btn btn-primary">Tambah
+                                        Data</a>
                                 </h4>
                             </div>
                             <div class="card-body">

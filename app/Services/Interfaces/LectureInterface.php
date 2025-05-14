@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Services\Interfaces;
+
+interface LectureInterface
+{
+    public function getAllLectures();
+    public function getLectureById($id);
+    public function createLecture(array $data);
+    public function updateLecture($id, array $data);
+    public function deleteLecture($id);
+}
