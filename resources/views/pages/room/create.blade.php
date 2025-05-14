@@ -27,12 +27,21 @@
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Ruangan</label>
                                                     <input type="name" class="form-control" id="name"
-                                                        placeholder="CA">
+                                                        placeholder="CA" value="{{ old('name') }}">
                                                 </div>
                                             </div>
                                         </div>

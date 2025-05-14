@@ -19,7 +19,7 @@ class StudyProgramRepository implements StudyProgramInterface
 
     public function createStudyProgram(array $data)
     {
-        // Logic to create a new study program
+        return StudyProgram::create($data);
     }
 
     public function updateStudyProgram($id, array $data)
@@ -29,6 +29,6 @@ class StudyProgramRepository implements StudyProgramInterface
 
     public function deleteStudyProgram($id)
     {
-        // Logic to delete a study program
+        return StudyProgram::destroy($id);
     }
 }

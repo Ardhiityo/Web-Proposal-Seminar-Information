@@ -44,8 +44,14 @@
                                                 <td>{{ $student->name }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-warning">Edit</a>
-                                                    <a href="#" class="btn btn-danger">Hapus</a>
+                                                    <button class="btn btn-danger" id="btn-delete">Hapus</button>
                                                 </td>
+                                                <form id="form-delete"
+                                                    action="{{ route('students.destroy', ['student' => $student->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -58,3 +64,15 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        const btnDelete = document.getElementById('btn-delete');
+        const formDelete = document.getElementById('form-delete');
+
+        btnDelete.addEventListener('click', function(e) {
+            e.preventDefault();
+            formDelete.submit();
+        })
+    </script>
+@endpush

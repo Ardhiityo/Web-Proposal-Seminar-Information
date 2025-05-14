@@ -23,16 +23,27 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="">
+                                    <form action="{{ route('study-programs.store') }}" method="POST">
+                                        @csrf
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Program Studi</label>
-                                                    <input type="name" class="form-control" id="name"
-                                                        placeholder="Nama lengkap Prodi">
+                                                    <input type="name" name="name" class="form-control" id="name"
+                                                        placeholder="Nama lengkap Program Studi"
+                                                        value="{{ old('name') }}">
                                                 </div>
                                             </div>
                                         </div>

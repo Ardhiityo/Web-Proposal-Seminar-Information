@@ -42,12 +42,14 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Dosen</label>
                                                     <input required type="name" class="form-control" id="name"
-                                                        placeholder="Nama lengkap & gelar" name="name">
+                                                        placeholder="Nama lengkap & gelar" name="name"
+                                                        value="{{ old('name') }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="phone">Narahubung</label>
                                                     <input required type="text" name="phone" class="form-control"
-                                                        id="phone" placeholder="08xx xxxx xxxx">
+                                                        id="phone" placeholder="08xx xxxx xxxx"
+                                                        value="{{ old('phone') }}">
                                                 </div>
                                             </div>
                                         </div>

@@ -27,17 +27,26 @@
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Mahasiswa</label>
                                                     <input type="name" class="form-control" id="name"
-                                                        placeholder="Nama lengkap Mahasiswa">
+                                                        placeholder="Nama lengkap Mahasiswa" value="{{ old('name') }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="nim">NIM</label>
                                                     <input type="text" name="nim" class="form-control" id="nim"
-                                                        placeholder="2204XXXX">
+                                                        placeholder="2204XXXX" value="{{ old('nim') }}">
                                                 </div>
                                             </div>
                                         </div>
