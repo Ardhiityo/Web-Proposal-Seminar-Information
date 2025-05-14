@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nim')->unique();
-            $table->foreignId('study_program_id')->constrained();
+            $table->foreignId('study_program_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

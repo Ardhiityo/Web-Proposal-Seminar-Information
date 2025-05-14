@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('proposal_statuses', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['scheduled', 'completed', 'postponed']);
-            $table->foreignId('proposal_id')->constrained();
+            $table->foreignId('proposal_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

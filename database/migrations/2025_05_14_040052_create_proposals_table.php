@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lecture_1_id')->constrained('lectures');
-            $table->foreignId('lecture_2_id')->constrained('lectures');
+            $table->foreignId('lecture_1_id')->constrained('lectures')->cascadeOnDelete();
+            $table->foreignId('lecture_2_id')->constrained('lectures')->cascadeOnDelete();
             $table->foreignId('academic_calendar_id')->constrained();
             $table->time('session_started');
             $table->time('session_ended');
-            $table->foreignId('room_id')->constrained();
+            $table->foreignId('room_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
