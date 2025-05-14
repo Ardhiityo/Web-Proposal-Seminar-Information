@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Dosen')
+@section('title', 'Data Program Studi')
 
 @section('main')
     <div class="main-content">
@@ -14,7 +14,7 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Data Dosen</h2>
+                <h2 class="section-title">Data Program Studi</h2>
                 <p class="section-lead">
                     Semua informasi mengenai data Dosen yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
@@ -23,10 +23,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="{{ route('study-programs.store') }}" method="POST">
+                                    <form
+                                        action="{{ route('study-programs.update', ['study_program' => $studyProgram->id]) }}"
+                                        method="POST">
                                         @csrf
+                                        @method('PUT')
                                         <div class="card-header">
-                                            <h4>Buat Data</h4>
+                                            <h4>Edit Data</h4>
                                         </div>
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -42,8 +45,8 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Program Studi</label>
                                                     <input type="name" name="name" class="form-control" id="name"
-                                                        required placeholder="Nama lengkap Program Studi"
-                                                        value="{{ old('name') }}">
+                                                        placeholder="Nama lengkap Program Studi" required
+                                                        value="{{ old('name', $studyProgram->name) }}">
                                                 </div>
                                             </div>
                                         </div>

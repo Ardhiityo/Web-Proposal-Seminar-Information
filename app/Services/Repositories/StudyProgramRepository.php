@@ -14,7 +14,11 @@ class StudyProgramRepository implements StudyProgramInterface
 
     public function getStudyProgramById($id)
     {
-        // Logic to get a study program by ID
+        try {
+            return StudyProgram::select('id', 'name')->findOrFail($id);
+        } catch (\Throwable $th) {
+            return abort(404);
+        }
     }
 
     public function createStudyProgram(array $data)

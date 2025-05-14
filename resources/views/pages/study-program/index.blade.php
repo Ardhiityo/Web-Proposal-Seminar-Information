@@ -41,7 +41,8 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $studyProgram->name }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <a href="{{ route('study-programs.edit', ['study_program' => $studyProgram->id]) }}"
+                                                        class="btn btn-warning">Edit</a>
                                                     <button class="btn btn-danger" id="btn-delete">Hapus</button>
                                                 </td>
                                                 <form id="form-delete"

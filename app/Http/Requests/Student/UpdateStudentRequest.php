@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\StudyProgram;
+namespace App\Http\Requests\Student;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreStudyProgramRequest extends FormRequest
+class UpdateStudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +23,9 @@ class StoreStudyProgramRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:study_programs,name'],
+            'name' => ['required', 'string', 'max:255'],
+            'nim' => ['required', 'string', 'max:255', Rule::unique('students')->ignore($this->student)],
+            'study_program_id' => ['required', 'exists:study_programs,id'],
         ];
     }
 }

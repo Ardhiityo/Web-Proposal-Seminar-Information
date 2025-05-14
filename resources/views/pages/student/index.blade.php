@@ -43,7 +43,8 @@
                                                 <td>{{ $student->nim }}</td>
                                                 <td>{{ $student->name }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <a href="{{ route('students.edit', ['student' => $student->id]) }}"
+                                                        class="btn btn-warning">Edit</a>
                                                     <button class="btn btn-danger" id="btn-delete">Hapus</button>
                                                 </td>
                                                 <form id="form-delete"

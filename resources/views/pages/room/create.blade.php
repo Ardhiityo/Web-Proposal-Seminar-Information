@@ -41,8 +41,9 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Ruangan</label>
-                                                    <input type="name" class="form-control" id="name" name="name"
-                                                        placeholder="Nama Lengkap Ruangan" value="{{ old('name') }}">
+                                                    <input type="name" class="form-control" required id="name"
+                                                        name="name" placeholder="Nama Lengkap Ruangan"
+                                                        value="{{ old('name') }}">
                                                 </div>
                                             </div>
                                         </div>

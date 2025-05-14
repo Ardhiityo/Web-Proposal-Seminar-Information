@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Dosen')
+@section('title', 'Data Mahasiswa')
 
 @section('main')
     <div class="main-content">
@@ -23,8 +23,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="{{ route('study-programs.store') }}" method="POST">
+                                    <form action="{{ route('students.update', ['student' => $student->id]) }}"
+                                        method="POST">
                                         @csrf
+                                        @method('PUT')
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
@@ -40,12 +42,30 @@
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="name">Nama Program Studi</label>
-                                                    <input type="name" name="name" class="form-control" id="name"
-                                                        required placeholder="Nama lengkap Program Studi"
-                                                        value="{{ old('name') }}">
+                                                    <label for="name">Nama Mahasiswa</label>
+                                                    <input type="name" required class="form-control" id="name"
+                                                        name="name" placeholder="Nama lengkap Mahasiswa"
+                                                        value="{{ old('name', $student->name) }}">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="nim">NIM</label>
+                                                    <input type="text" name="nim" required class="form-control"
+                                                        id="nim" placeholder="2204XXXX"
+                                                        value="{{ old('nim', $student->nim) }}">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="study_program_id">Program Studi</label>
+                                            <select id="study_program_id" required name="study_program_id"
+                                                class="form-control">
+                                                <option selected>Choose...</option>
+                                                @foreach ($studyPrograms as $studyProgram)
+                                                    <option value="{{ $studyProgram->id }}"
+                                                        {{ old('study_program_id', $student->study_program_id) == $studyProgram->id ? 'selected' : '' }}>
+                                                        {{ $studyProgram->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="card-footer">
                                             <button class="btn btn-primary">Submit</button>

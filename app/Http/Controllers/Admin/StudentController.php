@@ -7,6 +7,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\StudentInterface;
 use App\Http\Requests\Student\StoreStudentRequest;
 use App\Services\Interfaces\StudyProgramInterface;
+use App\Http\Requests\Student\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
@@ -39,6 +40,24 @@ class StudentController extends Controller
 
         return redirect()->route('students.index');
     }
+
+    public function edit($id)
+    {
+        $student = $this->studentRepository->getStudentById($id);
+        $studyPrograms = $this->studyProgramRepository->getAllStudyPrograms();
+
+        return view('pages.student.edit', compact('student', 'studyPrograms'));
+    }
+
+    public function update(UpdateStudentRequest $request, $id)
+    {
+        $this->studentRepository->updateStudent($id, $request->validated());
+
+        Alert::success('Sukses', 'Data Mahasiswa Berhasil Diperbarui');
+
+        return redirect()->route('students.index');
+    }
+
 
     public function destroy($id)
     {

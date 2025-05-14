@@ -14,12 +14,26 @@ class StudentRepository implements StudentInterface
             ->select('study_program_id', 'id', 'name', 'nim')
             ->get();
     }
-    public function getStudentById($id) {}
+    public function getStudentById($id)
+    {
+        try {
+            return Student::with(['studyProgram' => fn(Builder $query) => $query->select('id', 'name')])
+                ->select('study_program_id', 'id', 'name', 'nim')
+                ->findOrFail($id);
+        } catch (\Throwable $th) {
+            return abort(404);
+        }
+    }
     public function createStudent(array $data)
     {
         return Student::create($data);
     }
-    public function updateStudent($id, array $data) {}
+    public function updateStudent($id, array $data)
+    {
+        $student = $this->getStudentById($id);
+
+        return $student->update($data);
+    }
     public function deleteStudent($id)
     {
         return Student::destroy($id);

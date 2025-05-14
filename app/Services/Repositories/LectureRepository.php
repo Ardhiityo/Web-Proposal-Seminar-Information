@@ -15,7 +15,7 @@ class LectureRepository implements LectureInterface
     public function getLectureById($id)
     {
         try {
-            return Lecture::findOrFail($id);
+            return Lecture::select('id', 'name', 'phone')->findOrFail($id);
         } catch (\Exception $e) {
             return abort(404, 'Lecture not found');
         }
