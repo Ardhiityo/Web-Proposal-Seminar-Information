@@ -14,7 +14,11 @@ class RoomRepository implements RoomInterface
 
     public function getRoomById($id)
     {
-        // Logic to get a room by ID
+        try {
+            return Room::select('id', 'name')->findOrFail($id);
+        } catch (\Throwable $th) {
+            return abort(404);
+        }
     }
     public function createRoom(array $data)
     {
@@ -22,7 +26,7 @@ class RoomRepository implements RoomInterface
     }
     public function updateRoom($id, array $data)
     {
-        // Logic to update an existing room
+        return $this->getRoomById($id)->update($data);
     }
     public function deleteRoom($id)
     {

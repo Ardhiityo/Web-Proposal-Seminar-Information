@@ -32,7 +32,8 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama</th>
-                                            <th scope="col">Narahubung</th>
+                                            <th scope="col">NIM</th>
+                                            <th scope="col">Program Studi</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
@@ -40,8 +41,9 @@
                                         @foreach ($students as $student)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $student->nim }}</td>
                                                 <td>{{ $student->name }}</td>
+                                                <td>{{ $student->nim }}</td>
+                                                <td>{{ $student->studyProgram->name }}</td>
                                                 <td>
                                                     <a href="{{ route('students.edit', ['student' => $student->id]) }}"
                                                         class="btn btn-warning">Edit</a>

@@ -30,9 +30,7 @@ class StudentRepository implements StudentInterface
     }
     public function updateStudent($id, array $data)
     {
-        $student = $this->getStudentById($id);
-
-        return $student->update($data);
+        return $this->getStudentById($id)->update($data);
     }
     public function deleteStudent($id)
     {

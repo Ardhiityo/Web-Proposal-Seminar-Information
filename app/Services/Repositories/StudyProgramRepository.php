@@ -28,7 +28,7 @@ class StudyProgramRepository implements StudyProgramInterface
 
     public function updateStudyProgram($id, array $data)
     {
-        // Logic to update an existing study program
+        $this->getStudyProgramById($id)->update($data);
     }
 
     public function deleteStudyProgram($id)

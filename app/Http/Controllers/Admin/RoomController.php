@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
 use App\Http\Requests\Room\StoreRoomRequest;
+use App\Http\Requests\Room\UpdateRoomRequest;
 
 class RoomController extends Controller
 {
@@ -29,6 +30,22 @@ class RoomController extends Controller
         $this->roomRepository->createRoom($request->validated());
 
         Alert::success('Sukses', 'Data Ruangan Berhasil Ditambahkan');
+
+        return redirect()->route('rooms.index');
+    }
+
+    public function edit($id)
+    {
+        $room = $this->roomRepository->getRoomById($id);
+
+        return view('pages.room.edit', compact('room'));
+    }
+
+    public function update(UpdateRoomRequest $request, $id)
+    {
+        $this->roomRepository->updateRoom($id, $request->validated());
+
+        Alert::success('Sukses', 'Data Ruangan Berhasil Diperbarui');
 
         return redirect()->route('rooms.index');
     }
