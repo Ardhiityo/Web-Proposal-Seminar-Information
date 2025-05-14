@@ -23,7 +23,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="">
+                                    <form action="{{ route('students.store') }}" method="POST">
+                                        @csrf
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
@@ -40,7 +41,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Mahasiswa</label>
-                                                    <input type="name" class="form-control" id="name"
+                                                    <input type="name" class="form-control" id="name" name="name"
                                                         placeholder="Nama lengkap Mahasiswa" value="{{ old('name') }}">
                                                 </div>
                                                 <div class="form-group col-md-6">

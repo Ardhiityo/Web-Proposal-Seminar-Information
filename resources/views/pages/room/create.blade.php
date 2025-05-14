@@ -23,7 +23,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="">
+                                    <form action="{{ route('rooms.store') }}" method="POST">
+                                        @csrf
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
@@ -40,8 +41,8 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Ruangan</label>
-                                                    <input type="name" class="form-control" id="name"
-                                                        placeholder="CA" value="{{ old('name') }}">
+                                                    <input type="name" class="form-control" id="name" name="name"
+                                                        placeholder="Nama Lengkap Ruangan" value="{{ old('name') }}">
                                                 </div>
                                             </div>
                                         </div>

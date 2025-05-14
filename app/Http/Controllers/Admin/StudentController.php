@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Student\StoreStudentRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\StudentInterface;
+use App\Http\Requests\Student\StoreStudentRequest;
 use App\Services\Interfaces\StudyProgramInterface;
 
 class StudentController extends Controller
@@ -32,6 +33,19 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
-        //
+        $this->studentRepository->createStudent($request->validated());
+
+        Alert::success('Sukses', 'Data Mahasiswa Berhasil Ditambahkan');
+
+        return redirect()->route('students.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->studentRepository->deleteStudent($id);
+
+        Alert::success('Sukses', 'Data Mahasiswa Berhasil Dihapus');
+
+        return redirect()->route('students.index');
     }
 }

@@ -32,26 +32,26 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama</th>
-                                            <th scope="col">Narahubung</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Darpi Supriyanto</td>
-                                            <td>0896-5055-7420</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
-                                                <button class="btn btn-danger" id="btn-delete">Hapus</button>
-                                                <form id="form-delete"
-                                                    action="{{ route('rooms.destroy', ['room' => $room->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            </td>
-                                        </tr>
+                                        @foreach ($rooms as $room)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $room->name }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <button class="btn btn-danger" id="btn-delete">Hapus</button>
+                                                    <form id="form-delete"
+                                                        action="{{ route('rooms.destroy', ['room' => $room->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
