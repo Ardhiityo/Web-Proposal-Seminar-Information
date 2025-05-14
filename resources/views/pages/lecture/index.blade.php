@@ -27,35 +27,35 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                @forelse ($lectures as $item)
-                                    <table class="table table-bordered">
-                                        <thead>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Narahubung</th>
+                                            <th scope="col">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($lectures as $lecture)
                                             <tr>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">Narahubung</th>
-                                                <th scope="col">Aksi</th>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $lecture->name }}</td>
+                                                <td>{{ $lecture->phone }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <button id="btn-delete" class="btn btn-danger">Hapus</button>
+                                                    <form id="form-delete"
+                                                        action="{{ route('lectures.destroy', ['lecture' => $lecture->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($lectures as $lecture)
-                                                <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
-                                                    <td>{{ $lecture->name }}</td>
-                                                    <td>{{ $lecture->phone }}</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-warning">Edit</a>
-                                                        <a href="#" class="btn btn-danger">Hapus</a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                @empty
-                                    <div class="alert alert-primary">
-                                        Ups, Data Dosen belum tersedia...
-                                    </div>
-                                @endforelse
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -64,3 +64,15 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        const btnDelete = document.getElementById('btn-delete');
+        const formDelete = document.getElementById('form-delete');
+
+        btnDelete.addEventListener('click', function(e) {
+            e.preventDefault();
+            formDelete.submit();
+        })
+    </script>
+@endpush

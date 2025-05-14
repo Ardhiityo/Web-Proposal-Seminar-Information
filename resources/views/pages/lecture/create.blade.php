@@ -23,21 +23,31 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="">
+                                    <form action="{{ route('lectures.store') }}" method="POST">
+                                        @csrf
                                         <div class="card-header">
                                             <h4>Buat Data</h4>
                                         </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="name">Nama Dosen</label>
-                                                    <input type="name" class="form-control" id="name"
-                                                        placeholder="Nama lengkap & gelar">
+                                                    <input required type="name" class="form-control" id="name"
+                                                        placeholder="Nama lengkap & gelar" name="name">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="phone">Narahubung</label>
-                                                    <input type="text" name="phone" class="form-control" id="phone"
-                                                        placeholder="+62xxx xxxx xxxx">
+                                                    <input required type="text" name="phone" class="form-control"
+                                                        id="phone" placeholder="08xx xxxx xxxx">
                                                 </div>
                                             </div>
                                         </div>

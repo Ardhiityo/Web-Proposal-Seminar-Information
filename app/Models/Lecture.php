@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lecture extends Model
 {
+    protected $fillable = [
+        'name',
+        'phone',
+    ];
+
     public function proposals1()
     {
         return $this->hasMany(Proposal::class, 'lecture_1_id');

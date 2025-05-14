@@ -14,21 +14,25 @@ class LectureRepository implements LectureInterface
 
     public function getLectureById($id)
     {
-        // Implementation to get a lecture by ID
+        try {
+            return Lecture::findOrFail($id);
+        } catch (\Exception $e) {
+            return abort(404, 'Lecture not found');
+        }
     }
 
     public function createLecture(array $data)
     {
-        // Implementation to create a new lecture
+        return Lecture::create($data);
     }
 
     public function updateLecture($id, array $data)
     {
-        // Implementation to update a lecture
+        return Lecture::find($id)->update($data);
     }
 
     public function deleteLecture($id)
     {
-        // Implementation to delete a lecture
+        return Lecture::destroy($id);
     }
 }
