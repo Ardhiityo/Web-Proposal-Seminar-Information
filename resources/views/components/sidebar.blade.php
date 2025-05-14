@@ -53,6 +53,18 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item {{ request()->is('rooms*') ? 'active' : '' }}">
+                <a href="{{ route('rooms.index') }}" class="nav-link">
+                    <i class="fas fa-calendar-days"></i>
+                    <span>Teknik Informatika</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->is('rooms*') ? 'active' : '' }}">
+                <a href="{{ route('rooms.index') }}" class="nav-link">
+                    <i class="fas fa-calendar-days"></i>
+                    <span>Manajemen Informatika</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
