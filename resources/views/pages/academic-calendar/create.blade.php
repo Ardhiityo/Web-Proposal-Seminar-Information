@@ -42,12 +42,14 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="started_date">Tahun Mulai</label>
                                                     <input type="date" required name="started_date" class="form-control"
-                                                        id="started_date" placeholder="Tahun mulai Akademik">
+                                                        id="started_date" value{{ old('started_date') }}
+                                                        placeholder="Tahun mulai Akademik">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="ended_date">Tahun Berakhir</label>
                                                     <input type="date" required class="form-control" name="ended_date"
-                                                        id="ended_date" placeholder="Tahun berakhir Akademik">
+                                                        id="ended_date" placeholder="Tahun berakhir Akademik"
+                                                        value="{{ old('ended_date') }}">
                                                 </div>
                                             </div>
                                         </div>

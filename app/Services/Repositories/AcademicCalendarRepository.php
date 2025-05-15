@@ -26,9 +26,11 @@ class AcademicCalendarRepository implements AcademicCalendarInterface
         }
     }
 
-    public function updateAcademicCalendar($data, $id)
+    public function updateAcademicCalendar($id, $data)
     {
-        //
+        $academicCalendar = $this->getAcademicCalendarById($id);
+
+        return $academicCalendar->update($data);
     }
 
     public function deleteAcademicCalendar($id)

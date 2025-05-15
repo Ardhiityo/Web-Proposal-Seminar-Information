@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AcademicCalendar\StoreAcademicCalendarRequest;
+use App\Http\Requests\AcademicCalendar\UpdateAcademicCalendarRequest;
 use App\Services\Interfaces\AcademicCalendarInterface;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,6 +40,15 @@ class AcademicCalendarController extends Controller
         $academicCalendar = $this->academicCalendarRepository->getAcademicCalendarById($id);
 
         return view('pages.academic-calendar.edit', compact('academicCalendar'));
+    }
+
+    public function update(UpdateAcademicCalendarRequest $request, $id)
+    {
+        $this->academicCalendarRepository->updateAcademicCalendar($id, $request->validated());
+
+        Alert::success('Sukses', text: 'Data Tahun Akademik Berhasil Diubah');
+
+        return redirect()->route('academic-calendars.index');
     }
 
     public function destroy($id)
