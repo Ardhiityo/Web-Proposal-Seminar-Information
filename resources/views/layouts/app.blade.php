@@ -39,16 +39,16 @@
             @include('sweetalert::alert')
 
             <!-- Header -->
-            @include('components.header')
+            <x-header />
 
             <!-- Sidebar -->
-            @include('components.sidebar')
+            <x-sidebar />
 
             <!-- Content -->
             @yield('main')
 
             <!-- Footer -->
-            @include('components.footer')
+            <x-footer />
         </div>
     </div>
 

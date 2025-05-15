@@ -8,15 +8,15 @@
             <div class="section-header">
                 <h1>Informasi Umum</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Informasi Sidang</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Sidang Proposal</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Informasi Tahun Akademik</a></div>
+                    <div class="breadcrumb-item"><a href="#">Data Tahun Akademik</a></div>
                 </div>
             </div>
 
             <div class="section-body">
                 <h2 class="section-title">Data Program Studi</h2>
                 <p class="section-lead">
-                    Semua informasi mengenai data Sidang Proposal yang ada di Fakultas Ilmu Komputer Universitas
+                    Semua informasi mengenai data Tahun Akademik yang ada di Fakultas Ilmu Komputer Universitas
                     Al-Khairiyah
                 </p>
                 <div class="row">

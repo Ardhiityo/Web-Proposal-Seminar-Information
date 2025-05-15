@@ -41,30 +41,30 @@
                     <span>Ruangan</span>
                 </a>
             </li>
+            <li class="nav-item {{ request()->is('academic-calendars*') ? 'active' : '' }}">
+                <a href="{{ route('academic-calendars.index') }}" class="nav-link">
+                    <i class="fas fa-building"></i>
+                    <span>Tahun Akademik</span>
+                </a>
+            </li>
 
             <li class="menu-header">Informasi Sidang</li>
-            <li class="nav-item dropdown {{ request()->is('academic-calendars*') ? 'active' : '' }}">
+            {{-- <li class="nav-item dropdown {{ request()->is('academic-calendars*') ? 'active' : '' }}">
                 <a href="{{ route('academic-calendars.index') }}" class="nav-link has-dropdown"><i
                         class="fas fa-calendar"></i>
-                    <span>Tahun Akademik</span></a>
+                    <span>Jadwal Akademik</span></a>
                 <ul class="dropdown-menu {{ request()->is('academic-calendars*') ? 'd-block' : '' }}">
-                    <li class="{{ request()->is('academic-calendars*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('academic-calendars.index') }}">2024-2025</a>
-                    </li>
+                    @foreach ($academicCalendars as $academicCalendar)
+                        <li class="{{ request()->is('academic-calendars*') ? 'active' : '' }}">
+                            <a class="nav-link"
+                                href="{{ route('academic-calendars.index', [
+                                    'started_date' => $acamdemicCalendar->started_date,
+                                    'ended_date' => $acamdemicCalendar->ended_date,
+                                ]) }}">2024-2025</a>
+                        </li>
+                    @endforeach
                 </ul>
-            </li>
-            <li class="nav-item {{ request()->is('rooms*') ? 'active' : '' }}">
-                <a href="{{ route('rooms.index') }}" class="nav-link">
-                    <i class="fas fa-calendar-days"></i>
-                    <span>Teknik Informatika</span>
-                </a>
-            </li>
-            <li class="nav-item {{ request()->is('rooms*') ? 'active' : '' }}">
-                <a href="{{ route('rooms.index') }}" class="nav-link">
-                    <i class="fas fa-calendar-days"></i>
-                    <span>Manajemen Informatika</span>
-                </a>
-            </li>
+            </li> --}}
         </ul>
     </aside>
 </div>

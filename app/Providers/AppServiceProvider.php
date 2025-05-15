@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Interfaces\AcademicCalendarInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Interfaces\RoomInterface;
 use App\Services\Interfaces\LectureInterface;
@@ -11,6 +12,7 @@ use App\Services\Interfaces\DashboardInterface;
 use App\Services\Repositories\LectureRepository;
 use App\Services\Repositories\StudentRepository;
 use App\Services\Interfaces\StudyProgramInterface;
+use App\Services\Repositories\AcademicCalendarRepository;
 use App\Services\Repositories\DashboardRepository;
 use App\Services\Repositories\StudyProgramRepository;
 
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(StudyProgramInterface::class, StudyProgramRepository::class);
         $this->app->singleton(RoomInterface::class, RoomRepository::class);
         $this->app->singleton(DashboardInterface::class, DashboardRepository::class);
+        $this->app->singleton(AcademicCalendarInterface::class, AcademicCalendarRepository::class);
     }
 
     /**
