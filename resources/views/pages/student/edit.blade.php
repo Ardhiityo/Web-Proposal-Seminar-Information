@@ -28,7 +28,7 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="card-header">
-                                            <h4>Buat Data</h4>
+                                            <h4>Edit Data</h4>
                                         </div>
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
