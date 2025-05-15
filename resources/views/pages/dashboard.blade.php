@@ -25,7 +25,7 @@
                                 <h4>Total Mahasiswa</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalStudents }}
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                                 <h4>Total Dosen</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{ $totalLecturers }}
                             </div>
                         </div>
                     </div>
@@ -52,10 +52,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Program Studi</h4>
+                                <h4>Total Ruangan</h4>
                             </div>
                             <div class="card-body">
-                                1,201
+                                {{ $totalRooms }}
                             </div>
                         </div>
                     </div>
@@ -67,10 +67,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Ruangan</h4>
+                                <h4>Total Jadwal</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{ $totalProposals }}
                             </div>
                         </div>
                     </div>
