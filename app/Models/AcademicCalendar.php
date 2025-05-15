@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class AcademicCalendar extends Model
@@ -10,6 +11,31 @@ class AcademicCalendar extends Model
         'started_date',
         'ended_date',
     ];
+
+    protected $casts = [
+        'started_date' => 'date',
+        'ended_date' => 'date',
+    ];
+
+    public function getStartedDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d F Y');
+    }
+
+    public function getEndedDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d F Y');
+    }
+
+    public function getRawStartedDateAttribute()
+    {
+        return $this->attributes['started_date'];
+    }
+
+    public function getRawEndedDateAttribute()
+    {
+        return $this->attributes['ended_date'];
+    }
 
     public function proposals()
     {

@@ -43,7 +43,7 @@
             </li>
             <li class="nav-item {{ request()->is('academic-calendars*') ? 'active' : '' }}">
                 <a href="{{ route('academic-calendars.index') }}" class="nav-link">
-                    <i class="fas fa-building"></i>
+                    <i class="fas fa-calendar-days"></i>
                     <span>Tahun Akademik</span>
                 </a>
             </li>

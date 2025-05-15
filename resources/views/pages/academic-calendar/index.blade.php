@@ -8,13 +8,13 @@
             <div class="section-header">
                 <h1>Informasi Umum</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Informasi Tahun Akademik</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Informasi Umum</a></div>
                     <div class="breadcrumb-item"><a href="#">Data Tahun Akademik</a></div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Data Program Studi</h2>
+                <h2 class="section-title">Data Tahun Akademik</h2>
                 <p class="section-lead">
                     Semua informasi mengenai data Tahun Akademik yang ada di Fakultas Ilmu Komputer Universitas
                     Al-Khairiyah
@@ -33,21 +33,30 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Narahubung</th>
+                                            <th scope="col">Tahun Mulai</th>
+                                            <th scope="col">Tahun Berakhir</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Darpi Supriyanto</td>
-                                            <td>0896-5055-7420</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($academicCalendars as $academicCalendar)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $academicCalendar->started_date }}</td>
+                                                <td>{{ $academicCalendar->ended_date }}</td>
+                                                <td>
+                                                    <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
+                                                        class="btn btn-warning">Edit</a>
+                                                    <button id="btn-delete" class="btn btn-danger">Hapus</button>
+                                                    <form id="form-delete"
+                                                        action="{{ route('academic-calendars.destroy', ['academic_calendar' => $academicCalendar->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -58,3 +67,15 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        const btnDelete = document.getElementById('btn-delete');
+        const formDelete = document.getElementById('form-delete');
+
+        btnDelete.addEventListener('click', function(e) {
+            e.preventDefault();
+            formDelete.submit();
+        })
+    </script>
+@endpush

@@ -23,10 +23,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card">
-                                    <form action="{{ route('academic-calendars.store') }}" method="post">
+                                    <form
+                                        action="{{ route('academic-calendars.update', ['academic_calendar' => $academicCalendar->id]) }}"
+                                        method="post">
                                         @csrf
+                                        @method('PUT')
                                         <div class="card-header">
-                                            <h4>Buat Data</h4>
+                                            <h4>Edit Data</h4>
                                         </div>
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -42,12 +45,14 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="started_date">Tahun Mulai</label>
                                                     <input type="date" required name="started_date" class="form-control"
-                                                        id="started_date" placeholder="Tahun mulai Akademik">
+                                                        id="started_date" placeholder="Tahun mulai Akademik"
+                                                        value="{{ old('started_date', $academicCalendar->raw_started_date) }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="ended_date">Tahun Berakhir</label>
                                                     <input type="date" required class="form-control" name="ended_date"
-                                                        id="ended_date" placeholder="Tahun berakhir Akademik">
+                                                        id="ended_date" placeholder="Tahun berakhir Akademik"
+                                                        value="{{ old('started_date', $academicCalendar->raw_ended_date) }}">
                                                 </div>
                                             </div>
                                         </div>
