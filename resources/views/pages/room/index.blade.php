@@ -26,7 +26,7 @@
                                     <a href="{{ route('rooms.create') }}" class="btn btn-primary">Tambah Data</a>
                                 </h4>
                             </div>
-                            <div class="card-body">
+                            <div class="overflow-auto card-body">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>

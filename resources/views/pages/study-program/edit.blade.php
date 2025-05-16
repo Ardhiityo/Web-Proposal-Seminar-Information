@@ -22,7 +22,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="card">
+                                <div class="overflow-auto card">
                                     <form
                                         action="{{ route('study-programs.update', ['study_program' => $studyProgram->id]) }}"
                                         method="POST">

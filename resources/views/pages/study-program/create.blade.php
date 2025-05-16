@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="overflow-auto card-body">
                                 <div class="card">
                                     <form action="{{ route('study-programs.store') }}" method="POST">
                                         @csrf
