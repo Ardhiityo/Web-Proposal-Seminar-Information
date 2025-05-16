@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
@@ -10,6 +9,7 @@ use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
 use App\Services\Interfaces\ProposalInterface;
 use App\Http\Requests\Proposal\StoreProposalRequest;
+use App\Http\Requests\Proposal\UpdateProposalRequest;
 use App\Services\Interfaces\AcademicCalendarInterface;
 
 class ProposalController extends Controller
@@ -44,6 +44,35 @@ class ProposalController extends Controller
         $this->proposalRepository->createProposal($request->validated());
 
         Alert::success('Sukses', 'Data Proposal Berhasil Ditambahkan');
+
+        return redirect()->route('proposals.index');
+    }
+
+    public function edit($id)
+    {
+        $proposal = $this->proposalRepository->getProposalById($id);
+        $students = $this->studentRepository->getAllStudents();
+        $lectures = $this->lectureRepository->getAllLectures();
+        $academicCalendars = $this->academicCalendarRepository->getAllAcademicCalendars();
+        $rooms = $this->roomRepository->getAllRooms();
+
+        return view('pages.proposal.edit', compact('proposal', 'students', 'lectures', 'academicCalendars', 'rooms'));
+    }
+
+    public function update(UpdateProposalRequest $request, $id)
+    {
+        $this->proposalRepository->updateProposal($id, $request->validated());
+
+        Alert::success('Sukses', 'Data Proposal Berhasil Diubah');
+
+        return redirect()->route('proposals.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->proposalRepository->deleteProposal($id);
+
+        Alert::success('Sukses', 'Data Proposal Berhasil Dihapus');
 
         return redirect()->route('proposals.index');
     }

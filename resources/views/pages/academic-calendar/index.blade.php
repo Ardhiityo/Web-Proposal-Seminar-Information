@@ -42,8 +42,8 @@
                                         @foreach ($academicCalendars as $academicCalendar)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $academicCalendar->started_date }}</td>
-                                                <td>{{ $academicCalendar->ended_date }}</td>
+                                                <td>{{ $academicCalendar->started_date_year }}</td>
+                                                <td>{{ $academicCalendar->ended_date_year }}</td>
                                                 <td>
                                                     <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
                                                         class="btn btn-warning">Edit</a>

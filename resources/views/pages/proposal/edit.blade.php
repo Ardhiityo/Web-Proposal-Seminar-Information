@@ -23,10 +23,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="overflow-auto card">
-                                    <form action="{{ route('proposals.store') }}" method="POST">
+                                    <form action="{{ route('proposals.update', ['proposal' => $proposal->id]) }}"
+                                        method="POST">
                                         @csrf
+                                        @method('PUT')
                                         <div class="card-header">
-                                            <h4>Buat Data</h4>
+                                            <h4>Edit Data</h4>
                                         </div>
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -42,13 +44,14 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="session_date">Tanggal Seminar</label>
                                                     <input required type="date" class="form-control" id="session_date"
-                                                        name="session_date" value="{{ old('session_date') }}">
+                                                        name="session_date"
+                                                        value="{{ old('session_date', $proposal->session_date) }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="session_time">Waktu Seminar</label>
                                                     <input required type="time" name="session_time" class="form-control"
                                                         id="session_time" name="session_time"
-                                                        value="{{ old('session_time') }}">
+                                                        value="{{ old('session_time', $proposal->session_time) }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="student_id">Mahasiswa</label>
@@ -56,7 +59,7 @@
                                                         <option selected>Choose...</option>
                                                         @foreach ($students as $student)
                                                             <option value="{{ $student->id }}"
-                                                                {{ old('student_id') == $student->id ? 'selected' : '' }}>
+                                                                {{ old('student_id', $proposal->student->id) == $student->id ? 'selected' : '' }}>
                                                                 {{ $student->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -68,7 +71,7 @@
                                                         <option selected>Choose...</option>
                                                         @foreach ($lectures as $lecture)
                                                             <option value="{{ $lecture->id }}"
-                                                                {{ old('lecture_1_id') == $lecture->id ? 'selected' : '' }}>
+                                                                {{ old('lecture_1_id', $proposal->lecture_1_id) == $lecture->id ? 'selected' : '' }}>
                                                                 {{ $lecture->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -80,7 +83,7 @@
                                                         <option selected>Choose...</option>
                                                         @foreach ($academicCalendars as $academicCalendar)
                                                             <option value="{{ $academicCalendar->id }}"
-                                                                {{ old('academic_calendar_id') == $academicCalendar->id ? 'selected' : '' }}>
+                                                                {{ old('academic_calendar_id', $proposal->academic_calendar_id) == $academicCalendar->id ? 'selected' : '' }}>
                                                                 {{ $academicCalendar->periode_year }}</option>
                                                         @endforeach
                                                     </select>
@@ -92,7 +95,7 @@
                                                         <option selected>Choose...</option>
                                                         @foreach ($lectures as $lecture)
                                                             <option value="{{ $lecture->id }}"
-                                                                {{ old('lecture_2_id') == $lecture->id ? 'selected' : '' }}>
+                                                                {{ old('lecture_2_id', $proposal->lecture_2_id) == $lecture->id ? 'selected' : '' }}>
                                                                 {{ $lecture->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -103,7 +106,7 @@
                                                         <option selected>Choose...</option>
                                                         @foreach ($rooms as $room)
                                                             <option value="{{ $room->id }}"
-                                                                {{ old('room_id') == $room->id ? 'selected' : '' }}>
+                                                                {{ old('room_id', $proposal->room_id) == $room->id ? 'selected' : '' }}>
                                                                 {{ $room->name }}</option>
                                                         @endforeach
                                                     </select>
