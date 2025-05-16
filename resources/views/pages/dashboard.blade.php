@@ -82,10 +82,7 @@
                         <div class="card-header">
                             <h4>Statistics</h4>
                             <div class="card-header-action">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary">Week</a>
-                                    <a href="#" class="btn">Month</a>
-                                </div>
+                                <span class="btn btn-primary">Periode</span>
                             </div>
                         </div>
                         <div class="card-body">
@@ -136,36 +133,6 @@
                                             Nulla vel metus scelerisque ante sollicitudin.</span>
                                     </div>
                                 </li>
-                                <li class="media">
-                                    <img class="mr-3 rounded-circle" width="50"
-                                        src="{{ asset('img/avatar/avatar-2.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">12m</div>
-                                        <div class="media-title">{{ Auth::user()->name }}</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="mr-3 rounded-circle" width="50"
-                                        src="{{ asset('img/avatar/avatar-3.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">17m</div>
-                                        <div class="media-title">Rizal Fakhri</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="mr-3 rounded-circle" width="50"
-                                        src="{{ asset('img/avatar/avatar-4.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">21m</div>
-                                        <div class="media-title">Alfa Zulkarnain</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
                             </ul>
                             <div class="pt-1 pb-1 text-center">
                                 <a href="#" class="btn btn-primary btn-lg btn-round">
@@ -182,13 +149,52 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
     <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script>
+        var statistics_chart = document.getElementById("myChart").getContext('2d');
 
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/index-0.js') }}"></script>
+        var academicCalendarData = @json($academicCalendarData);
+        var totalProposalByPeriodes = @json($proposalPeriodeData)
+
+        var myChart = new Chart(statistics_chart, {
+            type: 'line',
+            data: {
+                labels: academicCalendarData,
+                datasets: [{
+                    label: 'Statistics',
+                    data: totalProposalByPeriodes,
+                    borderWidth: 5,
+                    borderColor: '#6777ef',
+                    backgroundColor: 'transparent',
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#6777ef',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            display: false,
+                            drawBorder: false,
+                        },
+                        ticks: {
+                            stepSize: 5
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            color: '#fbfbfb',
+                            lineWidth: 2
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
 @endpush

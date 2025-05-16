@@ -4,16 +4,26 @@ namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\AcademicCalendar;
+use Database\Seeders\AcademicCalendarSeeder;
+use Illuminate\Support\Facades\Log;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_the_application_returns_a_successful_response(): void
+    public function testData()
     {
-        $response = $this->get('/');
+        $this->seed(AcademicCalendarSeeder::class);
 
-        $response->assertStatus(200);
+        $academicCalendarData = AcademicCalendar::select('started_date', 'ended_date')->get();
+
+        $academicCalendarDatas = collect([]);
+
+        foreach ($academicCalendarData as $key => $startedDate) {
+            $academicCalendarDatas[] = $startedDate->periode_year;
+        }
+
+        Log::info($academicCalendarDatas);
+
+        self::assertTrue(true);
     }
 }

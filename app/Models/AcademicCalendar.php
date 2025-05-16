@@ -37,6 +37,21 @@ class AcademicCalendar extends Model
         return $this->attributes['ended_date'];
     }
 
+    public function getStartedDateYearAttribute()
+    {
+        return Carbon::parse($this->getRawStartedDateAttribute())->format('Y');
+    }
+
+    public function getEndedDateYearAttribute()
+    {
+        return Carbon::parse($this->getRawEndedDateAttribute())->format('Y');
+    }
+
+    public function getPeriodeYearAttribute()
+    {
+        return $this->started_date_year . '-' . $this->ended_date_year;
+    }
+
     public function proposals()
     {
         return $this->hasMany(Proposal::class);
