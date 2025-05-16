@@ -31,6 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
+                                            <th scope="col">NIM</th>
                                             <th scope="col">Mahasiswa</th>
                                             <th scope="col">Pembimbing 1</th>
                                             <th scope="col">Pembimbing 2</th>
