@@ -2,10 +2,31 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use App\Models\Room;
+use App\Models\Lecture;
+use App\Models\Student;
+use App\Models\ProposalStatus;
+use App\Models\AcademicCalendar;
 use Illuminate\Database\Eloquent\Model;
 
 class Proposal extends Model
 {
+    protected $fillable = [
+        'student_id',
+        'session_time',
+        'session_date',
+        'lecture_1_id',
+        'lecture_2_id',
+        'room_id',
+        'academic_calendar_id'
+    ];
+
+    public function getSessionTimeAttribute($value)
+    {
+        return Carbon::parse($value)->format('H:i');
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class);

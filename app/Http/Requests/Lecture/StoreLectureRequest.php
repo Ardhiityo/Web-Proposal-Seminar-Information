@@ -23,7 +23,7 @@ class StoreLectureRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:lectures,name',
-            'phone' => 'required|numeric|digits_between:10,15|starts_with:08',
+            'phone' => 'nullable|numeric|digits_between:10,15|starts_with:08',
         ];
     }
 }

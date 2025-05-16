@@ -1,0 +1,123 @@
+@extends('layouts.app')
+
+@section('title', 'Data Seminar')
+
+@section('main')
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Informasi Umum</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="#">Informasi Umum</a></div>
+                    <div class="breadcrumb-item"><a href="#">Data Seminar</a></div>
+                </div>
+            </div>
+
+            <div class="section-body">
+                <h2 class="section-title">Data Seminar</h2>
+                <p class="section-lead">
+                    Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
+                </p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="overflow-auto card">
+                                    <form action="{{ route('proposals.store') }}" method="POST">
+                                        @csrf
+                                        <div class="card-header">
+                                            <h4>Buat Data</h4>
+                                        </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <div class="card-body">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="session_date">Tanggal Seminar</label>
+                                                    <input required type="date" class="form-control" id="session_date"
+                                                        name="session_date" value="{{ old('session_date') }}">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="session_time">Waktu Seminar</label>
+                                                    <input required type="time" name="session_time" class="form-control"
+                                                        id="session_time" name="session_time"
+                                                        value="{{ old('session_time') }}">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="student_id">Mahasiswa</label>
+                                                    <select id="student_id" name="student_id" class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($students as $student)
+                                                            <option value="{{ $student->id }}"
+                                                                {{ old('student_id') == $student->id ? 'selected' : '' }}>
+                                                                {{ $student->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="lecture_1_id">Pembimbing 1</label>
+                                                    <select id="lecture_1_id" name="lecture_1_id" class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('lecture_1_id') == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="academic_calendar_id">Tahun Akademik</label>
+                                                    <select id="academic_calendar_id" name="academic_calendar_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($academicCalendars as $academicCalendar)
+                                                            <option value="{{ $academicCalendar->id }}"
+                                                                {{ old('academic_calendar_id') == $academicCalendar->id ? 'selected' : '' }}>
+                                                                {{ $academicCalendar->periode_year }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="lecture_2_id">Pembimbing 2</label>
+                                                    <select id="lecture_2_id" name="lecture_2_id" class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('lecture_2_id') == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="room">Ruangan</label>
+                                                    <select id="room_id" name="room_id" class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($rooms as $room)
+                                                            <option value="{{ $room->id }}"
+                                                                {{ old('room_id') == $room->id ? 'selected' : '' }}>
+                                                                {{ $room->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+@endsection

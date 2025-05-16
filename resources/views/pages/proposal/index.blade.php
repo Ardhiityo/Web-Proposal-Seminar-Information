@@ -44,10 +44,11 @@
                                         @foreach ($proposals as $proposal)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $proposal->student->nim }}</td>
                                                 <td>{{ $proposal->student->name }}</td>
                                                 <td>{{ $proposal->lecture1->name }}</td>
                                                 <td>{{ $proposal->lecture2->name }}</td>
-                                                <td>{{ $proposal->academicCalendar->session_time }}</td>
+                                                <td>{{ $proposal->session_time }}</td>
                                                 <td>{{ $proposal->room->name }}</td>
                                                 <td>
                                                     <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"

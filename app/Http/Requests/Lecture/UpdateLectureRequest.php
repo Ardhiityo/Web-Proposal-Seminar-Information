@@ -24,7 +24,7 @@ class UpdateLectureRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255', Rule::unique('lectures', 'name')->ignore($this->route('lecture'))],
-            'phone' => ['required', 'numeric', 'digits_between:10,15', 'starts_with:08', Rule::unique('lectures', 'name')->ignore($this->route('lecture'))],
+            'phone' => ['nullable', 'numeric', 'digits_between:10,15', 'starts_with:08', Rule::unique('lectures', 'name')->ignore($this->route('lecture'))],
         ];
     }
 }

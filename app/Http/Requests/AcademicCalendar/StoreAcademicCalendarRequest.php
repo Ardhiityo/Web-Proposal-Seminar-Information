@@ -22,7 +22,7 @@ class StoreAcademicCalendarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'started_date' => ['required', 'date', 'before:ended_date', 'after:yesterday', 'unique:academic_calendars,started_date'],
+            'started_date' => ['required', 'date', 'before:ended_date', 'unique:academic_calendars,started_date'],
             'ended_date' => ['required', 'date', 'after:started_date', 'unique:academic_calendars,ended_date'],
         ];
     }

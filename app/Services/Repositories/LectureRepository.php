@@ -28,7 +28,9 @@ class LectureRepository implements LectureInterface
 
     public function updateLecture($id, array $data)
     {
-        return $this->getLectureById($id)->update($data);
+        $lecture = $this->getLectureById($id);
+
+        return $lecture->update($data);
     }
 
     public function deleteLecture($id)

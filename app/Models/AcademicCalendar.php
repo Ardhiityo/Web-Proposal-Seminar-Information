@@ -17,16 +17,6 @@ class AcademicCalendar extends Model
         'ended_date' => 'date',
     ];
 
-    public function getStartedDateAttribute($value)
-    {
-        return Carbon::parse($value)->format('d F Y');
-    }
-
-    public function getEndedDateAttribute($value)
-    {
-        return Carbon::parse($value)->format('d F Y');
-    }
-
     public function getRawStartedDateAttribute()
     {
         return $this->attributes['started_date'];
