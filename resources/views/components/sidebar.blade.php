@@ -47,24 +47,22 @@
                     <span>Tahun Akademik</span>
                 </a>
             </li>
+            <li class="nav-item {{ request()->is('proposals*') ? 'active' : '' }}">
+                <a href="{{ route('proposals.index') }}" class="nav-link">
+                    <i class="fas fa-book-open-reader"></i>
+                    <span>Seminar Proposal</span>
+                </a>
+            </li>
 
             <li class="menu-header">Informasi Sidang</li>
-            {{-- <li class="nav-item dropdown {{ request()->is('academic-calendars*') ? 'active' : '' }}">
-                <a href="{{ route('academic-calendars.index') }}" class="nav-link has-dropdown"><i
-                        class="fas fa-calendar"></i>
-                    <span>Jadwal Akademik</span></a>
-                <ul class="dropdown-menu {{ request()->is('academic-calendars*') ? 'd-block' : '' }}">
-                    @foreach ($academicCalendars as $academicCalendar)
-                        <li class="{{ request()->is('academic-calendars*') ? 'active' : '' }}">
-                            <a class="nav-link"
-                                href="{{ route('academic-calendars.index', [
-                                    'started_date' => $acamdemicCalendar->started_date,
-                                    'ended_date' => $acamdemicCalendar->ended_date,
-                                ]) }}">2024-2025</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </li> --}}
+            @foreach ($academicCalendars as $academicCalendar)
+                <li class="nav-item {{ request()->is('academic-calendars*') ? 'active' : '' }}">
+                    <a href="{{ route('proposals.show', ['proposal' => $academicCalendar->id]) }}" class="nav-link">
+                        <i class="fas fa-calendar"></i>
+                        <span>{{ $academicCalendar->periode_year }}</span>
+                    </a>
+                </li>
+            @endforeach
         </ul>
     </aside>
 </div>

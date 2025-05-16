@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StudyProgramController;
 use App\Http\Controllers\Admin\AcademicCalendarController;
+use App\Http\Controllers\Admin\ProposalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('study-programs', StudyProgramController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('academic-calendars', AcademicCalendarController::class);
+    Route::resource('proposals', ProposalController::class);
 });
 
 Route::middleware('auth')->group(function () {
