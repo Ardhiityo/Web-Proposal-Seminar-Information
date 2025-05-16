@@ -9,7 +9,7 @@ class LectureRepository implements LectureInterface
 {
     public function getAllLectures()
     {
-        return Lecture::select('id', 'name', 'phone')->get();
+        return Lecture::select('id', 'name', 'phone')->lates()->get();
     }
 
     public function getLectureById($id)

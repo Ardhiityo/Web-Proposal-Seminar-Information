@@ -12,6 +12,7 @@ class StudentRepository implements StudentInterface
     {
         return Student::with(['studyProgram' => fn(Builder $query) => $query->select('id', 'name')])
             ->select('study_program_id', 'id', 'name', 'nim')
+            ->latest()
             ->get();
     }
     public function getStudentById($id)

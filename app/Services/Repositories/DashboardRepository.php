@@ -8,7 +8,6 @@ use App\Models\Lecture;
 use App\Models\Student;
 use App\Models\Proposal;
 use App\Services\Interfaces\DashboardInterface;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class DashboardRepository implements DashboardInterface
