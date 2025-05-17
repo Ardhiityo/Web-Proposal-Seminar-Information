@@ -125,20 +125,18 @@
                             <ul class="list-unstyled list-unstyled-border">
                                 @foreach ($latestProposals as $latestProposal)
                                     <a href="{{ route('proposals.index', ['keyword' => $latestProposal->student->nim]) }}"
-                                        class="text-decoration-none">
-                                        <li class="media">
-                                            <img class="mr-3 rounded-circle" width="50"
-                                                src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                            <div class="media-body">
-                                                <div class="float-right text-primary">
-                                                    {{ $latestProposal->created_at }}</div>
-                                                <div class="media-title">{{ $latestProposal->student->name }}</div>
-                                                <span class="text-small text-muted">Mahasiswa
-                                                    {{ $latestProposal->student->studyProgram->name }}, mulai sidang
-                                                    pukul {{ $latestProposal->session_time }} wib, pada ruangan
-                                                    {{ $latestProposal->room->name }}</span>
-                                            </div>
-                                        </li>
+                                        class="mb-4 text-decoration-none media">
+                                        <img class="mr-3 rounded-circle" width="50"
+                                            src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                        <div class="media-body">
+                                            <div class="float-right text-primary">
+                                                {{ $latestProposal->created_at }}</div>
+                                            <div class="media-title">{{ $latestProposal->student->name }}</div>
+                                            <span class="text-small text-muted">Mahasiswa
+                                                {{ $latestProposal->student->studyProgram->name }}, mulai sidang
+                                                pukul {{ $latestProposal->session_time }} wib, pada ruangan
+                                                {{ $latestProposal->room->name }}</span>
+                                        </div>
                                     </a>
                                 @endforeach
                             </ul>
