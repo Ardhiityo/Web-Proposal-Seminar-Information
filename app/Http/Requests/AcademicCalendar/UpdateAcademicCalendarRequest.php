@@ -23,7 +23,7 @@ class UpdateAcademicCalendarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'started_date' => ['required', 'date', 'before:ended_date', 'after:yesterday', Rule::unique('academic_calendars', 'started_date')->ignore($this->academic_calendar)],
+            'started_date' => ['required', 'date', 'before:ended_date', Rule::unique('academic_calendars', 'started_date')->ignore($this->academic_calendar)],
             'ended_date' => ['required', 'date', 'after:started_date', Rule::unique('academic_calendars', 'ended_date')->ignore($this->academic_calendar)],
         ];
     }

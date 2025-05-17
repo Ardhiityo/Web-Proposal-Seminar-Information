@@ -18,20 +18,35 @@ class DashboardRepository implements DashboardInterface
         $totalLecturers = Lecture::count();
         $totalRooms = Room::count();
         $totalProposals = Proposal::count();
-        $academicCalendars = AcademicCalendar::select('id', 'started_date', 'ended_date')->get();
-        $proposalPeriodes = Proposal::select('academic_calendar_id', DB::raw('count(*) as total'))->groupBy('academic_calendar_id')->get();
+        $academicCalendars = AcademicCalendar::select('id', 'started_date', 'ended_date')
+            ->latest()->take(5)->get();
 
-        $academicCalendarData = [];
-        $proposalPeriodeData = [];
+        $academicPeriodes = [];
+        $academicCalendarIds = [];
 
         foreach ($academicCalendars as $key => $academicCalendar) {
-            $academicCalendarData[] = $academicCalendar->periode_year;
+            $academicPeriodes[] = $academicCalendar->periode_year;
+            $academicCalendarIds[] = $academicCalendar->id;
         }
+
+        $totalProposalByPeriodes = [];
+
+        $proposalPeriodes = Proposal::select('academic_calendar_id', DB::raw('COUNT(*) as total'))
+            ->whereIn('academic_calendar_id', $academicCalendarIds)
+            ->groupBy('academic_calendar_id')
+            ->get();
 
         foreach ($proposalPeriodes as $key => $proposalPeriode) {
-            $proposalPeriodeData[] = $proposalPeriode->total;
+            $totalProposalByPeriodes[] = $proposalPeriode->total;
         }
 
-        return compact('totalStudents', 'totalLecturers', 'totalRooms', 'totalProposals', 'academicCalendarData', 'proposalPeriodeData');
+        return compact(
+            'totalStudents',
+            'totalLecturers',
+            'totalRooms',
+            'totalProposals',
+            'academicPeriodes',
+            'totalProposalByPeriodes'
+        );
     }
 }

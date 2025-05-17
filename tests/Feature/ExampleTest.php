@@ -12,17 +12,23 @@ class ExampleTest extends TestCase
 {
     public function testData()
     {
-        $this->seed(AcademicCalendarSeeder::class);
+        // $this->seed(AcademicCalendarSeeder::class);
 
-        $academicCalendarData = AcademicCalendar::select('started_date', 'ended_date')->get();
+        // $academicCalendarData = AcademicCalendar::select('started_date', 'ended_date')->get();
 
-        $academicCalendarDatas = collect([]);
+        // $academicCalendarDatas = collect([]);
 
-        foreach ($academicCalendarData as $key => $startedDate) {
-            $academicCalendarDatas[] = $startedDate->periode_year;
-        }
+        // foreach ($academicCalendarData as $key => $startedDate) {
+        //     $academicCalendarDatas[] = $startedDate->periode_year;
+        // }
 
-        Log::info($academicCalendarDatas);
+        // Log::info($academicCalendarDatas);
+
+        $test = [1, 2, 3];
+
+        $new = array_reverse($test);
+
+        Log::info(json_encode($new));
 
         self::assertTrue(true);
     }

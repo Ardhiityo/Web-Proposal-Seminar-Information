@@ -155,8 +155,10 @@
     <script>
         var statistics_chart = document.getElementById("myChart").getContext('2d');
 
-        var academicCalendarData = @json($academicCalendarData);
-        var totalProposalByPeriodes = @json($proposalPeriodeData)
+        var academicCalendarData = @json($academicPeriodes);
+
+        var totalProposalByPeriodes = @json($totalProposalByPeriodes)
+
 
         var myChart = new Chart(statistics_chart, {
             type: 'line',
