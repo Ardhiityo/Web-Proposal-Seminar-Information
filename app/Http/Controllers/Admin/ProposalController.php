@@ -30,8 +30,8 @@ class ProposalController extends Controller
         if ($keyword = $request->query('keyword')) {
             try {
                 $this->historyRepository->createHistory($keyword);
-                $studentId = $this->studentRepository->getStudentByNim($keyword);
-                $proposals = $this->proposalRepository->getProposalByStudent($studentId);
+                $student = $this->studentRepository->getStudentByNim($keyword);
+                $proposals = $this->proposalRepository->getProposalByStudent($student->id);
             } catch (\Throwable $th) {
                 return redirect()->route('proposals.index')
                     ->with('nim_not_found', 'Belum ada jadwal tersedia...');
