@@ -6,4 +6,5 @@ interface HistoryInterface
 {
     public function createHistory($keyword);
     public function getHistoryByUser();
+    public function checkHistoryAlreadyExists($keyword);
 }

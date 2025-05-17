@@ -10,10 +10,17 @@ class HistoryRepository implements HistoryInterface
 {
     public function createHistory($keyword)
     {
-        return History::create([
-            'user_id' => Auth::user()->id,
-            'keyword' => $keyword
-        ]);
+        if (!$this->checkHistoryAlreadyExists($keyword)) {
+            return History::create([
+                'user_id' => Auth::user()->id,
+                'keyword' => $keyword
+            ]);
+        }
+    }
+
+    public function checkHistoryAlreadyExists($keyword)
+    {
+        return History::where('keyword', $keyword)->exists();
     }
 
     public function getHistoryByUser()
