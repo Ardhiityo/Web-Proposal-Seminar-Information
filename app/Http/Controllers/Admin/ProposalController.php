@@ -29,7 +29,7 @@ class ProposalController extends Controller
     {
         if ($keyword = $request->query('keyword')) {
             try {
-                // $this->historyRepository->createHistory($keyword);
+                $this->historyRepository->createHistory($keyword);
                 $studentId = $this->studentRepository->getStudentByNim($keyword);
                 $proposals = $this->proposalRepository->getProposalByStudent($studentId);
             } catch (\Throwable $th) {

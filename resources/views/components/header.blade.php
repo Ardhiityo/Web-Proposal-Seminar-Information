@@ -23,7 +23,7 @@
                     </div>
                     @foreach ($histories as $history)
                         <div class="search-item">
-                            <a href="#">
+                            <a href="{{ route('proposals.index', ['keyword' => $history->keyword]) }}">
                                 <div class="mr-3 text-white search-icon bg-primary">
                                     <i class="fas fa-clock-rotate-left"></i>
                                 </div>
