@@ -14,7 +14,7 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Periode {{ $proposals->first()->academicCalendar->periode_year }}</h2>
+                <h2 class="section-title">Periode {{ $academicCalendar->periode_year }}</h2>
                 <p class="section-lead">
                     Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>

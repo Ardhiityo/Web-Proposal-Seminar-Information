@@ -47,11 +47,6 @@ class Proposal extends Model
         return $this->belongsTo(Room::class);
     }
 
-    public function proposalStatuses()
-    {
-        return $this->hasMany(ProposalStatus::class);
-    }
-
     public function academicCalendar()
     {
         return $this->belongsTo(AcademicCalendar::class);

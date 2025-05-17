@@ -2,18 +2,21 @@
 
 namespace App\View\Components;
 
+use App\Services\Interfaces\HistoryInterface;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class tes extends Component
+class Header extends Component
 {
+    public $histories;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(private HistoryInterface $historyRepository)
     {
-        //
+        $this->histories = $historyRepository->getHistoryByUser();
     }
 
     /**
@@ -21,6 +24,6 @@ class tes extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.tes');
+        return view('components.header');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
@@ -11,6 +12,7 @@ use App\Services\Interfaces\ProposalInterface;
 use App\Http\Requests\Proposal\StoreProposalRequest;
 use App\Http\Requests\Proposal\UpdateProposalRequest;
 use App\Services\Interfaces\AcademicCalendarInterface;
+use App\Services\Interfaces\HistoryInterface;
 
 class ProposalController extends Controller
 {
@@ -19,12 +21,18 @@ class ProposalController extends Controller
         private StudentInterface $studentRepository,
         private LectureInterface $lectureRepository,
         private AcademicCalendarInterface $academicCalendarRepository,
-        private RoomInterface $roomRepository
+        private RoomInterface $roomRepository,
+        private HistoryInterface $historyRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $proposals = $this->proposalRepository->getAllProposals();
+        if ($keyword = $request->query('keyword')) {
+            $this->historyRepository->createHistory($keyword);
+            $proposals = $this->proposalRepository->getAllProposals();
+        } else {
+            $proposals = $this->proposalRepository->getAllProposals();
+        }
 
         return view('pages.proposal.index', compact('proposals'));
     }

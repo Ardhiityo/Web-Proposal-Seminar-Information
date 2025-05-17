@@ -3,6 +3,6 @@
         Proposal Seminar Information (PROSI)
     </div>
     <div class="footer-right">
-        2.3.0
+        Arya Adhi Prasetyo
     </div>
 </footer>

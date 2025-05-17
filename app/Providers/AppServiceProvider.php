@@ -2,21 +2,23 @@
 
 namespace App\Providers;
 
-use App\Services\Interfaces\AcademicCalendarInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Interfaces\RoomInterface;
+use App\Services\Interfaces\HistoryInterface;
 use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
 use App\Services\Repositories\RoomRepository;
-use App\Services\Interfaces\DashboardInterface;
 use App\Services\Interfaces\ProposalInterface;
+use App\Services\Interfaces\DashboardInterface;
+use App\Services\Repositories\HistoryRepository;
 use App\Services\Repositories\LectureRepository;
 use App\Services\Repositories\StudentRepository;
-use App\Services\Interfaces\StudyProgramInterface;
-use App\Services\Repositories\AcademicCalendarRepository;
-use App\Services\Repositories\DashboardRepository;
 use App\Services\Repositories\ProposalRepository;
+use App\Services\Interfaces\StudyProgramInterface;
+use App\Services\Repositories\DashboardRepository;
 use App\Services\Repositories\StudyProgramRepository;
+use App\Services\Interfaces\AcademicCalendarInterface;
+use App\Services\Repositories\AcademicCalendarRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(DashboardInterface::class, DashboardRepository::class);
         $this->app->singleton(AcademicCalendarInterface::class, AcademicCalendarRepository::class);
         $this->app->singleton(ProposalInterface::class, ProposalRepository::class);
+        $this->app->singleton(HistoryInterface::class, HistoryRepository::class);
     }
 
     /**

@@ -37,6 +37,7 @@
                                             <th scope="col">Pembimbing 2</th>
                                             <th scope="col">Waktu</th>
                                             <th scope="col">Ruangan</th>
+                                            <th scope="col">Periode</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
@@ -50,6 +51,8 @@
                                                 <td>{{ $proposal->lecture2->name }}</td>
                                                 <td>{{ $proposal->session_time }}</td>
                                                 <td>{{ $proposal->room->name }}</td>
+                                                <td>{{ $proposal->academicCalendar->periode_year }}</td>
+
                                                 <td>
                                                     <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"
                                                         class="btn btn-warning">Edit</a>
