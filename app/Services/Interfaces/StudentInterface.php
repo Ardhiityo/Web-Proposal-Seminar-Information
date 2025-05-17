@@ -9,4 +9,5 @@ interface StudentInterface
     public function createStudent(array $data);
     public function updateStudent($id, array $data);
     public function deleteStudent($id);
+    public function getStudentByNim($nim);
 }

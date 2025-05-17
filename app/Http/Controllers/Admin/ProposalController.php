@@ -22,14 +22,20 @@ class ProposalController extends Controller
         private LectureInterface $lectureRepository,
         private AcademicCalendarInterface $academicCalendarRepository,
         private RoomInterface $roomRepository,
-        private HistoryInterface $historyRepository
+        private HistoryInterface $historyRepository,
     ) {}
 
     public function index(Request $request)
     {
         if ($keyword = $request->query('keyword')) {
-            $this->historyRepository->createHistory($keyword);
-            $proposals = $this->proposalRepository->getAllProposals();
+            try {
+                // $this->historyRepository->createHistory($keyword);
+                $studentId = $this->studentRepository->getStudentByNim($keyword);
+                $proposals = $this->proposalRepository->getProposalByStudent($studentId);
+            } catch (\Throwable $th) {
+                return redirect()->route('proposals.index')
+                    ->with('nim_not_found', 'Belum ada jadwal tersedia...');
+            }
         } else {
             $proposals = $this->proposalRepository->getAllProposals();
         }

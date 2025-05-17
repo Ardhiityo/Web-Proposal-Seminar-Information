@@ -16,21 +16,23 @@
                 aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
-            <div class="search-result">
-                <div class="search-header">
-                    Riwayat
-                </div>
-                @foreach ($histories as $keyword)
-                    <div class="search-item">
-                        <a href="#">
-                            <div class="mr-3 text-white search-icon bg-primary">
-                                <i class="fas fa-clock-rotate-left"></i>
-                            </div>
-                            {{ $keyword }}
-                        </a>
+            @if ($histories->first())
+                <div class="search-result">
+                    <div class="search-header">
+                        Riwayat
                     </div>
-                @endforeach
-            </div>
+                    @foreach ($histories as $keyword)
+                        <div class="search-item">
+                            <a href="#">
+                                <div class="mr-3 text-white search-icon bg-primary">
+                                    <i class="fas fa-clock-rotate-left"></i>
+                                </div>
+                                {{ $keyword }}
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </form>
     <ul class="navbar-nav navbar-right">

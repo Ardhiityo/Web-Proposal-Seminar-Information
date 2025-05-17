@@ -10,4 +10,5 @@ interface ProposalInterface
     public function updateProposal($id, array $data);
     public function deleteProposal($id);
     public function getProposalById($id);
+    public function getProposalByStudent($id);
 }

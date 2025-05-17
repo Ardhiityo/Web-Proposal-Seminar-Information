@@ -25,6 +25,14 @@ class StudentRepository implements StudentInterface
             return abort(404);
         }
     }
+    public function getStudentByNim($nim)
+    {
+        try {
+            return Student::where('nim', $nim)->firstOrFail();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function createStudent(array $data)
     {
         return Student::create($data);
