@@ -12,22 +12,22 @@
             </li>
         </ul>
         <div class="search-element">
-            <input class="form-control" type="search" name="keyword" placeholder="Cari jadwal via nim..."
+            <input class="form-control" type="search" name="keyword" placeholder="Cek jadwal via NIM"
                 aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
-            @if ($histories->first())
+            @if (!$histories->isEmpty())
                 <div class="search-result">
                     <div class="search-header">
                         Riwayat
                     </div>
-                    @foreach ($histories as $keyword)
+                    @foreach ($histories as $history)
                         <div class="search-item">
                             <a href="#">
                                 <div class="mr-3 text-white search-icon bg-primary">
                                     <i class="fas fa-clock-rotate-left"></i>
                                 </div>
-                                {{ $keyword }}
+                                {{ $history->keyword }}
                             </a>
                         </div>
                     @endforeach

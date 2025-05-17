@@ -21,6 +21,6 @@ class HistoryRepository implements HistoryInterface
         $userId = Auth::user()->id;
 
         return History::select('keyword')->where('user_id', $userId)
-            ->latest()->take(3)->pluck('keyword');
+            ->latest()->take(3)->select('keyword')->get();
     }
 }

@@ -29,36 +29,40 @@
                                 </h4>
                             </div>
                             <div class="overflow-auto card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Tahun Mulai</th>
-                                            <th scope="col">Tahun Berakhir</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($academicCalendars as $academicCalendar)
+                                @if ($academicCalendars->isEmpty())
+                                    <p>Data belum tersedia...</p>
+                                @else
+                                    <table class="table table-bordered">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $academicCalendar->started_date_year }}</td>
-                                                <td>{{ $academicCalendar->ended_date_year }}</td>
-                                                <td>
-                                                    <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
-                                                        class="btn btn-warning">Edit</a>
-                                                    <button id="btn-delete" class="btn btn-danger">Hapus</button>
-                                                    <form id="form-delete"
-                                                        action="{{ route('academic-calendars.destroy', ['academic_calendar' => $academicCalendar->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Tahun Mulai</th>
+                                                <th scope="col">Tahun Berakhir</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($academicCalendars as $academicCalendar)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $academicCalendar->started_date_year }}</td>
+                                                    <td>{{ $academicCalendar->ended_date_year }}</td>
+                                                    <td>
+                                                        <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
+                                                            class="btn btn-warning">Edit</a>
+                                                        <button id="btn-delete" class="btn btn-danger">Hapus</button>
+                                                        <form id="form-delete"
+                                                            action="{{ route('academic-calendars.destroy', ['academic_calendar' => $academicCalendar->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>

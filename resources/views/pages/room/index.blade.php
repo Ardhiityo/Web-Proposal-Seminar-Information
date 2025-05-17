@@ -27,34 +27,38 @@
                                 </h4>
                             </div>
                             <div class="overflow-auto card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($rooms as $room)
+                                @if ($rooms->isEmpty())
+                                    <p>Data belum tersedia...</p>
+                                @else
+                                    <table class="table table-bordered">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $room->name }}</td>
-                                                <td>
-                                                    <a href="{{ route('rooms.edit', ['room' => $room->id]) }}"
-                                                        class="btn btn-warning">Edit</a>
-                                                    <button class="btn btn-danger" id="btn-delete">Hapus</button>
-                                                    <form id="form-delete"
-                                                        action="{{ route('rooms.destroy', ['room' => $room->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($rooms as $room)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $room->name }}</td>
+                                                    <td>
+                                                        <a href="{{ route('rooms.edit', ['room' => $room->id]) }}"
+                                                            class="btn btn-warning">Edit</a>
+                                                        <button class="btn btn-danger" id="btn-delete">Hapus</button>
+                                                        <form id="form-delete"
+                                                            action="{{ route('rooms.destroy', ['room' => $room->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -27,36 +27,40 @@
                                 </h4>
                             </div>
                             <div class="overflow-auto card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Narahubung</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($lectures as $lecture)
+                                @if ($lectures->isEmpty())
+                                    <p>Data belum tersedia...</p>
+                                @else
+                                    <table class="table table-bordered">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $lecture->name }}</td>
-                                                <td>{{ $lecture->phone }}</td>
-                                                <td>
-                                                    <a href="{{ route('lectures.edit', ['lecture' => $lecture->id]) }}"
-                                                        class="btn btn-warning">Edit</a>
-                                                    <button id="btn-delete" class="btn btn-danger">Hapus</button>
-                                                    <form id="form-delete"
-                                                        action="{{ route('lectures.destroy', ['lecture' => $lecture->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Narahubung</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($lectures as $lecture)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $lecture->name }}</td>
+                                                    <td>{{ $lecture->phone ?? '-' }}</td>
+                                                    <td>
+                                                        <a href="{{ route('lectures.edit', ['lecture' => $lecture->id]) }}"
+                                                            class="btn btn-warning">Edit</a>
+                                                        <button id="btn-delete" class="btn btn-danger">Hapus</button>
+                                                        <form id="form-delete"
+                                                            action="{{ route('lectures.destroy', ['lecture' => $lecture->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -27,38 +27,42 @@
                                 </h4>
                             </div>
                             <div class="overflow-auto card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">NIM</th>
-                                            <th scope="col">Program Studi</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($students as $student)
+                                @if ($students->isEmpty())
+                                    <p>Data belum tersedia...</p>
+                                @else
+                                    <table class="table table-bordered">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $student->name }}</td>
-                                                <td>{{ $student->nim }}</td>
-                                                <td>{{ $student->studyProgram->name }}</td>
-                                                <td>
-                                                    <a href="{{ route('students.edit', ['student' => $student->id]) }}"
-                                                        class="btn btn-warning">Edit</a>
-                                                    <button class="btn btn-danger" id="btn-delete">Hapus</button>
-                                                </td>
-                                                <form id="form-delete"
-                                                    action="{{ route('students.destroy', ['student' => $student->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">NIM</th>
+                                                <th scope="col">Program Studi</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($students as $student)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $student->name }}</td>
+                                                    <td>{{ $student->nim }}</td>
+                                                    <td>{{ $student->studyProgram->name }}</td>
+                                                    <td>
+                                                        <a href="{{ route('students.edit', ['student' => $student->id]) }}"
+                                                            class="btn btn-warning">Edit</a>
+                                                        <button class="btn btn-danger" id="btn-delete">Hapus</button>
+                                                    </td>
+                                                    <form id="form-delete"
+                                                        action="{{ route('students.destroy', ['student' => $student->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>
