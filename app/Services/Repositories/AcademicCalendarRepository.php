@@ -37,4 +37,10 @@ class AcademicCalendarRepository implements AcademicCalendarInterface
     {
         return $this->getAcademicCalendarById($id)->delete();
     }
+
+    public function getLatestAcademicCalendars()
+    {
+        return AcademicCalendar::select('id', 'started_date', 'ended_date')
+            ->latest()->take(3)->get();
+    }
 }

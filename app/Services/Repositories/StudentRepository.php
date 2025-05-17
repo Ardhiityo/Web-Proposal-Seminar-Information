@@ -45,4 +45,9 @@ class StudentRepository implements StudentInterface
     {
         return Student::destroy($id);
     }
+
+    public function getTotalStudents()
+    {
+        return Student::count();
+    }
 }

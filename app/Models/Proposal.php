@@ -27,6 +27,11 @@ class Proposal extends Model
         return Carbon::parse($value)->format('H:i');
     }
 
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->diffForHumans();
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class);

@@ -37,4 +37,9 @@ class LectureRepository implements LectureInterface
     {
         return Lecture::destroy($id);
     }
+
+    public function getTotalLectures()
+    {
+        return Lecture::count();
+    }
 }

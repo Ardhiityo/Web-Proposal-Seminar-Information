@@ -9,4 +9,5 @@ interface LectureInterface
     public function createLecture(array $data);
     public function updateLecture($id, array $data);
     public function deleteLecture($id);
+    public function getTotalLectures();
 }

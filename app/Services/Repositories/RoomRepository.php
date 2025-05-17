@@ -32,4 +32,9 @@ class RoomRepository implements RoomInterface
     {
         return Room::destroy($id);
     }
+
+    public function getTotalRooms()
+    {
+        return Room::count();
+    }
 }

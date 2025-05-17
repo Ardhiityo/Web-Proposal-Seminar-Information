@@ -9,4 +9,5 @@ interface RoomInterface
     public function createRoom(array $data);
     public function updateRoom($id, array $data);
     public function deleteRoom($id);
+    public function getTotalRooms();
 }

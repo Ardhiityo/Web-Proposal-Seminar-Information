@@ -119,24 +119,32 @@
                 <div class="col-lg-4 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Recent Activities</h4>
+                            <h4>Jadwal terbaru</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <img class="mr-3 rounded-circle" width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right text-primary">Now</div>
-                                        <div class="media-title">Farhan A Mujib</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
+                                @foreach ($latestProposals as $latestProposal)
+                                    <a href="{{ route('proposals.index', ['keyword' => $latestProposal->student->nim]) }}"
+                                        class="text-decoration-none">
+                                        <li class="media">
+                                            <img class="mr-3 rounded-circle" width="50"
+                                                src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                            <div class="media-body">
+                                                <div class="float-right text-primary">
+                                                    {{ $latestProposal->created_at }}</div>
+                                                <div class="media-title">{{ $latestProposal->student->name }}</div>
+                                                <span class="text-small text-muted">Mahasiswa
+                                                    {{ $latestProposal->student->studyProgram->name }}, mulai sidang
+                                                    pukul {{ $latestProposal->session_time }} wib, pada ruangan
+                                                    {{ $latestProposal->room->name }}</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                @endforeach
                             </ul>
                             <div class="pt-1 pb-1 text-center">
-                                <a href="#" class="btn btn-primary btn-lg btn-round">
-                                    View All
+                                <a href="{{ route('proposals.index') }}" class="btn btn-primary btn-lg btn-round">
+                                    Semua jadwal
                                 </a>
                             </div>
                         </div>
