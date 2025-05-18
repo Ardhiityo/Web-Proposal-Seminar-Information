@@ -9,7 +9,7 @@ class StudyProgramRepository implements StudyProgramInterface
 {
     public function getAllStudyPrograms()
     {
-        return StudyProgram::select('id', 'name')->latest()->get();
+        return StudyProgram::select('id', 'name')->latest()->paginate(perPage: 3);
     }
 
     public function getStudyProgramById($id)

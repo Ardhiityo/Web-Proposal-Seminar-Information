@@ -32,22 +32,20 @@ class ProposalRepository implements ProposalInterface
             'room_id'
         )
             ->latest()
-            ->get();
+            ->paginate(perPage: 10);
     }
 
     public function getProposalByAcademicCalendar($id)
     {
-        return Proposal::with(
-            [
-                'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-                'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-                'student' => fn(Builder $query) =>
-                $query->with(['studyProgram' => fn(Builder $query) => $query->select('id', 'name')])
-                    ->select('id', 'name', 'nim', 'study_program_id'),
-                'room' => fn(Builder $query) => $query->select('id', 'name'),
-                'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
-            ]
-        )
+        $proposals = Proposal::with([
+            'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
+            'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
+            'student' => fn(Builder $query) =>
+            $query->with(['studyProgram' => fn(Builder $query) => $query->select('id', 'name')])
+                ->select('id', 'name', 'nim', 'study_program_id'),
+            'room' => fn(Builder $query) => $query->select('id', 'name'),
+            'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
+        ])
             ->select(
                 'id',
                 'lecture_1_id',
@@ -59,9 +57,24 @@ class ProposalRepository implements ProposalInterface
                 'academic_calendar_id'
             )
             ->where('academic_calendar_id', $id)
-            ->latest()
+            ->orderBy('session_date', 'desc')
+            ->orderBy('session_time', 'asc')
             ->get()
             ->groupBy('session_date');
+
+        // Mengubah collection menjadi paginator
+        $page = request()->get('page', 1);
+        $perPage = 3;
+
+        $items = $proposals->forPage($page, $perPage);
+
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $items,
+            $proposals->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url()]
+        );
     }
 
     public function getProposalById($id)

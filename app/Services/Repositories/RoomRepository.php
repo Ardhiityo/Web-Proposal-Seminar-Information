@@ -9,7 +9,7 @@ class RoomRepository implements RoomInterface
 {
     public function getAllRooms()
     {
-        return Room::select('id', 'name')->latest()->get();
+        return Room::select('id', 'name')->latest()->paginate(perPage: 10);
     }
 
     public function getRoomById($id)

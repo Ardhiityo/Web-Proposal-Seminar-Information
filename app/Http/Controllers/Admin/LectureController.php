@@ -10,7 +10,6 @@ use App\Http\Requests\Lecture\StoreLectureRequest;
 
 class LectureController extends Controller
 {
-
     public function __construct(private LectureInterface $lectureRepository) {}
 
     public function index()

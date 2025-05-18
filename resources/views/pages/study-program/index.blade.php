@@ -59,6 +59,9 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <div class="my-auto d-flex justify-content-end">
+                                        {{ $studyPrograms->links('pagination::bootstrap-4') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>

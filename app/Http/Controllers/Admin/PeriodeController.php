@@ -18,8 +18,6 @@ class PeriodeController extends Controller
     {
         $proposals = $this->proposalRepository->getProposalByAcademicCalendar($id);
         $academicCalendar = $this->academicCalendarRepository->getAcademicCalendarById($id);
-        // Log::info($proposals->toArray());
-        // dd($proposals->toArray());
 
         return view('pages.periode.show', compact('proposals', 'academicCalendar'));
     }

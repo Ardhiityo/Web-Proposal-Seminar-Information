@@ -9,7 +9,7 @@ class AcademicCalendarRepository implements AcademicCalendarInterface
 {
     public function getAllAcademicCalendars()
     {
-        return AcademicCalendar::select('id', 'started_date', 'ended_date')->latest()->get();
+        return AcademicCalendar::select('id', 'started_date', 'ended_date')->latest()->paginate(perPage: 3);
     }
 
     public function createAcademicCalendar($data)

@@ -61,6 +61,9 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <div class="my-auto d-flex justify-content-end">
+                                        {{ $lectures->links('pagination::bootstrap-4') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>

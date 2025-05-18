@@ -63,6 +63,9 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <div class="my-auto d-flex justify-content-end">
+                                        {{ $academicCalendars->links('pagination::bootstrap-4') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
