@@ -9,18 +9,14 @@ use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
 use App\Services\Repositories\RoomRepository;
 use App\Services\Interfaces\ProposalInterface;
-use App\Services\Interfaces\DashboardInterface;
 use App\Services\Repositories\HistoryRepository;
 use App\Services\Repositories\LectureRepository;
 use App\Services\Repositories\StudentRepository;
 use App\Services\Repositories\ProposalRepository;
 use App\Services\Interfaces\StudyProgramInterface;
-use App\Services\Repositories\DashboardRepository;
 use App\Services\Repositories\StudyProgramRepository;
 use App\Services\Interfaces\AcademicCalendarInterface;
-use App\Services\Interfaces\UserInterface;
 use App\Services\Repositories\AcademicCalendarRepository;
-use App\Services\Repositories\UserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {

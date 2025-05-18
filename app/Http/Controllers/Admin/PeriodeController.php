@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\AcademicCalendar;
-use App\Services\Interfaces\AcademicCalendarInterface;
 use App\Services\Repositories\ProposalRepository;
+use App\Services\Interfaces\AcademicCalendarInterface;
 
 class PeriodeController extends Controller
 {
@@ -18,6 +18,8 @@ class PeriodeController extends Controller
     {
         $proposals = $this->proposalRepository->getProposalByAcademicCalendar($id);
         $academicCalendar = $this->academicCalendarRepository->getAcademicCalendarById($id);
+        // Log::info($proposals->toArray());
+        // dd($proposals->toArray());
 
         return view('pages.periode.show', compact('proposals', 'academicCalendar'));
     }

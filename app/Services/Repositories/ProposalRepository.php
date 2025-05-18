@@ -60,7 +60,8 @@ class ProposalRepository implements ProposalInterface
             )
             ->where('academic_calendar_id', $id)
             ->latest()
-            ->get();
+            ->get()
+            ->groupBy('session_date');
     }
 
     public function getProposalById($id)

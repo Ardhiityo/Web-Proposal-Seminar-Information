@@ -40,13 +40,14 @@
                                     @else
                                         <table class="table table-bordered">
                                             <thead>
-                                                <tr>
+                                                <tr class="text-nowrap">
                                                     <th scope="col">No</th>
                                                     <th scope="col">NIM</th>
                                                     <th scope="col">Mahasiswa</th>
                                                     <th scope="col">Pembimbing 1</th>
                                                     <th scope="col">Pembimbing 2</th>
                                                     <th scope="col">Waktu</th>
+                                                    <th scope="col">Tanggal</th>
                                                     <th scope="col">Ruangan</th>
                                                     <th scope="col">Periode</th>
                                                     <th scope="col">Aksi</th>
@@ -54,13 +55,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($proposals as $proposal)
-                                                    <tr>
+                                                    <tr class="text-nowrap">
                                                         <th scope="row">{{ $loop->iteration }}</th>
                                                         <td>{{ $proposal->student->nim }}</td>
                                                         <td>{{ $proposal->student->name }}</td>
                                                         <td>{{ $proposal->lecture1->name }}</td>
                                                         <td>{{ $proposal->lecture2->name }}</td>
                                                         <td>{{ $proposal->session_time }}</td>
+                                                        <td>{{ $proposal->session_date }}</td>
                                                         <td>{{ $proposal->room->name }}</td>
                                                         <td>{{ $proposal->academicCalendar->periode_year }}</td>
 
