@@ -1,29 +1,126 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
+@section('title', 'Profile')
+
+@push('style')
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/bootstrap-social/assets/css/bootstrap.css') }}">
+@endpush
+
+@section('main')
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Profile</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item">Profile</div>
                 </div>
             </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
+            <div class="section-body">
+                <h2 class="section-title">Hi, {{ $user->name }}!</h2>
+                <p class="section-lead">
+                    Ubah informasi tentang diri Anda di halaman ini.
+                </p>
+                <div class="row mt-sm-4">
+                    <div class="col-12 col-md-12 col-lg-5">
+                        <div class="card profile-widget">
+                            <div class="profile-widget-header">
+                                <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}"
+                                    class="rounded-circle profile-widget-picture">
+                                <div class="profile-widget-items">
+                                    <div class="profile-widget-item">
+                                        <div class="py-2 profile-widget-name">{{ $user->name }}
+                                            <div class="text-muted d-inline font-weight-normal">
+                                                <div class="slash"></div> Visitor
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-widget-description">
+                                Sebagai visitor, Anda memiliki akses untuk melihat informasi pada sistem. Visitor merupakan
+                                pengguna yang dapat mengakses dan melihat konten yang tersedia tanpa memiliki hak untuk
+                                melakukan perubahan pada sistem.
+                                <div class="d-flex justify-content-end">
+                                    <form action="{{ route('profile.destroy') }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">Hapus Akun</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-7">
+                        <div class="card">
+                            <form method="post" class="needs-validation" action="{{ route('profile.update') }}">
+                                @csrf
+                                @method('PATCH')
+                                <div class="card-header">
+                                    <h4>Edit Profile</h4>
+                                </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Nama</label>
+                                            <input type="text" name="name" class="form-control"
+                                                value="{{ $user->name }}" required>
+                                            <div class="invalid-feedback">
+                                                Please fill in the name
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Email</label>
+                                            <input type="email" name="email" class="form-control"
+                                                value="{{ $user->email }}" required>
+                                            <div class="invalid-feedback">
+                                                Please fill in the email
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Password</label>
+                                            <input name="password" type="password" class="form-control">
+                                            <div class="invalid-feedback">
+                                                Please fill in the email
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Konfirmasi Password</label>
+                                            <input name="password_confirmation" type="password" class="form-control">
+                                            <div class="invalid-feedback">
+                                                Please fill in the email
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right card-footer">
+                                    <button class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
-</x-app-layout>
+@endsection
+
+@push('scripts')
+    <!-- JS Libraies -->
+    <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
+
+    <!-- Page Specific JS File -->
+@endpush
