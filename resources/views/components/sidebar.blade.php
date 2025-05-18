@@ -11,7 +11,7 @@
             <li class="menu-header">Dashboard</li>
             <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}" class="nav-link">
-                    <i class="fas fa-fire"></i>
+                    <i class="fa-solid fa-house-user"></i>
                     <span>Dashboard</span>
                 </a>
             </li>

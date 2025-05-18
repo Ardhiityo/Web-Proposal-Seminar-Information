@@ -29,7 +29,7 @@
                                 @foreach ($proposals as $date => $proposalByDate)
                                     <div class="card-header">
                                         <h4>
-                                            {{ \Carbon\Carbon::parse($date)->format('d/m/Y') }}
+                                            {{ $date }}
                                         </h4>
                                     </div>
                                     <div class="overflow-auto card-body">

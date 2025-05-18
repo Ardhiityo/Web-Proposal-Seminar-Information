@@ -131,7 +131,7 @@ class ProposalRepository implements ProposalInterface
             )
             ->where('student_id', $id)
             ->latest()
-            ->get();
+            ->paginate(perPage: 10);
     }
 
     public function createProposal(array $data)

@@ -22,6 +22,11 @@ class Proposal extends Model
         'academic_calendar_id'
     ];
 
+    public function getSessionDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
     public function getSessionTimeAttribute($value)
     {
         return Carbon::parse($value)->format('H:i');
