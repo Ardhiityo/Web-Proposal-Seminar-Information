@@ -86,33 +86,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart" height="182"></canvas>
-                            <div class="statistic-details mt-sm-4">
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 7%</span>
-                                    <div class="detail-value">$243</div>
-                                    <div class="detail-name">Today's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-danger"><i
-                                                class="fas fa-caret-down"></i></span> 23%</span>
-                                    <div class="detail-value">$2,902</div>
-                                    <div class="detail-name">This Week's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span>9%</span>
-                                    <div class="detail-value">$12,821</div>
-                                    <div class="detail-name">This Month's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 19%</span>
-                                    <div class="detail-value">$92,142</div>
-                                    <div class="detail-name">This Year's Sales</div>
-                                </div>
-                            </div>
+                            <canvas id="myChart" height="180"></canvas>
                         </div>
                     </div>
                 </div>
@@ -123,7 +97,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
-                                @foreach ($latestProposals as $latestProposal)
+                                @forelse ($latestProposals as $latestProposal)
                                     <a href="{{ route('proposals.index', ['keyword' => $latestProposal->student->nim]) }}"
                                         class="mb-4 text-decoration-none media">
                                         <img class="mr-3 rounded-circle" width="50"
@@ -138,7 +112,9 @@
                                                 {{ $latestProposal->room->name }}</span>
                                         </div>
                                     </a>
-                                @endforeach
+                                @empty
+                                    <p>Data belum tersedia...</p>
+                                @endforelse
                             </ul>
                             <div class="pt-1 pb-1 text-center">
                                 <a href="{{ route('proposals.index') }}" class="btn btn-primary btn-lg btn-round">
