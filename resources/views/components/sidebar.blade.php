@@ -54,7 +54,7 @@
                 </a>
             </li>
 
-            <li class="menu-header">Informasi Sidang</li>
+            <li class="menu-header">Informasi Seminar</li>
             @foreach ($academicCalendars as $academicCalendar)
                 <li class="nav-item {{ request()->is("periodes/$academicCalendar->id") ? 'active' : '' }}">
                     <a href="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}" class="nav-link">
