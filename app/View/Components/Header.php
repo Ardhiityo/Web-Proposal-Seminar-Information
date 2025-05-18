@@ -2,14 +2,15 @@
 
 namespace App\View\Components;
 
-use App\Services\Interfaces\HistoryInterface;
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
+use App\Services\Interfaces\HistoryInterface;
 
 class Header extends Component
 {
     public $histories;
+    public $activity;
 
     /**
      * Create a new component instance.

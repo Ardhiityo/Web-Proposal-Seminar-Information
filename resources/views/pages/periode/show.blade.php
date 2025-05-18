@@ -20,7 +20,7 @@
                 </p>
                 <div class="row">
                     <div class="col-12">
-                        @foreach ($proposals as $date => $proposalByDate)
+                        @forelse ($proposals as $date => $proposalByDate)
                             <div class="card">
                                 <div class="card-header">
                                     <h4>
@@ -69,7 +69,18 @@
                                     </table>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>
+                                        <a href="{{ route('proposals.create') }}" class="btn btn-primary">Tambah Data</a>
+                                    </h4>
+                                </div>
+                                <div class="overflow-auto card-body">
+                                    Data belum tersedia...
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
