@@ -4,6 +4,7 @@ namespace App\Services\Repositories;
 
 use App\Models\AcademicCalendar;
 use App\Services\Interfaces\AcademicCalendarInterface;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class AcademicCalendarRepository implements AcademicCalendarInterface
 {
@@ -40,7 +41,11 @@ class AcademicCalendarRepository implements AcademicCalendarInterface
 
     public function getLatestAcademicCalendars()
     {
-        return AcademicCalendar::select('id', 'started_date', 'ended_date')
-            ->latest()->take(3)->get();
+        return AcademicCalendar::with(
+            [
+                'proposals' => fn(Builder $query) => $query->select('id', 'academic_calendar_id')
+            ]
+        )->select('id', 'started_date', 'ended_date')
+            ->latest()->take(3)->get()->sortBy('id');
     }
 }

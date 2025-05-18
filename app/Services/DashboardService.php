@@ -29,22 +29,11 @@ class DashboardService
         $academicCalendars = $this->academicCalendarRepository->getLatestAcademicCalendars();
 
         $academicPeriodes = [];
-        $academicCalendarIds = [];
+        $totalProposalByPeriodes = [];
 
         foreach ($academicCalendars as $key => $academicCalendar) {
             $academicPeriodes[] = $academicCalendar->periode_year;
-            $academicCalendarIds[] = $academicCalendar->id;
-        }
-
-        $totalProposalByPeriodes = [];
-
-        $proposalPeriodes = Proposal::select('academic_calendar_id', DB::raw('COUNT(*) as total'))
-            ->whereIn('academic_calendar_id', $academicCalendarIds)
-            ->groupBy('academic_calendar_id')
-            ->get();
-
-        foreach ($proposalPeriodes as $key => $proposalPeriode) {
-            $totalProposalByPeriodes[] = $proposalPeriode->total;
+            $totalProposalByPeriodes[] = $academicCalendar->proposals()->count();
         }
 
         $latestProposals = $this->proposalRepository->getLatestProposals();
