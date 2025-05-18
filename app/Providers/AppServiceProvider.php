@@ -36,7 +36,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AcademicCalendarInterface::class, AcademicCalendarRepository::class);
         $this->app->singleton(ProposalInterface::class, ProposalRepository::class);
         $this->app->singleton(HistoryInterface::class, HistoryRepository::class);
-        $this->app->singleton(UserInterface::class, UserRepository::class);
     }
 
     /**

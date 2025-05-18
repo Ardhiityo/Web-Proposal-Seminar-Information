@@ -3,7 +3,6 @@
 @section('title', 'Profile')
 
 @push('style')
-    <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('library/bootstrap-social/assets/css/bootstrap.css') }}">
 @endpush
@@ -19,10 +18,24 @@
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Hi, {{ $user->name }}!</h2>
-                <p class="section-lead">
-                    Ubah informasi tentang diri Anda di halaman ini.
-                </p>
+                <div class="d-flex justify-content-between align-items-center row">
+                    <div class="col-12 col-md-6">
+                        <h2 class="section-title">Hi, {{ $user->name }}!</h2>
+                        <p class="section-lead">
+                            Ubah informasi tentang diri Anda di halaman ini.
+                        </p>
+                    </div>
+                    <div class="justify-content-end col-12 col-md-6 d-flex">
+                        <form action="{{ route('history.destroy') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-warning">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
                 <div class="row mt-sm-4">
                     <div class="col-12 col-md-12 col-lg-5">
                         <div class="card profile-widget">
@@ -76,33 +89,21 @@
                                             <label>Nama</label>
                                             <input type="text" name="name" class="form-control"
                                                 value="{{ $user->name }}" required>
-                                            <div class="invalid-feedback">
-                                                Please fill in the name
-                                            </div>
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label>Email</label>
                                             <input type="email" name="email" class="form-control"
                                                 value="{{ $user->email }}" required>
-                                            <div class="invalid-feedback">
-                                                Please fill in the email
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>Password</label>
                                             <input name="password" type="password" class="form-control">
-                                            <div class="invalid-feedback">
-                                                Please fill in the email
-                                            </div>
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label>Konfirmasi Password</label>
                                             <input name="password_confirmation" type="password" class="form-control">
-                                            <div class="invalid-feedback">
-                                                Please fill in the email
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -119,8 +120,5 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
     <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
-
-    <!-- Page Specific JS File -->
 @endpush

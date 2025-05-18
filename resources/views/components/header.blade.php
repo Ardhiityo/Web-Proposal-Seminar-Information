@@ -46,9 +46,6 @@
                 <a href="{{ route('profile.edit') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
                 <div class="dropdown-divider"></div>
                 <a role="button" class="dropdown-item has-icon text-danger" id="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Logout

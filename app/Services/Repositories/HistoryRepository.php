@@ -30,4 +30,9 @@ class HistoryRepository implements HistoryInterface
         return History::select('keyword')->where('user_id', $userId)
             ->latest()->take(3)->select('keyword')->get();
     }
+
+    public function deleteAllHistories()
+    {
+        return History::where('user_id', Auth::user()->id)->delete();
+    }
 }

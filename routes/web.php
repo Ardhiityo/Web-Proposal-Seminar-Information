@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\StudyProgramController;
 use App\Http\Controllers\Admin\AcademicCalendarController;
 use App\Http\Controllers\Admin\PeriodeController;
 use App\Http\Controllers\Admin\ProposalController;
+use App\Http\Controllers\HistoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,12 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('academic-calendars', AcademicCalendarController::class);
     Route::resource('proposals', ProposalController::class);
     Route::resource('periodes', PeriodeController::class);
-});
 
-Route::middleware('auth')->group(function () {
+    // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // History
+    Route::delete('/history', [HistoryController::class, 'destroy'])->name('history.destroy');
 });
 
 require __DIR__ . '/auth.php';
