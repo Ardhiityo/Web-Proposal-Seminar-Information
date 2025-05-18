@@ -69,12 +69,13 @@
                                                         <td>
                                                             <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"
                                                                 class="btn btn-warning">Edit</a>
-                                                            <button id="btn-delete" class="btn btn-danger">Hapus</button>
                                                             <form id="form-delete"
                                                                 action="{{ route('proposals.destroy', ['proposal' => $proposal->id]) }}"
-                                                                method="POST">
+                                                                method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
+                                                                <button type="submit" id="btn-delete"
+                                                                    class="btn btn-danger">Hapus</button>
                                                             </form>
                                                         </td>
                                                     </tr>
@@ -91,15 +92,3 @@
         </section>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        const btnDelete = document.getElementById('btn-delete');
-        const formDelete = document.getElementById('form-delete');
-
-        btnDelete.addEventListener('click', function(e) {
-            e.preventDefault();
-            formDelete.submit();
-        })
-    </script>
-@endpush

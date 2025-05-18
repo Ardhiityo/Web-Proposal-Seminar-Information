@@ -34,7 +34,7 @@
                                 @else
                                     <table class="table table-bordered">
                                         <thead>
-                                            <tr>
+                                            <tr class="text-nowrap">
                                                 <th scope="col">No</th>
                                                 <th scope="col">Tahun Mulai</th>
                                                 <th scope="col">Tahun Berakhir</th>
@@ -43,19 +43,20 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($academicCalendars as $academicCalendar)
-                                                <tr>
+                                                <tr class="text-nowrap">
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $academicCalendar->started_date_year }}</td>
                                                     <td>{{ $academicCalendar->ended_date_year }}</td>
                                                     <td>
                                                         <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
                                                             class="btn btn-warning">Edit</a>
-                                                        <button id="btn-delete" class="btn btn-danger">Hapus</button>
                                                         <form id="form-delete"
                                                             action="{{ route('academic-calendars.destroy', ['academic_calendar' => $academicCalendar->id]) }}"
-                                                            method="POST">
+                                                            method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
+                                                            <button type="submit" id="btn-delete"
+                                                                class="btn btn-danger">Hapus</button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -71,15 +72,3 @@
         </section>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        const btnDelete = document.getElementById('btn-delete');
-        const formDelete = document.getElementById('form-delete');
-
-        btnDelete.addEventListener('click', function(e) {
-            e.preventDefault();
-            formDelete.submit();
-        })
-    </script>
-@endpush

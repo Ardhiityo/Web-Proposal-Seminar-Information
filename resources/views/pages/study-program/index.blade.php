@@ -32,7 +32,7 @@
                                 @else
                                     <table class="table table-bordered">
                                         <thead>
-                                            <tr>
+                                            <tr class="text-nowrap">
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Aksi</th>
@@ -40,20 +40,21 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($studyPrograms as $studyProgram)
-                                                <tr>
+                                                <tr class="text-nowrap">
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $studyProgram->name }}</td>
                                                     <td>
                                                         <a href="{{ route('study-programs.edit', ['study_program' => $studyProgram->id]) }}"
                                                             class="btn btn-warning">Edit</a>
-                                                        <button class="btn btn-danger" id="btn-delete">Hapus</button>
+                                                        <form id="form-delete"
+                                                            action="{{ route('study-programs.destroy', ['study_program' => $studyProgram->id]) }}"
+                                                            method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" id="btn-delete"
+                                                                class="btn btn-danger">Hapus</button>
+                                                        </form>
                                                     </td>
-                                                    <form id="form-delete"
-                                                        action="{{ route('study-programs.destroy', ['study_program' => $studyProgram->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -67,15 +68,3 @@
         </section>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        const btnDelete = document.getElementById('btn-delete');
-        const formDelete = document.getElementById('form-delete');
-
-        btnDelete.addEventListener('click', function(e) {
-            e.preventDefault();
-            formDelete.submit();
-        })
-    </script>
-@endpush
