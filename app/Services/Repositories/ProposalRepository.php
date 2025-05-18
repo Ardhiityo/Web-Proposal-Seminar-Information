@@ -3,7 +3,6 @@
 namespace App\Services\Repositories;
 
 use App\Models\Proposal;
-use App\Models\Student;
 use App\Services\Interfaces\ProposalInterface;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
@@ -64,7 +63,7 @@ class ProposalRepository implements ProposalInterface
 
         // Mengubah collection menjadi paginator
         $page = request()->get('page', 1);
-        $perPage = 3;
+        $perPage = 10;
 
         $items = $proposals->forPage($page, $perPage);
 
