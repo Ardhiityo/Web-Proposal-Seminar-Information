@@ -15,4 +15,14 @@ class Student extends Model
     {
         return $this->hasMany(Proposal::class);
     }
+
+    public function lecture1()
+    {
+        return $this->belongsTo(Lecture::class, 'lecture_1_id');
+    }
+
+    public function lecture2()
+    {
+        return $this->belongsTo(Lecture::class, 'lecture_2_id');
+    }
 }

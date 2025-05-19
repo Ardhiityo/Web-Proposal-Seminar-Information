@@ -53,6 +53,32 @@
                                                         id="nim" placeholder="2204XXXX"
                                                         value="{{ old('nim', $student->nim) }}">
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="lecture_1_id">Pembimbing 1</label>
+                                                    <select required id="lecture_1_id" name="lecture_1_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('lecture_1_id', $student->lecture1->id) == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->periode_year }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="lecture_2_id">Pembimbing 2</label>
+                                                    <select required id="lecture_2_id" name="lecture_2_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $academicCalendar->id }}"
+                                                                {{ old('lecture_2_id', $student->lecture2->id) == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->periode_year }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="card-footer">

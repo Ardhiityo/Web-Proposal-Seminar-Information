@@ -25,8 +25,6 @@ class UpdateProposalRequest extends FormRequest
             'session_time' => ['required'],
             'session_date' => ['required', 'after:yesterday'],
             'student_id' => ['required', 'exists:students,id'],
-            'lecture_1_id' => ['required', 'exists:lectures,id'],
-            'lecture_2_id' => ['required', 'exists:lectures,id', 'different:lecture_1_id'],
             'academic_calendar_id' => ['required', 'exists:academic_calendars,id'],
             'room_id' => ['required', 'exists:rooms,id'],
         ];

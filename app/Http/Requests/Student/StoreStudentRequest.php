@@ -24,6 +24,8 @@ class StoreStudentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255', 'unique:students,nim'],
+            'lecture_1_id' => ['required', 'exists:lectures,id'],
+            'lecture_2_id' => ['required', 'exists:lectures,id', 'different:lecture_1_id'],
         ];
     }
 }

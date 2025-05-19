@@ -12,8 +12,6 @@ class ProposalRepository implements ProposalInterface
     {
         return Proposal::with(
             [
-                'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-                'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
                 'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
                 'room' => fn(Builder $query) => $query->select('id', 'name'),
                 'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
@@ -23,8 +21,6 @@ class ProposalRepository implements ProposalInterface
             'session_time',
             'session_date',
             'student_id',
-            'lecture_1_id',
-            'lecture_2_id',
             'academic_calendar_id',
             'room_id'
         )
@@ -35,16 +31,12 @@ class ProposalRepository implements ProposalInterface
     public function getProposalByAcademicCalendar($id)
     {
         $proposals = Proposal::with([
-            'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-            'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
             'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
             'room' => fn(Builder $query) => $query->select('id', 'name'),
             'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
         ])
             ->select(
                 'id',
-                'lecture_1_id',
-                'lecture_2_id',
                 'session_date',
                 'session_time',
                 'student_id',
@@ -77,8 +69,6 @@ class ProposalRepository implements ProposalInterface
         try {
             return Proposal::with(
                 [
-                    'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-                    'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
                     'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
                     'room' => fn(Builder $query) => $query->select('id', 'name'),
                     'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
@@ -89,8 +79,6 @@ class ProposalRepository implements ProposalInterface
                     'session_time',
                     'session_date',
                     'student_id',
-                    'lecture_1_id',
-                    'lecture_2_id',
                     'academic_calendar_id',
                     'room_id'
                 )
@@ -104,8 +92,6 @@ class ProposalRepository implements ProposalInterface
     {
         return Proposal::with(
             [
-                'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-                'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
                 'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
                 'room' => fn(Builder $query) => $query->select('id', 'name'),
                 'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
@@ -113,8 +99,6 @@ class ProposalRepository implements ProposalInterface
         )
             ->select(
                 'id',
-                'lecture_1_id',
-                'lecture_2_id',
                 'session_date',
                 'session_time',
                 'student_id',
@@ -145,8 +129,6 @@ class ProposalRepository implements ProposalInterface
     {
         return Proposal::with(
             [
-                'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
-                'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'phone'),
                 'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
                 'room' => fn(Builder $query) => $query->select('id', 'name'),
                 'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
@@ -154,8 +136,6 @@ class ProposalRepository implements ProposalInterface
         )
             ->select(
                 'id',
-                'lecture_1_id',
-                'lecture_2_id',
                 'session_date',
                 'session_time',
                 'student_id',

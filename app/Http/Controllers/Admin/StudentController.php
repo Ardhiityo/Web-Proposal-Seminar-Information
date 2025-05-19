@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Imports\StudentImport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
 use App\Http\Requests\Student\StoreStudentRequest;
 use App\Http\Requests\Student\UpdateStudentRequest;
-use App\Imports\StudentImport;
 
 class StudentController extends Controller
 {
 
     public function __construct(
         private StudentInterface $studentRepository,
+        private LectureInterface $lectureRepository
     ) {}
 
     public function index()
@@ -27,7 +29,9 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('pages.student.create');
+        $lectures = $this->lectureRepository->getAllLectures();
+
+        return view('pages.student.create', compact('lectures'));
     }
 
     public function store(StoreStudentRequest $request)

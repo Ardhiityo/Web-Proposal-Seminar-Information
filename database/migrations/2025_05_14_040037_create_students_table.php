@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nim')->unique();
+            $table->foreignId('lecture_1_id')->constrained('lectures')->cascadeOnDelete();
+            $table->foreignId('lecture_2_id')->constrained('lectures')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -53,6 +53,8 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">NIM</th>
+                                                <th scope="col">Pembimbing 1</th>
+                                                <th scope="col">Pembimbing 2</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
@@ -62,6 +64,8 @@
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $student->name }}</td>
                                                     <td>{{ $student->nim }}</td>
+                                                    <td>{{ $student->lecture1->name }}</td>
+                                                    <td>{{ $student->lecture2->name }}</td>
                                                     <td>
                                                         <a href="{{ route('students.edit', ['student' => $student->id]) }}"
                                                             class="btn btn-warning">Edit</a>

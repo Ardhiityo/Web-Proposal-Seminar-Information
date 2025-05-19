@@ -49,6 +49,32 @@
                                                     <input type="text" name="nim" class="form-control" id="nim"
                                                         placeholder="2204XXXX" value="{{ old('nim') }}">
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="lecture_1_id">Pembimbing 1</label>
+                                                    <select required id="lecture_1_id" name="lecture_1_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('lecture_1_id') == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="lecture_2_id">Pembimbing 2</label>
+                                                    <select required id="lecture_2_id" name="lecture_2_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('lecture_2_id') == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="card-footer">

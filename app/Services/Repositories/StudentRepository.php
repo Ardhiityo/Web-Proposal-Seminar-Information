@@ -10,14 +10,24 @@ class StudentRepository implements StudentInterface
 {
     public function getAllStudents()
     {
-        return Student::select('id', 'name', 'nim')
+        return Student::with([
+            'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+            'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'nidn')
+        ])
+            ->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id')
             ->latest()
             ->paginate(perPage: 10);
     }
     public function getStudentById($id)
     {
         try {
-            return Student::select('id', 'name', 'nim')
+            return Student::with(
+                [
+                    'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+                    'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+                ]
+            )
+                ->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id')
                 ->findOrFail($id);
         } catch (\Throwable $th) {
             return abort(404);
@@ -26,7 +36,17 @@ class StudentRepository implements StudentInterface
     public function getStudentByNim($nim)
     {
         try {
-            return Student::where('nim', $nim)->firstOrFail();
+            return Student::with([
+                'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+                'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+            ])
+                ->select(
+                    'id',
+                    'name',
+                    'nim',
+                    'lecture_id'
+                )->where('nim', $nim)
+                ->firstOrFail();
         } catch (\Throwable $th) {
             throw $th;
         }

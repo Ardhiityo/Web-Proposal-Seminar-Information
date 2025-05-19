@@ -11,13 +11,13 @@ class Lecture extends Model
         'nidn',
     ];
 
-    public function proposals1()
+    public function students1()
     {
-        return $this->hasMany(Proposal::class, 'lecture_1_id');
+        return $this->hasMany(Student::class, 'lecture_1_id');
     }
 
-    public function proposals2()
+    public function students2()
     {
-        return $this->hasMany(Proposal::class, 'lecture_2_id');
+        return $this->hasMany(Student::class, 'lecture_2_id');
     }
 }
