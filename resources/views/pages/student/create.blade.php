@@ -57,7 +57,7 @@
                                                         @foreach ($lectures as $lecture)
                                                             <option value="{{ $lecture->id }}"
                                                                 {{ old('lecture_1_id') == $lecture->id ? 'selected' : '' }}>
-                                                                {{ $lecture->name }}
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -70,7 +70,7 @@
                                                         @foreach ($lectures as $lecture)
                                                             <option value="{{ $lecture->id }}"
                                                                 {{ old('lecture_2_id') == $lecture->id ? 'selected' : '' }}>
-                                                                {{ $lecture->name }}
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}
                                                             </option>
                                                         @endforeach
                                                     </select>

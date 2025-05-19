@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use Ramsey\Uuid\Uuid;
 use App\Models\Lecture;
 use App\Models\Student;
 use Illuminate\Support\Collection;
