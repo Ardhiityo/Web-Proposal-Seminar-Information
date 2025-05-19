@@ -8,7 +8,9 @@ class Student extends Model
 {
     protected $fillable = [
         'name',
-        'nim'
+        'nim',
+        'lecture_1_id',
+        'lecture_2_id',
     ];
 
     public function proposals()

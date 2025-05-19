@@ -16,8 +16,6 @@ class Proposal extends Model
         'student_id',
         'session_time',
         'session_date',
-        'lecture_1_id',
-        'lecture_2_id',
         'room_id',
         'academic_calendar_id'
     ];
