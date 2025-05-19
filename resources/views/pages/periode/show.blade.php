@@ -39,10 +39,10 @@
                                                     <th scope="col">No</th>
                                                     <th scope="col">NIM</th>
                                                     <th scope="col">Mahasiswa</th>
-                                                    <th scope="col">Pembimbing 1</th>
-                                                    <th scope="col">Pembimbing 2</th>
                                                     <th scope="col">Waktu</th>
                                                     <th scope="col">Ruangan</th>
+                                                    <th scope="col">Pembimbing 1</th>
+                                                    <th scope="col">Pembimbing 2</th>
                                                     <th scope="col">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -52,10 +52,10 @@
                                                         <th scope="row">{{ $loop->iteration }}</th>
                                                         <td>{{ $proposal->student->nim }}</td>
                                                         <td>{{ $proposal->student->name }}</td>
-                                                        <td>{{ $proposal->lecture1->name }}</td>
-                                                        <td>{{ $proposal->lecture2->name }}</td>
                                                         <td>{{ $proposal->session_time }}</td>
                                                         <td>{{ $proposal->room->name }}</td>
+                                                        <td>{{ $proposal->student->lecture1->name }}</td>
+                                                        <td>{{ $proposal->student->lecture2->name }}</td>
                                                         <td>
                                                             <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"
                                                                 class="btn btn-warning">Edit</a>
