@@ -25,6 +25,26 @@ class ProposalRepository implements ProposalInterface
             'room_id'
         )
             ->latest()
+            ->get();
+    }
+
+    public function getAllProposalsByPaginate()
+    {
+        return Proposal::with(
+            [
+                'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
+                'room' => fn(Builder $query) => $query->select('id', 'name'),
+                'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
+            ]
+        )->select(
+            'id',
+            'session_time',
+            'session_date',
+            'student_id',
+            'academic_calendar_id',
+            'room_id'
+        )
+            ->latest()
             ->paginate(perPage: 10);
     }
 

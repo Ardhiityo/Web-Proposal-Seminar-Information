@@ -14,7 +14,6 @@ use App\Http\Requests\Student\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
-
     public function __construct(
         private StudentInterface $studentRepository,
         private LectureInterface $lectureRepository
@@ -22,7 +21,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = $this->studentRepository->getAllStudents();
+        $students = $this->studentRepository->getAllStudentsByPaginate();
 
         return view('pages.student.index', compact('students'));
     }

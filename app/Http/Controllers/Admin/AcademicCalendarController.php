@@ -15,7 +15,7 @@ class AcademicCalendarController extends Controller
 
     public function index()
     {
-        $academicCalendars = $this->academicCalendarRepository->getAllAcademicCalendars();
+        $academicCalendars = $this->academicCalendarRepository->getAllAcademicCalendarsByPaginate();
 
         return view('pages.academic-calendar.index', compact('academicCalendars'));
     }

@@ -37,7 +37,7 @@ class ProposalController extends Controller
                     ->with('nim_not_found', 'Belum ada jadwal tersedia...');
             }
         } else {
-            $proposals = $this->proposalRepository->getAllProposals();
+            $proposals = $this->proposalRepository->getAllProposalsByPaginate();
         }
 
         return view('pages.proposal.index', compact('proposals'));

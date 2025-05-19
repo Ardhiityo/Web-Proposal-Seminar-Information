@@ -17,7 +17,7 @@ class LectureController extends Controller
 
     public function index()
     {
-        $lectures = $this->lectureRepository->getAllLectures();
+        $lectures = $this->lectureRepository->getAllLecturesByPaginate();
 
         return view('pages.lecture.index', compact('lectures'));
     }

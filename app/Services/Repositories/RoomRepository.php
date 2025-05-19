@@ -9,6 +9,11 @@ class RoomRepository implements RoomInterface
 {
     public function getAllRooms()
     {
+        return Room::select('id', 'name')->latest()->get();
+    }
+
+    public function getAllRoomsByPaginate()
+    {
         return Room::select('id', 'name')->latest()->paginate(perPage: 10);
     }
 

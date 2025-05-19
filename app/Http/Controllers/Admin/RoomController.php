@@ -15,7 +15,7 @@ class RoomController extends Controller
 
     public function index()
     {
-        $rooms = $this->roomRepository->getAllRooms();
+        $rooms = $this->roomRepository->getAllRoomsByPaginate();
 
         return view('pages.room.index', compact('rooms'));
     }

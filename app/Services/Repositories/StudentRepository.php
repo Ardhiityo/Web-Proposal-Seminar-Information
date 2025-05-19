@@ -16,8 +16,20 @@ class StudentRepository implements StudentInterface
         ])
             ->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id')
             ->latest()
+            ->get();
+    }
+
+    public function getAllStudentsByPaginate()
+    {
+        return Student::with([
+            'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+            'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'nidn')
+        ])
+            ->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id')
+            ->latest()
             ->paginate(perPage: 10);
     }
+
     public function getStudentById($id)
     {
         try {
@@ -33,6 +45,7 @@ class StudentRepository implements StudentInterface
             return abort(404);
         }
     }
+
     public function getStudentByNim($nim)
     {
         try {
@@ -51,14 +64,17 @@ class StudentRepository implements StudentInterface
             throw $th;
         }
     }
+
     public function createStudent(array $data)
     {
         return Student::create($data);
     }
+
     public function updateStudent($id, array $data)
     {
         return $this->getStudentById($id)->update($data);
     }
+
     public function deleteStudent($id)
     {
         return Student::destroy($id);
