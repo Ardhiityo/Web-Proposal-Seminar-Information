@@ -48,10 +48,9 @@
                                                         value="{{ old('name', $lecture->name) }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="phone">Narahubung</label>
-                                                    <input type="text" name="phone" class="form-control" id="phone"
-                                                        placeholder="08xx xxxx xxxx"
-                                                        value="{{ old('phone', $lecture->phone) }}">
+                                                    <label for="nidn">NIDN</label>
+                                                    <input type="text" name="nidn" class="form-control" id="nidn"
+                                                        placeholder="10 digit..." value="{{ old('nidn', $lecture->nidn) }}">
                                                 </div>
                                             </div>
                                         </div>

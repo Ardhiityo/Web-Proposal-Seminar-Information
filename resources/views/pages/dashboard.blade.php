@@ -108,7 +108,7 @@
                                                 {{ $latestProposal->created_at }}</div>
                                             <div class="media-title">{{ $latestProposal->student->name }}</div>
                                             <span class="text-small text-muted">Mahasiswa
-                                                {{ $latestProposal->student->studyProgram->name }}, mulai seminar
+                                                Mulai seminar
                                                 pukul {{ $latestProposal->session_time }} wib, pada ruangan
                                                 {{ $latestProposal->room->name }}</span>
                                         </div>

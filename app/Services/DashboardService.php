@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Proposal;
-use Illuminate\Support\Facades\DB;
 use App\Services\Interfaces\RoomInterface;
 use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;

@@ -9,13 +9,13 @@ class LectureRepository implements LectureInterface
 {
     public function getAllLectures()
     {
-        return Lecture::select('id', 'name', 'phone')->latest()->paginate(perPage: 10);
+        return Lecture::select('id', 'name', 'nidn')->latest()->paginate(perPage: 10);
     }
 
     public function getLectureById($id)
     {
         try {
-            return Lecture::select('id', 'name', 'phone')->findOrFail($id);
+            return Lecture::select('id', 'name', 'nidn')->findOrFail($id);
         } catch (\Exception $e) {
             return abort(404, 'Lecture not found');
         }

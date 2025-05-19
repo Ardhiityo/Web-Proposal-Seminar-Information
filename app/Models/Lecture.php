@@ -8,7 +8,7 @@ class Lecture extends Model
 {
     protected $fillable = [
         'name',
-        'phone',
+        'nidn',
     ];
 
     public function proposals1()

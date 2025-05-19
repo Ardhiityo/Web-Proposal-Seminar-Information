@@ -20,7 +20,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('lectures', LectureController::class);
     Route::resource('students', StudentController::class);
-    Route::resource('study-programs', StudyProgramController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('academic-calendars', AcademicCalendarController::class);
     Route::resource('proposals', ProposalController::class);
@@ -33,6 +32,10 @@ Route::middleware('auth')->group(function () {
 
     // History
     Route::delete('/history', [HistoryController::class, 'destroy'])->name('history.destroy');
+
+    //Excel
+    Route::post('/students/import', [StudentController::class, 'import'])->name('students.import');
+    Route::post('/lectures/import', [LectureController::class, 'import'])->name('lectures.import');
 });
 
 require __DIR__ . '/auth.php';

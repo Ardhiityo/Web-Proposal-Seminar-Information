@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
+use App\Services\Interfaces\HistoryInterface;
 use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
 use App\Services\Interfaces\ProposalInterface;
 use App\Http\Requests\Proposal\StoreProposalRequest;
 use App\Http\Requests\Proposal\UpdateProposalRequest;
 use App\Services\Interfaces\AcademicCalendarInterface;
-use App\Services\Interfaces\HistoryInterface;
 
 class ProposalController extends Controller
 {

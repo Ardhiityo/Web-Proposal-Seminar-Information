@@ -10,16 +10,14 @@ class StudentRepository implements StudentInterface
 {
     public function getAllStudents()
     {
-        return Student::with(['studyProgram' => fn(Builder $query) => $query->select('id', 'name')])
-            ->select('study_program_id', 'id', 'name', 'nim')
+        return Student::select('id', 'name', 'nim')
             ->latest()
             ->paginate(perPage: 10);
     }
     public function getStudentById($id)
     {
         try {
-            return Student::with(['studyProgram' => fn(Builder $query) => $query->select('id', 'name')])
-                ->select('study_program_id', 'id', 'name', 'nim')
+            return Student::select('id', 'name', 'nim')
                 ->findOrFail($id);
         } catch (\Throwable $th) {
             return abort(404);

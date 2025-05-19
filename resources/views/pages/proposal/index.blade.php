@@ -18,6 +18,7 @@
                 <p class="section-lead">
                     Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">

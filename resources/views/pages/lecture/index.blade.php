@@ -18,6 +18,23 @@
                 <p class="section-lead">
                     Semua informasi mengenai data Dosen yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
+
+                <div class="mb-4 d-flex justify-content-end">
+                    <form action="{{ route('lectures.import') }}" method="POST" enctype="multipart/form-data"
+                        class="d-flex align-items-center justify-content-end">
+                        @csrf
+                        <div class="mx-2">
+                            <input required type="file" class="form-control" id="excel" name="excel">
+                            @error('excel')
+                                <p class="text-sm text-danger text-lowercase">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <button class="btn btn-primary align-self-start">
+                            Import
+                        </button>
+                    </form>
+                </div>
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -35,7 +52,7 @@
                                             <tr class="text-nowrap">
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">Narahubung</th>
+                                                <th scope="col">NIDN</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
@@ -44,7 +61,7 @@
                                                 <tr class="text-nowrap">
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $lecture->name }}</td>
-                                                    <td>{{ $lecture->phone ?? '-' }}</td>
+                                                    <td>{{ $lecture->nidn }}</td>
                                                     <td>
                                                         <a href="{{ route('lectures.edit', ['lecture' => $lecture->id]) }}"
                                                             class="btn btn-warning">Edit</a>

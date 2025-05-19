@@ -25,7 +25,6 @@ class UpdateStudentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255', Rule::unique('students')->ignore($this->student)],
-            'study_program_id' => ['required', 'exists:study_programs,id'],
         ];
     }
 }

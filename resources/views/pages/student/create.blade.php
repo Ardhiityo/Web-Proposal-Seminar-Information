@@ -51,17 +51,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="study_program_id">Program Studi</label>
-                                            <select id="study_program_id" name="study_program_id" class="form-control">
-                                                <option selected>Choose...</option>
-                                                @foreach ($studyPrograms as $studyProgram)
-                                                    <option value="{{ $studyProgram->id }}"
-                                                        {{ old('study_program_id') == $studyProgram->id ? 'selected' : '' }}>
-                                                        {{ $studyProgram->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                         <div class="card-footer">
                                             <button class="btn btn-primary">Submit</button>
                                         </div>

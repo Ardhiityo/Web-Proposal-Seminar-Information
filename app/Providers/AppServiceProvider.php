@@ -13,8 +13,6 @@ use App\Services\Repositories\HistoryRepository;
 use App\Services\Repositories\LectureRepository;
 use App\Services\Repositories\StudentRepository;
 use App\Services\Repositories\ProposalRepository;
-use App\Services\Interfaces\StudyProgramInterface;
-use App\Services\Repositories\StudyProgramRepository;
 use App\Services\Interfaces\AcademicCalendarInterface;
 use App\Services\Repositories\AcademicCalendarRepository;
 
@@ -27,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(LectureInterface::class, LectureRepository::class);
         $this->app->singleton(StudentInterface::class, StudentRepository::class);
-        $this->app->singleton(StudyProgramInterface::class, StudyProgramRepository::class);
         $this->app->singleton(RoomInterface::class, RoomRepository::class);
         $this->app->singleton(AcademicCalendarInterface::class, AcademicCalendarRepository::class);
         $this->app->singleton(ProposalInterface::class, ProposalRepository::class);

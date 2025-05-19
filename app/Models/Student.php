@@ -8,14 +8,8 @@ class Student extends Model
 {
     protected $fillable = [
         'name',
-        'nim',
-        'study_program_id'
+        'nim'
     ];
-
-    public function studyProgram()
-    {
-        return $this->belongsTo(StudyProgram::class);
-    }
 
     public function proposals()
     {

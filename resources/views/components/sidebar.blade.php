@@ -29,12 +29,6 @@
                     <span>Mahasiswa</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->is('study-programs*') ? 'active' : '' }}">
-                <a href="{{ route('study-programs.index') }}" class="nav-link">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Program Studi</span>
-                </a>
-            </li>
             <li class="nav-item {{ request()->is('rooms*') ? 'active' : '' }}">
                 <a href="{{ route('rooms.index') }}" class="nav-link">
                     <i class="fas fa-building"></i>

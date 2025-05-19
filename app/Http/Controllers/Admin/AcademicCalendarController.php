@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AcademicCalendar\StoreAcademicCalendarRequest;
 use App\Http\Requests\AcademicCalendar\UpdateAcademicCalendarRequest;
 use App\Services\Interfaces\AcademicCalendarInterface;
-use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AcademicCalendarController extends Controller
