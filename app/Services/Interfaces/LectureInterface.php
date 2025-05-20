@@ -11,4 +11,5 @@ interface LectureInterface
     public function updateLecture($id, array $data);
     public function deleteLecture($id);
     public function getTotalLectures();
+    public function getAllLecturesByKeyword($keyword);
 }

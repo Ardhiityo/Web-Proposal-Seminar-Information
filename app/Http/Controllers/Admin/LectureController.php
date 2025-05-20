@@ -15,10 +15,13 @@ use App\Http\Requests\Lecture\UpdateLectureRequest;
 class LectureController extends Controller
 {
     public function __construct(private LectureInterface $lectureRepository) {}
-
-    public function index()
+    public function index(Request $request)
     {
-        $lectures = $this->lectureRepository->getAllLecturesByPaginate();
+        if ($keyword = $request->query('keyword')) {
+            $lectures = $this->lectureRepository->getAllLecturesByKeyword($keyword);
+        } else {
+            $lectures = $this->lectureRepository->getAllLecturesByPaginate();
+        }
 
         return view('pages.lecture.index', compact('lectures'));
     }

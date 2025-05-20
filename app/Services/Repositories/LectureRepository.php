@@ -47,4 +47,13 @@ class LectureRepository implements LectureInterface
     {
         return Lecture::count();
     }
+
+    public function getAllLecturesByKeyword($keyword)
+    {
+        return Lecture::select('id', 'name', 'nidn')
+            ->where('name', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('nidn', 'LIKE', '%' . $keyword . '%')
+            ->latest()
+            ->paginate(perPage: 10);
+    }
 }
