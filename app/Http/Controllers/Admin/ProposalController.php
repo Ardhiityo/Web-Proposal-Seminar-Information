@@ -38,7 +38,9 @@ class ProposalController extends Controller
                     ->with('nim_not_found', 'Belum ada jadwal tersedia...');
             }
         } else if ($request->query('started_date') && $request->query('ended_date')) {
-            $proposals = $this->proposalRepository->getAllProposalsByKeyword($request->query('started_date'), $request->query('ended_date'));
+            $started_date = $request->query('started_date');
+            $ended_date = $request->query('ended_date');
+            $proposals = $this->proposalRepository->getAllProposalsByKeyword($started_date, $ended_date);
         } else {
             $proposals = $this->proposalRepository->getAllProposalsByPaginate();
         }

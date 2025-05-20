@@ -12,7 +12,7 @@
             </li>
         </ul>
         <div class="search-element">
-            <input class="form-control" type="search" name="keyword" placeholder="Cek jadwal via NIM"
+            <input class="form-control" type="search" name="nim" placeholder="Cek jadwal via NIM"
                 aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
@@ -23,7 +23,7 @@
                     </div>
                     @foreach ($histories as $history)
                         <div class="search-item">
-                            <a href="{{ route('proposals.index', ['keyword' => $history->keyword]) }}">
+                            <a href="{{ route('proposals.index', ['nim' => $history->keyword]) }}">
                                 <div class="mr-3 text-white search-icon bg-primary">
                                     <i class="fas fa-clock-rotate-left"></i>
                                 </div>

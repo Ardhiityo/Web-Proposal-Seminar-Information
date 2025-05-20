@@ -69,6 +69,7 @@ class StudentRepository implements StudentInterface
     public function getStudentByNim($nim)
     {
         try {
+            $nim = trim($nim);
             return Student::with([
                 'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
                 'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
