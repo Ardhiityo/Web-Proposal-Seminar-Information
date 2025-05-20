@@ -13,6 +13,16 @@ class AcademicCalendarRepository implements AcademicCalendarInterface
         return AcademicCalendar::select('id', 'started_date', 'ended_date')->latest()->get();
     }
 
+    public function getAllStartedDateAcademicCalendars()
+    {
+        return AcademicCalendar::select('started_date')->get();
+    }
+
+    public function getAllEndedDateAcademicCalendars()
+    {
+        return AcademicCalendar::select('ended_date')->get();
+    }
+
     public function getAllAcademicCalendarsByPaginate()
     {
         return AcademicCalendar::select('id', 'started_date', 'ended_date')->latest()->paginate(perPage: 10);

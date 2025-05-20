@@ -2,7 +2,11 @@
 
 namespace App\Services\Repositories;
 
+use App\Models\AcademicCalendar;
+use Carbon\Carbon;
+use App\Models\Lecture;
 use App\Models\Proposal;
+use App\Models\Student;
 use App\Services\Interfaces\ProposalInterface;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
@@ -26,6 +30,35 @@ class ProposalRepository implements ProposalInterface
         )
             ->latest()
             ->get();
+    }
+
+    public function getAllProposalsByKeyword($started_date, $ended_date)
+    {
+        $started_date = trim($started_date);
+        $ended_date = trim($ended_date);
+
+        return Proposal::with(
+            [
+                'student' => fn(Builder $query) => $query->with([
+                    'lecture1' => fn(Builder $query) => $query->select('id', 'name'),
+                    'lecture2' => fn(Builder $query) => $query->select('id', 'name'),
+                ])->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id'),
+                'room' => fn(Builder $query) => $query->select('id', 'name'),
+                'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
+            ]
+        )->select(
+            'id',
+            'session_time',
+            'session_date',
+            'student_id',
+            'academic_calendar_id',
+            'room_id'
+        )
+            ->whereHas('academicCalendar', function (Builder $query) use ($started_date, $ended_date) {
+                $query
+                    ->whereDate('started_date', '>=', $started_date)
+                    ->whereDate('ended_date', '<=', $ended_date);
+            })->paginate(10);
     }
 
     public function getAllProposalsByPaginate()

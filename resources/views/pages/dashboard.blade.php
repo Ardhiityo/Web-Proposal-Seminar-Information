@@ -99,7 +99,7 @@
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
                                 @forelse ($latestProposals as $latestProposal)
-                                    <a href="{{ route('proposals.index', ['keyword' => $latestProposal->student->nim]) }}"
+                                    <a href="{{ route('proposals.index', ['nim' => $latestProposal->student->nim]) }}"
                                         class="mb-4 text-decoration-none media">
                                         <img class="mr-3 rounded-circle" width="50"
                                             src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">

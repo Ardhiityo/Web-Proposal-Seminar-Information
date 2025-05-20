@@ -28,19 +28,25 @@ class ProposalController extends Controller
 
     public function index(Request $request)
     {
-        if ($keyword = $request->query('keyword')) {
+        if ($nim = $request->query('nim')) {
             try {
-                $this->historyRepository->createHistory($keyword);
-                $student = $this->studentRepository->getStudentByNim($keyword);
+                $this->historyRepository->createHistory($nim);
+                $student = $this->studentRepository->getStudentByNim($nim);
                 $proposals = $this->proposalRepository->getProposalByStudent($student->id);
             } catch (\Throwable $th) {
                 return redirect()->route('proposals.index')
                     ->with('nim_not_found', 'Belum ada jadwal tersedia...');
             }
+        } else if ($request->query('started_date') && $request->query('ended_date')) {
+            $proposals = $this->proposalRepository->getAllProposalsByKeyword($request->query('started_date'), $request->query('ended_date'));
         } else {
             $proposals = $this->proposalRepository->getAllProposalsByPaginate();
         }
-        return view('pages.proposal.index', compact('proposals'));
+
+        $startedAcademicCalendars = $this->academicCalendarRepository->getAllStartedDateAcademicCalendars();
+        $endedAcademicCalendars = $this->academicCalendarRepository->getAllEndedDateAcademicCalendars();
+
+        return view('pages.proposal.index', compact('proposals', 'startedAcademicCalendars', 'endedAcademicCalendars'));
     }
 
     public function create()

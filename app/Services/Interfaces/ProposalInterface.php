@@ -5,6 +5,7 @@ namespace App\Services\Interfaces;
 interface ProposalInterface
 {
     public function getAllProposals();
+    public function getAllProposalsByKeyword($started_date, $ended_date);
     public function getAllProposalsByPaginate();
     public function getProposalByAcademicCalendar($id);
     public function createProposal(array $data);

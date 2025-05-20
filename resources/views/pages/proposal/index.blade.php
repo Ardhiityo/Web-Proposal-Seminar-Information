@@ -39,6 +39,46 @@
                                     @if ($proposals->isEmpty())
                                         <p>Data belum tersedia...</p>
                                     @else
+                                        <div class="row">
+                                            <div class="col-12 d-flex justify-content-end">
+                                                <div class="form-group">
+                                                    <div class="mb-3 input-group">
+                                                        <form action="{{ route('proposals.index') }}" method="get"
+                                                            class="d-flex align-items-center">
+                                                            <div class="mx-2 d-flex">
+                                                                <select required id="started_date" name="started_date"
+                                                                    class="form-control">
+                                                                    <option selected value="">Tahun Mulai</option>
+                                                                    @foreach ($startedAcademicCalendars as $startedAcademicCalendar)
+                                                                        <option
+                                                                            value="{{ $startedAcademicCalendar->started_date }}"
+                                                                            {{ old('started_date') == $startedAcademicCalendar->started_date_year ? 'selected' : '' }}>
+                                                                            {{ $startedAcademicCalendar->started_date_year }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <select required id="ended_date" name="ended_date"
+                                                                    class="form-control">
+                                                                    <option selected value="">Tahun Berakhir...
+                                                                    </option>
+                                                                    @foreach ($endedAcademicCalendars as $endedAcademicCalendar)
+                                                                        <option
+                                                                            value="{{ $endedAcademicCalendar->ended_date }}"
+                                                                            {{ old('ended_date') == $endedAcademicCalendar->ended_date_year ? 'selected' : '' }}>
+                                                                            {{ $endedAcademicCalendar->ended_date_year }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <button class="btn btn-primary" type="submit">
+                                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr class="text-nowrap">

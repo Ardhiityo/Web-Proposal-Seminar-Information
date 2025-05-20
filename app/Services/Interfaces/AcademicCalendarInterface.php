@@ -11,4 +11,6 @@ interface AcademicCalendarInterface
     public function updateAcademicCalendar($id, $data);
     public function deleteAcademicCalendar($id);
     public function getLatestAcademicCalendars();
+    public function getAllStartedDateAcademicCalendars();
+    public function getAllEndedDateAcademicCalendars();
 }
