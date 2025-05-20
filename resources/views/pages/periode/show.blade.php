@@ -18,6 +18,32 @@
                 <p class="section-lead">
                     Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
+
+                @if (!$proposals->isEmpty())
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Cari berdasarkan tanggal</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}" method="GET"
+                                enctype="multipart/form-data">
+                                <div class="form-group col-md-6">
+                                    <label for="session_date">Tanggal</label>
+                                    <select required id="session_date" name="session_date" class="form-control">
+                                        <option selected>Pilih tanggal</option>
+                                        @foreach ($sessionDates as $sessionDate)
+                                            <option value="{{ $sessionDate->raw_session_date }}"
+                                                {{ old('session_date') == $sessionDate->session_date ? 'selected' : '' }}>
+                                                {{ $sessionDate->session_date }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button class="mt-4 mb-5 btn btn-primary" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">

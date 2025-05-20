@@ -9,6 +9,7 @@ use App\Models\Proposal;
 use App\Models\Student;
 use App\Services\Interfaces\ProposalInterface;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use PhpParser\Node\Expr\FuncCall;
 
 class ProposalRepository implements ProposalInterface
 {
@@ -61,6 +62,12 @@ class ProposalRepository implements ProposalInterface
             })->paginate(10);
     }
 
+    public function getAllSessionDatesProposalByAcademicCalendar($id)
+    {
+        return Proposal::select('session_date')
+            ->where('academic_calendar_id', $id)->get();
+    }
+
     public function getAllProposalsByPaginate()
     {
         return Proposal::with(
@@ -82,6 +89,46 @@ class ProposalRepository implements ProposalInterface
         )
             ->latest()
             ->paginate(perPage: 10);
+    }
+
+    public function getProposalByKeyword($academicCalendarId, $keyword)
+    {
+        $proposals = Proposal::with([
+            'student' => fn(Builder $query) => $query->with([
+                'lecture1' => fn(Builder $query) => $query->select('id', 'name'),
+                'lecture2' => fn(Builder $query) => $query->select('id', 'name'),
+            ])->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id'),
+            'room' => fn(Builder $query) => $query->select('id', 'name'),
+            'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
+        ])
+            ->select(
+                'id',
+                'session_date',
+                'session_time',
+                'student_id',
+                'room_id',
+                'academic_calendar_id'
+            )
+            ->where('academic_calendar_id', $academicCalendarId)
+            ->whereDate('session_date', $keyword)
+            ->orderBy('session_date', 'desc')
+            ->orderBy('session_time', 'asc')
+            ->get()
+            ->groupBy('session_date');
+
+        // Mengubah collection menjadi paginator
+        $page = request()->get('page', 1);
+        $perPage = 10;
+
+        $items = $proposals->forPage($page, $perPage);
+
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $items,
+            $proposals->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url()]
+        );
     }
 
     public function getProposalByAcademicCalendar($id)

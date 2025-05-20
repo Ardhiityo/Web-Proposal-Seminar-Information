@@ -25,6 +25,11 @@ class Proposal extends Model
         return Carbon::parse($value)->format('d/m/Y');
     }
 
+    public function getRawSessionDateAttribute()
+    {
+        return $this->attributes['session_date'];
+    }
+
     public function getSessionTimeAttribute($value)
     {
         return Carbon::parse($value)->format('H:i');

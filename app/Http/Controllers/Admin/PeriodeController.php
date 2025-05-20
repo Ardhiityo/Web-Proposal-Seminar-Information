@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\Repositories\ProposalRepository;
 use App\Services\Interfaces\AcademicCalendarInterface;
+use Illuminate\Http\Request;
 
 class PeriodeController extends Controller
 {
@@ -13,11 +14,16 @@ class PeriodeController extends Controller
         private AcademicCalendarInterface $academicCalendarRepository
     ) {}
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $proposals = $this->proposalRepository->getProposalByAcademicCalendar($id);
+        if ($keyword = $request->query('session_date')) {
+            $proposals = $this->proposalRepository->getProposalByKeyword($id, $keyword);
+        } else {
+            $proposals = $this->proposalRepository->getProposalByAcademicCalendar($id);
+        }
+        $sessionDates = $this->proposalRepository->getAllSessionDatesProposalByAcademicCalendar($id);
         $academicCalendar = $this->academicCalendarRepository->getAcademicCalendarById($id);
 
-        return view('pages.periode.show', compact('proposals', 'academicCalendar'));
+        return view('pages.periode.show', compact('proposals', 'academicCalendar', 'sessionDates'));
     }
 }
