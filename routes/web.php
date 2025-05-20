@@ -6,14 +6,13 @@ use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\LectureController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\StudyProgramController;
 use App\Http\Controllers\Admin\AcademicCalendarController;
 use App\Http\Controllers\Admin\PeriodeController;
 use App\Http\Controllers\Admin\ProposalController;
 use App\Http\Controllers\HistoryController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware('auth')->group(function () {
