@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Imports\LectureImport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Excel\StoreLectureImportRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\LectureInterface;
@@ -61,12 +62,8 @@ class LectureController extends Controller
         return redirect()->route('lectures.index');
     }
 
-    public function import(Request $request)
+    public function import(StoreLectureImportRequest $request)
     {
-        $request->validate([
-            'excel' => 'required|file|mimes:xlsx,xls',
-        ]);
-
         try {
             Excel::import(new LectureImport, $request->file('excel'));
             Alert::success('Sukses', 'Data Dosen Berhasil Diimport');

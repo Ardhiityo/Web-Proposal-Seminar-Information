@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Excel\StoreStudentImportRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\LectureInterface;
@@ -67,12 +68,8 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    public function import(Request $request)
+    public function import(StoreStudentImportRequest $request)
     {
-        $request->validate([
-            'excel' => 'required|file|mimes:xlsx,xls',
-        ]);
-
         try {
             Excel::import(new StudentImport, $request->file('excel'));
             Alert::success('Sukses', 'Data Mahasiswa Berhasil Diimport');
