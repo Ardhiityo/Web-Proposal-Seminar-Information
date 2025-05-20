@@ -48,7 +48,7 @@
                                                             <div class="mx-2 d-flex">
                                                                 <select required id="started_date" name="started_date"
                                                                     class="form-control">
-                                                                    <option selected value="">Tahun Mulai</option>
+                                                                    <option selected value="">Tahun Awal</option>
                                                                     @foreach ($startedAcademicCalendars as $startedAcademicCalendar)
                                                                         <option
                                                                             value="{{ $startedAcademicCalendar->started_date }}"
@@ -59,7 +59,7 @@
                                                                 </select>
                                                                 <select required id="ended_date" name="ended_date"
                                                                     class="form-control">
-                                                                    <option selected value="">Tahun Berakhir...
+                                                                    <option selected value="">Tahun Akhir
                                                                     </option>
                                                                     @foreach ($endedAcademicCalendars as $endedAcademicCalendar)
                                                                         <option
