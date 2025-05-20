@@ -61,7 +61,7 @@
                                                         @foreach ($lectures as $lecture)
                                                             <option value="{{ $lecture->id }}"
                                                                 {{ old('lecture_1_id', $student->lecture1->id) == $lecture->id ? 'selected' : '' }}>
-                                                                {{ $lecture->periode_year }}
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -72,9 +72,9 @@
                                                         class="form-control">
                                                         <option selected>Choose...</option>
                                                         @foreach ($lectures as $lecture)
-                                                            <option value="{{ $academicCalendar->id }}"
+                                                            <option value="{{ $lecture->id }}"
                                                                 {{ old('lecture_2_id', $student->lecture2->id) == $lecture->id ? 'selected' : '' }}>
-                                                                {{ $lecture->periode_year }}
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}
                                                             </option>
                                                         @endforeach
                                                     </select>

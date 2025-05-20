@@ -50,8 +50,9 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = $this->studentRepository->getStudentById($id);
+        $lectures = $this->lectureRepository->getAllLectures();
 
-        return view('pages.student.edit', compact('student'));
+        return view('pages.student.edit', compact('student', 'lectures'));
     }
 
     public function update(UpdateStudentRequest $request, $id)

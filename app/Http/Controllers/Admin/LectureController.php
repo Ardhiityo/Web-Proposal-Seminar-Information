@@ -44,9 +44,8 @@ class LectureController extends Controller
     public function edit($id)
     {
         $lecture = $this->lectureRepository->getLectureById($id);
-        $lectures = $this->lectureRepository->getAllLectures();
 
-        return view('pages.lecture.edit', compact('lecture', 'lectures'));
+        return view('pages.lecture.edit', compact('lecture'));
     }
 
     public function update(UpdateLectureRequest $request, $id)
