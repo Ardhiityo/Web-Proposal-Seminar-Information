@@ -63,19 +63,6 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="lecture_1_id">Pembimbing 1</label>
-                                                    <select required id="lecture_1_id" name="lecture_1_id"
-                                                        class="form-control">
-                                                        <option selected>Choose...</option>
-                                                        @foreach ($lectures as $lecture)
-                                                            <option value="{{ $lecture->id }}"
-                                                                {{ old('lecture_1_id') == $lecture->id ? 'selected' : '' }}>
-                                                                {{ $lecture->name }} - {{ $lecture->nidn }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-6">
                                                     <label for="academic_calendar_id">Tahun Akademik</label>
                                                     <select required id="academic_calendar_id" name="academic_calendar_id"
                                                         class="form-control">
@@ -84,19 +71,6 @@
                                                             <option value="{{ $academicCalendar->id }}"
                                                                 {{ old('academic_calendar_id') == $academicCalendar->id ? 'selected' : '' }}>
                                                                 {{ $academicCalendar->periode_year }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="lecture_2_id">Pembimbing 2</label>
-                                                    <select required id="lecture_2_id" name="lecture_2_id"
-                                                        class="form-control">
-                                                        <option selected>Choose...</option>
-                                                        @foreach ($lectures as $lecture)
-                                                            <option value="{{ $lecture->id }}"
-                                                                {{ old('lecture_2_id') == $lecture->id ? 'selected' : '' }}>
-                                                                {{ $lecture->name }} - {{ $lecture->nidn }}
-                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
