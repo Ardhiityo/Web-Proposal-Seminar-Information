@@ -20,9 +20,9 @@
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required
                         autofocus>
-                    <div class="invalid-feedback">
-                        Please fill in your email
-                    </div>
+                    @error('email')
+                        <p class="text-danger text-lowercase">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -35,9 +35,6 @@
                         </div>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                    <div class="invalid-feedback">
-                        please fill in your password
-                    </div>
                 </div>
 
                 <div class="form-group">

@@ -20,14 +20,18 @@
                     <div class="form-group col-12">
                         <label for="name">Nama lengkap</label>
                         <input id="name" type="text" class="form-control" required name="name" autofocus>
+                        @error('name')
+                            <p class="text-danger text-lowercase">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" required>
-                    <div class="invalid-feedback">
-                    </div>
+                    @error('email')
+                        <p class="text-danger text-lowercase">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="row">
@@ -39,6 +43,9 @@
                             <div class="bar"></div>
                             <div class="label"></div>
                         </div>
+                        @error('password')
+                            <p class="text-danger text-lowercase">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="form-group col-12">
                         <label for="password_confirmation" class="d-block">Konfirmasi Password</label>
