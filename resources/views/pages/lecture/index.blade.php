@@ -19,23 +19,26 @@
                     Semua informasi mengenai data Dosen yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
 
-                <div class="mb-4 d-flex justify-content-end">
-                    <form action="{{ route('lectures.import') }}" method="POST" enctype="multipart/form-data"
-                        class="d-flex align-items-center justify-content-end">
-                        @csrf
-                        <div class="mx-2">
-                            <input required type="file" class="form-control" id="excel" name="excel">
-                            @error('excel')
-                                <p class="text-sm text-danger text-lowercase">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <button class="btn btn-primary align-self-start">
-                            Import
-                        </button>
-                    </form>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Import From Excel</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('lectures.import') }}" method="POST" enctype="multipart/form-data">
+                            <div class="custom-file">
+                                @csrf
+                                <input type="file" class="custom-file-input" required id="excel" name="excel">
+                                @error('excel')
+                                    <p class="mt-2 text-danger">{{ $message }}</p>
+                                @enderror
+                                <label class="custom-file-label" for="excel">Excel File</label>
+                                <button class="mt-4 mb-5 btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="row">
+                <div class="mt-5 row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
