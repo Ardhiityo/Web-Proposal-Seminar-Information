@@ -118,7 +118,10 @@ class ProposalRepository implements ProposalInterface
     {
         return Proposal::with(
             [
-                'student' => fn(Builder $query) => $query->select('id', 'name', 'nim'),
+                'student' => fn(Builder $query) => $query->with([
+                    'lecture1' => fn(Builder $query) => $query->select('id', 'name'),
+                    'lecture2' => fn(Builder $query) => $query->select('id', 'name'),
+                ])->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id'),
                 'room' => fn(Builder $query) => $query->select('id', 'name'),
                 'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date')
             ]

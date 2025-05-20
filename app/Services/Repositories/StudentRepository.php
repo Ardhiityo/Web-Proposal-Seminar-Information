@@ -57,7 +57,8 @@ class StudentRepository implements StudentInterface
                     'id',
                     'name',
                     'nim',
-                    'lecture_id'
+                    'lecture_1_id',
+                    'lecture_2_id',
                 )->where('nim', $nim)
                 ->firstOrFail();
         } catch (\Throwable $th) {
