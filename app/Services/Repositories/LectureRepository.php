@@ -50,6 +50,8 @@ class LectureRepository implements LectureInterface
 
     public function getAllLecturesByKeyword($keyword)
     {
+        $keyword = trim($keyword);
+
         return Lecture::select('id', 'name', 'nidn')
             ->where('name', 'LIKE', '%' . $keyword . '%')
             ->orWhere('nidn', 'LIKE', '%' . $keyword . '%')

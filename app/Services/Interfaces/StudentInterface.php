@@ -12,4 +12,5 @@ interface StudentInterface
     public function deleteStudent($id);
     public function getStudentByNim($nim);
     public function getTotalStudents();
+    public function getAllStudentsByKeyword($keyword);
 }

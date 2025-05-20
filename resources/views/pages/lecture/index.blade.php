@@ -60,7 +60,7 @@
                                                         <input type="text" class="form-control"
                                                             placeholder="Cari disini..." name="keyword">
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="button">
+                                                            <button class="btn btn-primary" type="submit">
                                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                                             </button>
                                                         </div>

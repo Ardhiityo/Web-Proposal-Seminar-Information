@@ -15,6 +15,7 @@ use App\Http\Requests\Lecture\UpdateLectureRequest;
 class LectureController extends Controller
 {
     public function __construct(private LectureInterface $lectureRepository) {}
+
     public function index(Request $request)
     {
         if ($keyword = $request->query('keyword')) {
@@ -43,8 +44,9 @@ class LectureController extends Controller
     public function edit($id)
     {
         $lecture = $this->lectureRepository->getLectureById($id);
+        $lectures = $this->lectureRepository->getAllLectures();
 
-        return view('pages.lecture.edit', compact('lecture'));
+        return view('pages.lecture.edit', compact('lecture', 'lectures'));
     }
 
     public function update(UpdateLectureRequest $request, $id)

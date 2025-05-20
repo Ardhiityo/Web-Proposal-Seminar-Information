@@ -20,9 +20,13 @@ class StudentController extends Controller
         private LectureInterface $lectureRepository
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $students = $this->studentRepository->getAllStudentsByPaginate();
+        if ($keyword = $request->query('keyword')) {
+            $students = $this->studentRepository->getAllStudentsByKeyword($keyword);
+        } else {
+            $students = $this->studentRepository->getAllStudentsByPaginate();
+        }
 
         return view('pages.student.index', compact('students'));
     }
