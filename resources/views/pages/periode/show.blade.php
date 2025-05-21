@@ -69,7 +69,9 @@
                                                     <th scope="col">Ruangan</th>
                                                     <th scope="col">Pembimbing 1</th>
                                                     <th scope="col">Pembimbing 2</th>
-                                                    <th scope="col">Aksi</th>
+                                                    @role('admin')
+                                                        <th scope="col">Aksi</th>
+                                                    @endrole
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -82,18 +84,20 @@
                                                         <td>{{ $proposal->room->name }}</td>
                                                         <td>{{ $proposal->student->lecture1->name }}</td>
                                                         <td>{{ $proposal->student->lecture2->name }}</td>
-                                                        <td>
-                                                            <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"
-                                                                class="btn btn-warning">Edit</a>
-                                                            <form id="form-delete"
-                                                                action="{{ route('proposals.destroy', ['proposal' => $proposal->id]) }}"
-                                                                method="POST" class="d-inline">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" id="btn-delete"
-                                                                    class="btn btn-danger">Hapus</button>
-                                                            </form>
-                                                        </td>
+                                                        @role('admin')
+                                                            <td>
+                                                                <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"
+                                                                    class="btn btn-warning">Edit</a>
+                                                                <form id="form-delete"
+                                                                    action="{{ route('proposals.destroy', ['proposal' => $proposal->id]) }}"
+                                                                    method="POST" class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" id="btn-delete"
+                                                                        class="btn btn-danger">Hapus</button>
+                                                                </form>
+                                                            </td>
+                                                        @endrole
                                                     </tr>
                                                 @endforeach
                                             </tbody>
