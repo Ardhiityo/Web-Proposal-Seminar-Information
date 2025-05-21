@@ -19,33 +19,37 @@
                     Semua informasi mengenai data Mahasiswa yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Import From Excel</h4>
+                @role('admin')
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Import From Excel</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data">
+                                <div class="custom-file">
+                                    @csrf
+                                    <input type="file" class="custom-file-input" required id="excel" name="excel">
+                                    @error('excel')
+                                        <p class="mt-2 text-danger">{{ $message }}</p>
+                                    @enderror
+                                    <label class="custom-file-label" for="excel">Excel File</label>
+                                    <button class="mt-4 mb-5 btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data">
-                            <div class="custom-file">
-                                @csrf
-                                <input type="file" class="custom-file-input" required id="excel" name="excel">
-                                @error('excel')
-                                    <p class="mt-2 text-danger">{{ $message }}</p>
-                                @enderror
-                                <label class="custom-file-label" for="excel">Excel File</label>
-                                <button class="mt-4 mb-5 btn btn-primary" type="submit">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                @endrole
 
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>
-                                    <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Data</a>
-                                </h4>
-                            </div>
+                            @role('admin')
+                                <div class="card-header">
+                                    <h4>
+                                        <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Data</a>
+                                    </h4>
+                                </div>
+                            @endrole
                             <div class="overflow-auto card-body">
                                 @if ($students->isEmpty())
                                     <p>Data belum tersedia...</p>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
 use App\Services\Interfaces\HistoryInterface;
@@ -53,6 +54,10 @@ class ProposalController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('create-proposal')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $students = $this->studentRepository->getAllStudents();
         $lectures = $this->lectureRepository->getAllLectures();
         $academicCalendars = $this->academicCalendarRepository->getAllAcademicCalendars();
@@ -72,6 +77,10 @@ class ProposalController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::user()->can('edit-proposal')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $proposal = $this->proposalRepository->getProposalById($id);
         $students = $this->studentRepository->getAllStudents();
         $lectures = $this->lectureRepository->getAllLectures();

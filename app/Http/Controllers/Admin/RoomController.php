@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
 use App\Http\Requests\Room\StoreRoomRequest;
@@ -22,6 +23,10 @@ class RoomController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('create-room')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('pages.room.create');
     }
 
@@ -36,6 +41,10 @@ class RoomController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::user()->can('edit-room')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $room = $this->roomRepository->getRoomById($id);
 
         return view('pages.room.edit', compact('room'));

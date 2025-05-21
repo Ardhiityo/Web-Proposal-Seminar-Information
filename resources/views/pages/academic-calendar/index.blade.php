@@ -22,14 +22,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            @can('create-academic-calendar')
+                            @role('admin')
                                 <div class="card-header">
                                     <h4>
                                         <a href="{{ route('academic-calendars.create') }}" class="btn btn-primary">Tambah
                                             Data</a>
                                     </h4>
                                 </div>
-                            @endcan
+                            @endrole
                             <div class="overflow-auto card-body">
                                 @if ($academicCalendars->isEmpty())
                                     <p>Data belum tersedia...</p>

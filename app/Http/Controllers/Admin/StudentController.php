@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Excel\StoreStudentImportRequest;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
 use App\Http\Requests\Student\StoreStudentRequest;
 use App\Http\Requests\Student\UpdateStudentRequest;
+use App\Http\Requests\Excel\StoreStudentImportRequest;
 
 class StudentController extends Controller
 {
@@ -33,6 +34,10 @@ class StudentController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('create-student')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $lectures = $this->lectureRepository->getAllLectures();
 
         return view('pages.student.create', compact('lectures'));
@@ -49,6 +54,10 @@ class StudentController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::user()->can('edit-student')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $student = $this->studentRepository->getStudentById($id);
         $lectures = $this->lectureRepository->getAllLectures();
 

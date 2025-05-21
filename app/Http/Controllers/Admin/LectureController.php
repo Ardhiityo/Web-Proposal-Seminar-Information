@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Imports\LectureImport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Excel\StoreLectureImportRequest;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\LectureInterface;
 use App\Http\Requests\Lecture\StoreLectureRequest;
 use App\Http\Requests\Lecture\UpdateLectureRequest;
+use App\Http\Requests\Excel\StoreLectureImportRequest;
 
 class LectureController extends Controller
 {
@@ -29,6 +30,10 @@ class LectureController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('create-lecture')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('pages.lecture.create');
     }
 
@@ -43,6 +48,10 @@ class LectureController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::user()->can('edit-lecture')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $lecture = $this->lectureRepository->getLectureById($id);
 
         return view('pages.lecture.edit', compact('lecture'));

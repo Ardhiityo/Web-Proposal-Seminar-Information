@@ -21,11 +21,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>
-                                    <a href="{{ route('rooms.create') }}" class="btn btn-primary">Tambah Data</a>
-                                </h4>
-                            </div>
+                            @role('admin')
+                                <div class="card-header">
+                                    <h4>
+                                        <a href="{{ route('rooms.create') }}" class="btn btn-primary">Tambah Data</a>
+                                    </h4>
+                                </div>
+                            @endrole
                             <div class="overflow-auto card-body">
                                 @if ($rooms->isEmpty())
                                     <p>Data belum tersedia...</p>
