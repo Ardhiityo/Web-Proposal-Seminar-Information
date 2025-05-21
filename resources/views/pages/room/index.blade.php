@@ -37,7 +37,9 @@
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">Aksi</th>
+                                                @role('admin')
+                                                    <th scope="col">Aksi</th>
+                                                @endrole
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,18 +47,20 @@
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $room->name }}</td>
-                                                    <td>
-                                                        <a href="{{ route('rooms.edit', ['room' => $room->id]) }}"
-                                                            class="btn btn-warning">Edit</a>
-                                                        <form id="form-delete"
-                                                            action="{{ route('rooms.destroy', ['room' => $room->id]) }}"
-                                                            method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" id="btn-delete"
-                                                                class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </td>
+                                                    @role('admin')
+                                                        <td>
+                                                            <a href="{{ route('rooms.edit', ['room' => $room->id]) }}"
+                                                                class="btn btn-warning">Edit</a>
+                                                            <form id="form-delete"
+                                                                action="{{ route('rooms.destroy', ['room' => $room->id]) }}"
+                                                                method="POST" class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" id="btn-delete"
+                                                                    class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                         </tbody>

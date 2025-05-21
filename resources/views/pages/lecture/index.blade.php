@@ -79,7 +79,9 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">NIDN</th>
-                                                <th scope="col">Aksi</th>
+                                                @role('admin')
+                                                    <th scope="col">Aksi</th>
+                                                @endrole
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -88,18 +90,20 @@
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $lecture->name }}</td>
                                                     <td>{{ $lecture->nidn }}</td>
-                                                    <td>
-                                                        <a href="{{ route('lectures.edit', ['lecture' => $lecture->id]) }}"
-                                                            class="btn btn-warning">Edit</a>
-                                                        <form id="form-delete"
-                                                            action="{{ route('lectures.destroy', ['lecture' => $lecture->id]) }}"
-                                                            method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" id="btn-delete"
-                                                                class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </td>
+                                                    @role('admin')
+                                                        <td>
+                                                            <a href="{{ route('lectures.edit', ['lecture' => $lecture->id]) }}"
+                                                                class="btn btn-warning">Edit</a>
+                                                            <form id="form-delete"
+                                                                action="{{ route('lectures.destroy', ['lecture' => $lecture->id]) }}"
+                                                                method="POST" class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" id="btn-delete"
+                                                                    class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                         </tbody>
