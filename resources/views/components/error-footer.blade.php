@@ -1,3 +1,3 @@
-<div class="simple-footer mt-5">
-    Copyright &copy; Stisla 2018
+<div class="mt-5 simple-footer">
+    <div>Dedicated by <a href="https://www.instagram.com/ardhiityo/">Arya Adhi Prasetyo</a></div>
 </div>
