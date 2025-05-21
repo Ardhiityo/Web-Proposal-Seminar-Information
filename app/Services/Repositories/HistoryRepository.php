@@ -20,7 +20,7 @@ class HistoryRepository implements HistoryInterface
 
     public function checkHistoryAlreadyExists($keyword)
     {
-        return History::where('keyword', $keyword)->exists();
+        return History::where('keyword', $keyword)->where('user_id', Auth::user()->id)->exists();
     }
 
     public function getHistoryByUser()
