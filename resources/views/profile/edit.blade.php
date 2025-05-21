@@ -46,23 +46,37 @@
                                     <div class="profile-widget-item">
                                         <div class="py-2 profile-widget-name">{{ $user->name }}
                                             <div class="text-muted d-inline font-weight-normal">
-                                                <div class="slash"></div> Visitor
+                                                <div class="slash"></div>
+                                                {{ ucfirst(Auth::user()->getRoleNames()->first()) }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="profile-widget-description">
-                                Sebagai visitor, Anda memiliki akses untuk melihat informasi pada sistem. Visitor merupakan
-                                pengguna yang dapat mengakses dan melihat konten yang tersedia tanpa memiliki hak untuk
-                                melakukan perubahan pada sistem.
-                                <div class="d-flex justify-content-end">
-                                    <form action="{{ route('profile.destroy') }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Hapus Akun</button>
-                                    </form>
-                                </div>
+                                @role('visitor')
+                                    Sebagai Visitor, Anda memiliki akses untuk melihat informasi pada sistem. Visitor merupakan
+                                    pengguna yang dapat mengakses dan melihat konten yang tersedia tanpa memiliki hak untuk
+                                    melakukan perubahan pada sistem.
+                                @endrole
+                                @role('admin')
+                                    Sebagai Admin, Anda memiliki akses penuh untuk mengelola seluruh fitur pada sistem. Admin
+                                    dapat
+                                    melakukan penambahan, pengubahan, dan penghapusan data seperti tahun akademik, proposal,
+                                    mahasiswa,
+                                    ruangan, dan dosen. Admin juga bertanggung jawab untuk memastikan data yang dikelola tetap
+                                    akurat
+                                    dan terorganisir dengan baik.
+                                @endrole
+                                @role('visitor')
+                                    <div class="d-flex justify-content-end">
+                                        <form action="{{ route('profile.destroy') }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Hapus Akun</button>
+                                        </form>
+                                    </div>
+                                @endrole
                             </div>
                         </div>
                     </div>
