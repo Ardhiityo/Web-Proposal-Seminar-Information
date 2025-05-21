@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
+use App\Jobs\ImportStudentJob;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -85,12 +86,15 @@ class StudentController extends Controller
     public function import(StoreStudentImportRequest $request)
     {
         try {
-            Excel::import(new StudentImport, $request->file('excel'));
-            Alert::success('Sukses', 'Data Mahasiswa Berhasil Diimport');
-        } catch (\Exception $e) {
-            Alert::error('Error', 'Gagal mengimport data: ' . $e->getMessage());
-        }
+            $path = $request->file('excel')->store('excel/student', 'public');
+            ImportStudentJob::dispatch($path);
+            Alert::success('Sukses', 'Sedang diproses, refresh halaman secara berkala.');
 
-        return redirect()->route('students.index');
+            return redirect()->route('students.index');
+        } catch (\Exception $e) {
+            Alert::error('Error', 'Gagal mengunggah file');
+
+            return redirect()->route('students.index');
+        }
     }
 }

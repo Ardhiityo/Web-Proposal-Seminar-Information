@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Imports\LectureImport;
+use App\Jobs\ImportLectureJob;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -48,7 +50,7 @@ class LectureController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('edit-lecture')) {
+        if (!Auth::user()->can('edit-lecture-calendar')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -75,15 +77,18 @@ class LectureController extends Controller
         return redirect()->route('lectures.index');
     }
 
-    public function import(StoreLectureImportRequest $request)
+    public function import(Request $request)
     {
         try {
-            Excel::import(new LectureImport, $request->file('excel'));
-            Alert::success('Sukses', 'Data Dosen Berhasil Diimport');
-        } catch (\Exception $e) {
-            Alert::error('Error', 'Gagal mengimport data: ' . $e->getMessage());
-        }
+            $path = $request->file('excel')->store('excel/lecture', 'public');
+            ImportLectureJob::dispatch($path);
+            Alert::success('Sukses', 'Sedang diproses, refresh halaman secara berkala.');
 
-        return redirect()->route('lectures.index');
+            return redirect()->route('lectures.index');
+        } catch (\Exception $e) {
+            Alert::error('Error', 'Gagal mengunggah file');
+
+            return redirect()->route('lectures.index');
+        }
     }
 }
