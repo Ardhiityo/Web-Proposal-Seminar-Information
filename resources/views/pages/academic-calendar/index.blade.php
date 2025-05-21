@@ -22,12 +22,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>
-                                    <a href="{{ route('academic-calendars.create') }}" class="btn btn-primary">Tambah
-                                        Data</a>
-                                </h4>
-                            </div>
+                            @can('create-academic-calendar')
+                                <div class="card-header">
+                                    <h4>
+                                        <a href="{{ route('academic-calendars.create') }}" class="btn btn-primary">Tambah
+                                            Data</a>
+                                    </h4>
+                                </div>
+                            @endcan
                             <div class="overflow-auto card-body">
                                 @if ($academicCalendars->isEmpty())
                                     <p>Data belum tersedia...</p>
@@ -38,7 +40,9 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Tahun Mulai</th>
                                                 <th scope="col">Tahun Berakhir</th>
-                                                <th scope="col">Aksi</th>
+                                                @role('admin')
+                                                    <th scope="col">Aksi</th>
+                                                @endrole
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -47,18 +51,20 @@
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $academicCalendar->started_date_year }}</td>
                                                     <td>{{ $academicCalendar->ended_date_year }}</td>
-                                                    <td>
-                                                        <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
-                                                            class="btn btn-warning">Edit</a>
-                                                        <form id="form-delete"
-                                                            action="{{ route('academic-calendars.destroy', ['academic_calendar' => $academicCalendar->id]) }}"
-                                                            method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" id="btn-delete"
-                                                                class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </td>
+                                                    @role('admin')
+                                                        <td>
+                                                            <a href="{{ route('academic-calendars.edit', ['academic_calendar' => $academicCalendar->id]) }}"
+                                                                class="btn btn-warning">Edit</a>
+                                                            <form id="form-delete"
+                                                                action="{{ route('academic-calendars.destroy', ['academic_calendar' => $academicCalendar->id]) }}"
+                                                                method="POST" class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" id="btn-delete"
+                                                                    class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Services\Interfaces\AcademicCalendarInterface;
 use App\Http\Requests\AcademicCalendar\StoreAcademicCalendarRequest;
 use App\Http\Requests\AcademicCalendar\UpdateAcademicCalendarRequest;
-use App\Services\Interfaces\AcademicCalendarInterface;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class AcademicCalendarController extends Controller
 {
-
     public function __construct(private AcademicCalendarInterface $academicCalendarRepository) {}
 
     public function index()
@@ -22,6 +22,10 @@ class AcademicCalendarController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('create-academic-calendar')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('pages.academic-calendar.create');
     }
 
@@ -36,6 +40,10 @@ class AcademicCalendarController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::user()->can('edit-academic-calendar')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $academicCalendar = $this->academicCalendarRepository->getAcademicCalendarById($id);
 
         return view('pages.academic-calendar.edit', compact('academicCalendar'));
