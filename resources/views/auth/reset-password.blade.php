@@ -1,39 +1,65 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+@extends('layouts.auth')
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+@section('title', 'Reset Password')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@push('style')
+    <!-- CSS Libraries -->
+@endpush
+
+@section('main')
+    <div class="card card-primary">
+        <div class="card-header">
+            <h4>Reset Password</h4>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="card-body">
+            <form method="POST" action="{{ route('password.store') }}">
+                @csrf
+                <!-- Password Reset Token -->
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required
+                        autofocus>
+                    @error('email')
+                        <p class="text-danger text-lowercase">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
+                        name="password" tabindex="2" required>
+                    <div id="pwindicator" class="pwindicator">
+                        <div class="bar"></div>
+                        <div class="label"></div>
+                    </div>
+                    @error('password')
+                        <p class="text-danger text-lowercase">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password-confirm">Confirm Password</label>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                        tabindex="2" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                        Reset Password
+                    </button>
+                </div>
+            </form>
         </div>
+    </div>
+@endsection
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+@push('scripts')
+    <!-- JS Libraies -->
+    <script src="{{ asset('library/jquery.pwstrength/jquery.pwstrength.min.js') }}"></script>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/auth-register.js') }}"></script>
+@endpush
