@@ -6,13 +6,18 @@ use App\Imports\LectureImport;
 use App\Imports\StudentImport;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ImportStudentJob implements ShouldQueue
 {
-    use Queueable;
+    use Queueable, SerializesModels, InteractsWithQueue;
+
+    public $tries = 3;
+    public $timeout = 120;
 
     /**
      * Create a new job instance.
