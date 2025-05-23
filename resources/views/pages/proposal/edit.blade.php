@@ -101,6 +101,42 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
+                                                    <label for="examiner_1_id">Penguji 1</label>
+                                                    <select required id="examiner_1_id" name="examiner_1_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('examiner_1_id', $proposal->examiner_1_id) == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="examiner_2_id">Penguji 2</label>
+                                                    <select required id="examiner_2_id" name="examiner_2_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('examiner_2_id', $proposal->examiner_2_id) == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="moderator_id">Ketua sidang</label>
+                                                    <select required id="moderator_id" name="moderator_id"
+                                                        class="form-control">
+                                                        <option selected>Choose...</option>
+                                                        @foreach ($lectures as $lecture)
+                                                            <option value="{{ $lecture->id }}"
+                                                                {{ old('moderator_id', $proposal->moderator_id) == $lecture->id ? 'selected' : '' }}>
+                                                                {{ $lecture->name }} - {{ $lecture->nidn }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
                                                     <label for="room">Ruangan</label>
                                                     <select required id="room_id" name="room_id" class="form-control">
                                                         <option selected>Choose...</option>

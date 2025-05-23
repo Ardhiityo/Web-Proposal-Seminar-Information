@@ -94,6 +94,9 @@
                                                     <th scope="col">Pembimbing 2</th>
                                                     <th scope="col">Periode</th>
                                                     @role('admin')
+                                                        <th scope="col">Penguji 1</th>
+                                                        <th scope="col">Penguji 2</th>
+                                                        <th scope="col">Ketua Sidang</th>
                                                         <th scope="col">Aksi</th>
                                                     @endrole
                                                 </tr>
@@ -111,6 +114,9 @@
                                                         <td>{{ $proposal->student->lecture2->name }}</td>
                                                         <td>{{ $proposal->academicCalendar->periode_year }}</td>
                                                         @role('admin')
+                                                            <td>{{ $proposal->examiner1->name }}</td>
+                                                            <td>{{ $proposal->examiner2->name }}</td>
+                                                            <td>{{ $proposal->moderator->name }}</td>
                                                             <td>
                                                                 <a href="{{ route('proposals.edit', ['proposal' => $proposal->id]) }}"
                                                                     class="btn btn-warning">Edit</a>

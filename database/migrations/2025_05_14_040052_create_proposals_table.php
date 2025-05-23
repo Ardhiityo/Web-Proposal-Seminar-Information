@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->foreignId('academic_calendar_id')->constrained()->cascadeOnDelete();
             $table->foreignId('room_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('moderator_id')->constrained('lectures')->cascadeOnDelete();
+            $table->foreignId('examiner_1_id')->constrained('lectures')->cascadeOnDelete();
+            $table->foreignId('examiner_2_id')->constrained('lectures')->cascadeOnDelete();
             $table->timestamps();
         });
     }

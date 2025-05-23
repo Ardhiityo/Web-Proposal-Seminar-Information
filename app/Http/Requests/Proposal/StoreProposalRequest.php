@@ -27,6 +27,9 @@ class StoreProposalRequest extends FormRequest
             'student_id' => ['required', 'exists:students,id'],
             'academic_calendar_id' => ['required', 'exists:academic_calendars,id'],
             'room_id' => ['required', 'exists:rooms,id'],
+            'examiner_1_id' => ['required', 'exists:lectures,id'],
+            'examiner_2_id' => ['required', 'exists:lectures,id', 'different:examiner_1_id'],
+            'moderator_id' => ['required', 'exists:lectures,id', 'different:examiner_1_id', 'different:examiner_2_id'],
         ];
     }
 }

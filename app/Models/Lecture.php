@@ -20,4 +20,19 @@ class Lecture extends Model
     {
         return $this->hasMany(Student::class, 'lecture_2_id');
     }
+
+    public function examiner1()
+    {
+        return $this->hasMany(Proposal::class, 'examiner_1_id');
+    }
+
+    public function examiner2()
+    {
+        return $this->hasMany(Proposal::class, 'examiner_2_id');
+    }
+
+    public function moderator()
+    {
+        return $this->hasMany(Proposal::class, 'moderator_id');
+    }
 }
