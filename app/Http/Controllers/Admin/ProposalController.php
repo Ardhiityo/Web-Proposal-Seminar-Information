@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Proposal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProposalExportByPeriode;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
 use App\Services\Interfaces\HistoryInterface;
@@ -104,6 +106,20 @@ class ProposalController extends Controller
         $this->proposalRepository->deleteProposal($id);
 
         Alert::success('Sukses', 'Data Proposal Berhasil Dihapus');
+
+        return redirect()->route('proposals.index');
+    }
+
+    public function exportByAcademicCalendar(Request $request)
+    {
+        if ($academicCalendarId = $request->query('academic_calendar_id')) {
+            $proposals = $this->proposalRepository->getProposalByAcademicCalendarToExport($academicCalendarId);
+
+            return Excel::download(
+                new ProposalExportByPeriode($proposals),
+                'proposals.xlsx'
+            );
+        }
 
         return redirect()->route('proposals.index');
     }

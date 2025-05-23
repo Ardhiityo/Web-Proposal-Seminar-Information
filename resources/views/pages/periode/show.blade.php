@@ -22,11 +22,40 @@
                 @if (!$proposals->isEmpty())
                     <div class="card">
                         <div class="card-header">
+                            <h4>Export to Excel</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('proposals.export.academic-calendar') }}" method="GET">
+                                <div class="form-group col-md-6">
+                                    <label>Full Periode {{ $academicCalendar->periode_year }}</label>
+                                    <input type="hidden" name="academic_calendar_id" value="{{ $academicCalendar->id }}">
+                                </div>
+                                <button class="mt-4 mb-5 btn btn-primary" type="submit">Download</button>
+                            </form>
+                            <form action="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}"
+                                method="GET">
+                                <div class="form-group col-md-6">
+                                    <label for="session_date">Berdasarkan bulan</label>
+                                    <select required id="session_date" name="session_date" class="form-control">
+                                        <option selected>Pilih bulan</option>
+                                        @foreach ($sessionDates as $sessionDate)
+                                            <option value="{{ $sessionDate->raw_session_date }}"
+                                                {{ old('session_date') == $sessionDate->session_date ? 'selected' : '' }}>
+                                                {{ $sessionDate->session_date }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button class="mt-4 mb-5 btn btn-primary" type="submit">Download</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
                             <h4>Cari berdasarkan tanggal</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}" method="GET"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}"
+                                method="GET">
                                 <div class="form-group col-md-6">
                                     <label for="session_date">Tanggal</label>
                                     <select required id="session_date" name="session_date" class="form-control">

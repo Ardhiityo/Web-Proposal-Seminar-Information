@@ -32,9 +32,13 @@ Route::middleware('auth')->group(function () {
     // History
     Route::delete('/history', [HistoryController::class, 'destroy'])->name('history.destroy');
 
-    //Excel
+    //Excel Import
     Route::post('/students/import', [StudentController::class, 'import'])->name('students.import');
     Route::post('/lectures/import', [LectureController::class, 'import'])->name('lectures.import');
+
+    // Excel Export
+    Route::get('/proposals/export/academic-calendar', [ProposalController::class, 'exportByAcademicCalendar'])
+        ->name('proposals.export.academic-calendar');
 });
 
 require __DIR__ . '/auth.php';

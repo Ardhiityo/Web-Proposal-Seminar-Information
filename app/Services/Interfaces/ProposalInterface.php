@@ -17,4 +17,5 @@ interface ProposalInterface
     public function getTotalProposals();
     public function getAllSessionDatesProposalByAcademicCalendar($id);
     public function getProposalByKeyword($academicCalendarId, $keyword);
+    public function getProposalByAcademicCalendarToExport($id);
 }

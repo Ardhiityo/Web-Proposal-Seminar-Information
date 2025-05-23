@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Imports\StudentImport;
 use App\Jobs\ImportStudentJob;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;

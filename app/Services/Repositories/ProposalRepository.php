@@ -189,6 +189,35 @@ class ProposalRepository implements ProposalInterface
         );
     }
 
+    public function getProposalByAcademicCalendarToExport($id)
+    {
+        return Proposal::with([
+            'student' => fn(Builder $query) => $query->with([
+                'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+                'lecture2' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+            ])->select('id', 'name', 'nim', 'lecture_1_id', 'lecture_2_id'),
+            'room' => fn(Builder $query) => $query->select('id', 'name'),
+            'academicCalendar' => fn(Builder $query) => $query->select('id', 'started_date', 'ended_date'),
+            'examiner1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+            'examiner2' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+            'moderator' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
+        ])
+            ->select(
+                'id',
+                'session_date',
+                'session_time',
+                'student_id',
+                'room_id',
+                'academic_calendar_id',
+                'examiner_1_id',
+                'examiner_2_id',
+                'moderator_id'
+            )
+            ->orderBy('session_date')
+            ->where('academic_calendar_id', $id)
+            ->get();
+    }
+
     public function getProposalById($id)
     {
         try {
