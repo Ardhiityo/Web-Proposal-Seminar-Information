@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ProposalExportByMonth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Exports\ProposalExportByMonthPDF;
 use App\Services\Interfaces\RoomInterface;
+use App\Exports\ProposalExportByMonthExcel;
 use App\Services\Interfaces\HistoryInterface;
 use App\Services\Interfaces\LectureInterface;
 use App\Services\Interfaces\StudentInterface;
@@ -122,7 +123,20 @@ class ProposalController extends Controller
                     $endMonth
                 );
 
-                return Excel::download(new ProposalExportByMonth($proposals), 'proposals.xlsx');
+                return Excel::download(new ProposalExportByMonthExcel($proposals), 'proposals.xlsx');
+            }
+        } else if ($request->query('format') === 'pdf') {
+            if ($request->query('start_month') && $request->query('end_month')) {
+                $startMonth = $request->query('start_month');
+                $endMonth = $request->query('end_month');
+
+                $proposals = $this->proposalRepository->getProposalByMonth(
+                    $academicCalendarId,
+                    $startMonth,
+                    $endMonth
+                );
+
+                return Excel::download(new ProposalExportByMonthPDF($proposals), 'proposals.pdf', \Maatwebsite\Excel\Excel::MPDF);
             }
         }
 
