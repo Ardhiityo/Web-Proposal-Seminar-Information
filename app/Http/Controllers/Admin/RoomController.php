@@ -41,7 +41,7 @@ class RoomController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('edit-room')) {
+        if (!Auth::user()->can('update-room')) {
             abort(403, 'Unauthorized action.');
         }
 

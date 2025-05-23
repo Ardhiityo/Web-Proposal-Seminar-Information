@@ -40,7 +40,7 @@ class AcademicCalendarController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('edit-academic-calendar')) {
+        if (!Auth::user()->can('update-academic-calendar')) {
             abort(403, 'Unauthorized action.');
         }
 

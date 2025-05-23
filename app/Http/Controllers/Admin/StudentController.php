@@ -55,7 +55,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('edit-student')) {
+        if (!Auth::user()->can('update-student')) {
             abort(403, 'Unauthorized action.');
         }
 

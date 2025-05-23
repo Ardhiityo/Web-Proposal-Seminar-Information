@@ -50,7 +50,7 @@ class LectureController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('edit-lecture-calendar')) {
+        if (!Auth::user()->can('update-lecture')) {
             abort(403, 'Unauthorized action.');
         }
 

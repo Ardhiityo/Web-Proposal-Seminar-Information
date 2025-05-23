@@ -77,7 +77,7 @@ class ProposalController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('edit-proposal')) {
+        if (!Auth::user()->can('update-proposal')) {
             abort(403, 'Unauthorized action.');
         }
 
