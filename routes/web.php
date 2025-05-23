@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/lectures/import', [LectureController::class, 'import'])->name('lectures.import');
 
     // Excel Export
-    Route::get('/proposals/export/academic-calendar', [ProposalController::class, 'exportByAcademicCalendar'])
+    Route::get('/proposals/export/academic-calendar/{academic_calendar}', [ProposalController::class, 'exportByAcademicCalendar'])
         ->name('proposals.export.academic-calendar');
 });
 

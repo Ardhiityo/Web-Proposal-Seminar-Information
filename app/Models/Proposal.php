@@ -32,6 +32,16 @@ class Proposal extends Model
         return $this->attributes['session_date'];
     }
 
+    public function getSessionMonthAttribute()
+    {
+        return Carbon::parse($this->attributes['session_date'])->format('F');
+    }
+
+    public function getSessionMonthNumberAttribute()
+    {
+        return Carbon::parse($this->attributes['session_date'])->format('m');
+    }
+
     public function getSessionTimeAttribute($value)
     {
         return Carbon::parse($value)->format('H:i');

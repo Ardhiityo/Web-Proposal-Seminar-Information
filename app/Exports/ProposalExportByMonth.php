@@ -5,7 +5,7 @@ namespace App\Exports;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class ProposalExportByPeriode implements FromView
+class ProposalExportByMonth implements FromView
 {
     public function __construct(private $proposals) {}
 

@@ -23,7 +23,8 @@ class PeriodeController extends Controller
         }
         $sessionDates = $this->proposalRepository->getAllSessionDatesProposalByAcademicCalendar($id);
         $academicCalendar = $this->academicCalendarRepository->getAcademicCalendarById($id);
+        $months = $this->proposalRepository->getAllMonthsProposalByAcademicCalendar($id);
 
-        return view('pages.periode.show', compact('proposals', 'academicCalendar', 'sessionDates'));
+        return view('pages.periode.show', compact('proposals', 'academicCalendar', 'sessionDates', 'months'));
     }
 }

@@ -22,28 +22,43 @@
                 @if (!$proposals->isEmpty())
                     <div class="card">
                         <div class="card-header">
-                            <h4>Export to Excel</h4>
+                            <h4>Export File</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('proposals.export.academic-calendar') }}" method="GET">
-                                <div class="form-group col-md-6">
-                                    <label>Full Periode {{ $academicCalendar->periode_year }}</label>
-                                    <input type="hidden" name="academic_calendar_id" value="{{ $academicCalendar->id }}">
-                                </div>
-                                <button class="mt-4 mb-5 btn btn-primary" type="submit">Download</button>
-                            </form>
-                            <form action="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}"
+                            <form
+                                action="{{ route('proposals.export.academic-calendar', ['academic_calendar' => $academicCalendar->id]) }}"
                                 method="GET">
-                                <div class="form-group col-md-6">
-                                    <label for="session_date">Berdasarkan bulan</label>
-                                    <select required id="session_date" name="session_date" class="form-control">
-                                        <option selected>Pilih bulan</option>
-                                        @foreach ($sessionDates as $sessionDate)
-                                            <option value="{{ $sessionDate->raw_session_date }}"
-                                                {{ old('session_date') == $sessionDate->session_date ? 'selected' : '' }}>
-                                                {{ $sessionDate->session_date }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="start_month">Bulan awal</label>
+                                        <select required id="start_month" name="start_month" class="form-control">
+                                            <option selected value="">Pilih bulan</option>
+                                            @foreach ($months as $month)
+                                                <option value="{{ $month }}"
+                                                    {{ old('start_month') == $month ? 'selected' : '' }}>{{ $month }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="end_month">Bulan akhir</label>
+                                        <select required id="end_month" name="end_month" class="form-control">
+                                            <option selected value="">Pilih bulan</option>
+                                            @foreach ($months as $month)
+                                                <option value="{{ $month }}"
+                                                    {{ old('end_month') == $month ? 'selected' : '' }}>{{ $month }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="format">Format</label>
+                                        <select required id="format" name="format" class="form-control">
+                                            <option selected value="">Pilih format</option>
+                                            <option value="excel">Excel</option>
+                                            <option value="pdf">Pdf</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <button class="mt-4 mb-5 btn btn-primary" type="submit">Download</button>
                             </form>

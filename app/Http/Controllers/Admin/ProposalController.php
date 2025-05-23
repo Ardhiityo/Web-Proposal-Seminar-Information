@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ProposalExportByPeriode;
+use App\Exports\ProposalExportByMonth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Services\Interfaces\RoomInterface;
 use App\Services\Interfaces\HistoryInterface;
@@ -110,15 +109,21 @@ class ProposalController extends Controller
         return redirect()->route('proposals.index');
     }
 
-    public function exportByAcademicCalendar(Request $request)
+    public function exportByAcademicCalendar(Request $request, $academicCalendarId)
     {
-        if ($academicCalendarId = $request->query('academic_calendar_id')) {
-            $proposals = $this->proposalRepository->getProposalByAcademicCalendarToExport($academicCalendarId);
+        if ($request->query('format') === 'excel') {
+            if ($request->query('start_month') && $request->query('end_month')) {
+                $startMonth = $request->query('start_month');
+                $endMonth = $request->query('end_month');
 
-            return Excel::download(
-                new ProposalExportByPeriode($proposals),
-                'proposals.xlsx'
-            );
+                $proposals = $this->proposalRepository->getProposalByMonth(
+                    $academicCalendarId,
+                    $startMonth,
+                    $endMonth
+                );
+
+                return Excel::download(new ProposalExportByMonth($proposals), 'proposals.xlsx');
+            }
         }
 
         return redirect()->route('proposals.index');

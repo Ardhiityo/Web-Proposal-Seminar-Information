@@ -2,6 +2,7 @@
 
 namespace App\Services\Repositories;
 
+use Carbon\Carbon;
 use App\Models\Proposal;
 use App\Services\Interfaces\ProposalInterface;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -189,8 +190,33 @@ class ProposalRepository implements ProposalInterface
         );
     }
 
-    public function getProposalByAcademicCalendarToExport($id)
+    public function getAllMonthsProposalByAcademicCalendar($academicCalendarId)
     {
+        $proposals = Proposal::select('session_date')
+            ->where('academic_calendar_id', $academicCalendarId)
+            ->distinct('')
+            ->orderBy('session_date')
+            ->get();
+
+        $months = [];
+
+        foreach ($proposals as $key => $proposal) {
+            if (count($months) == 0) {
+                $months[] = $proposal->session_month;
+            }
+            if (!in_array($proposal->session_month, $months)) {
+                $months[] = $proposal->session_month;
+            }
+        }
+
+        return $months;
+    }
+
+    public function getProposalByMonth($academicCalendarId, $start_month, $end_month)
+    {
+        $startMonthNumber = Carbon::parse($start_month)->format('m');
+        $endMonthNumber = Carbon::parse($end_month)->format('m');
+
         return Proposal::with([
             'student' => fn(Builder $query) => $query->with([
                 'lecture1' => fn(Builder $query) => $query->select('id', 'name', 'nidn'),
@@ -214,7 +240,9 @@ class ProposalRepository implements ProposalInterface
                 'moderator_id'
             )
             ->orderBy('session_date')
-            ->where('academic_calendar_id', $id)
+            ->where('academic_calendar_id', $academicCalendarId)
+            ->whereMonth('session_date', '>=', $startMonthNumber)
+            ->whereMonth('session_date', '<=', $endMonthNumber)
             ->get();
     }
 
