@@ -106,11 +106,18 @@
                                                     @endrole
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td colspan="4" class="border-0"></td>;
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="border-0">
+                                                    <div class="d-flex justify-content-end">
+                                                        {{ $lectures->links('pagination::bootstrap-4') }}
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
-                                    <div class="my-auto d-flex justify-content-end">
-                                        {{ $lectures->links('pagination::bootstrap-4') }}
-                                    </div>
                                 @endif
                             </div>
                         </div>

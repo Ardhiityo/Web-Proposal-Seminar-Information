@@ -44,6 +44,7 @@
     </tr>
     <tr></tr>
     <tr></tr>
+    <tr></tr>
     <tr>
         <td colspan="22" style="text-align: center; font-weight: bold; font-size: 14px;">
             JADWAL SIDANG AKHIR SKRIPSI/TUGAS AKHIR

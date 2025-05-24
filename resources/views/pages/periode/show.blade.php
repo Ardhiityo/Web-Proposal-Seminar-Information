@@ -168,7 +168,7 @@
                                         </table>
                                     </div>
                                 @endforeach
-                                <div class="my-auto d-flex justify-content-end">
+                                <div class="mt-5 d-flex justify-content-end">
                                     {{ $proposals->links('pagination::bootstrap-4') }}
                                 </div>
                             @endif

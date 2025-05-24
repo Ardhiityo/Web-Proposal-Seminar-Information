@@ -44,7 +44,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($rooms as $room)
-                                                <tr>
+                                                <tr class="text-nowrap">
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $room->name }}</td>
                                                     @role('admin')
@@ -63,11 +63,18 @@
                                                     @endrole
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td colspan="6" class="border-0"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" class="border-0">
+                                                    <div class="d-flex justify-content-end">
+                                                        {{ $rooms->links('pagination::bootstrap-4') }}
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
-                                    <div class="my-auto d-flex justify-content-end">
-                                        {{ $rooms->links('pagination::bootstrap-4') }}
-                                    </div>
                                 @endif
                             </div>
                         </div>
