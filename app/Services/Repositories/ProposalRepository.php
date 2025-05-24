@@ -202,10 +202,10 @@ class ProposalRepository implements ProposalInterface
 
         foreach ($proposals as $key => $proposal) {
             if (count($months) == 0) {
-                $months[] = $proposal->session_month;
+                $months[] = strtolower($proposal->session_month);
             }
-            if (!in_array($proposal->session_month, $months)) {
-                $months[] = $proposal->session_month;
+            if (!in_array(strtolower($proposal->session_month), $months)) {
+                $months[] = strtolower($proposal->session_month);
             }
         }
 

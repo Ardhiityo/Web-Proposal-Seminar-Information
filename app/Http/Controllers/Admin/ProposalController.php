@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Rules\MonthRangeRule;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -112,32 +114,28 @@ class ProposalController extends Controller
 
     public function exportByAcademicCalendar(Request $request, $academicCalendarId)
     {
+        $validated = $request->validate([
+            'start_month' => ['required'],
+            'end_month' => ['required', new MonthRangeRule($request->start_month, $request->end_month)],
+            'format' => ['required', Rule::in(['excel', 'pdf'])]
+        ]);
+
         if ($request->query('format') === 'excel') {
-            if ($request->query('start_month') && $request->query('end_month')) {
-                $startMonth = $request->query('start_month');
-                $endMonth = $request->query('end_month');
+            $proposals = $this->proposalRepository->getProposalByMonth(
+                $academicCalendarId,
+                $validated['start_month'],
+                $validated['end_month']
+            );
 
-                $proposals = $this->proposalRepository->getProposalByMonth(
-                    $academicCalendarId,
-                    $startMonth,
-                    $endMonth
-                );
-
-                return Excel::download(new ProposalExportByMonthExcel($proposals), 'proposals.xlsx');
-            }
+            return Excel::download(new ProposalExportByMonthExcel($proposals), 'proposals.xlsx');
         } else if ($request->query('format') === 'pdf') {
-            if ($request->query('start_month') && $request->query('end_month')) {
-                $startMonth = $request->query('start_month');
-                $endMonth = $request->query('end_month');
+            $proposals = $this->proposalRepository->getProposalByMonth(
+                $academicCalendarId,
+                $validated['start_month'],
+                $validated['end_month']
+            );
 
-                $proposals = $this->proposalRepository->getProposalByMonth(
-                    $academicCalendarId,
-                    $startMonth,
-                    $endMonth
-                );
-
-                return Excel::download(new ProposalExportByMonthPDF($proposals), 'proposals.pdf', \Maatwebsite\Excel\Excel::MPDF);
-            }
+            return Excel::download(new ProposalExportByMonthPDF($proposals), 'proposals.pdf', \Maatwebsite\Excel\Excel::MPDF);
         }
 
         return redirect()->route('proposals.index');

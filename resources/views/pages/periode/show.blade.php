@@ -29,13 +29,25 @@
                                 action="{{ route('proposals.export.academic-calendar', ['academic_calendar' => $academicCalendar->id]) }}"
                                 method="GET">
                                 <div class="row">
+                                    @if ($errors->any())
+                                        <div class="col-12">
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="form-group col-md-6">
                                         <label for="start_month">Bulan awal</label>
                                         <select required id="start_month" name="start_month" class="form-control">
                                             <option selected value="">Pilih bulan</option>
                                             @foreach ($months as $month)
                                                 <option value="{{ $month }}"
-                                                    {{ old('start_month') == $month ? 'selected' : '' }}>{{ $month }}
+                                                    {{ old('start_month') == $month ? 'selected' : '' }}>
+                                                    {{ ucfirst($month) }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -46,7 +58,7 @@
                                             <option selected value="">Pilih bulan</option>
                                             @foreach ($months as $month)
                                                 <option value="{{ $month }}"
-                                                    {{ old('end_month') == $month ? 'selected' : '' }}>{{ $month }}
+                                                    {{ old('end_month') == $month ? 'selected' : '' }}>{{ ucfirst($month) }}
                                                 </option>
                                             @endforeach
                                         </select>
