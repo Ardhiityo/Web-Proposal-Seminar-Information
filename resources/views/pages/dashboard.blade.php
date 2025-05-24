@@ -109,7 +109,7 @@
                                             <div class="media-title">
                                                 {{ ucfirst(strtolower($latestProposal->student->name)) }}</div>
                                             <span class="text-small text-muted">
-                                                Mulai seminar
+                                                Mulai sidang
                                                 pukul {{ $latestProposal->session_time }} wib, pada ruangan
                                                 {{ $latestProposal->room->name }}</span>
                                         </div>

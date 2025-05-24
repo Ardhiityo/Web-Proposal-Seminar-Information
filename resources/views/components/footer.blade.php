@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="footer-left">
-        Dedicated by <a href="https://www.instagram.com/ardhiityo/">Arya Adhi Prasetyo</a> <br>
-        Proposal Seminar Information (PROSI)
+        Developed with passion by <a href="https://www.instagram.com/ardhiityo/">Arya Adhi Prasetyo</a> <br>
+        Sistem Informasi Skripsi & Tugas Akhir (SISKA)
     </div>
 </footer>

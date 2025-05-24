@@ -9,14 +9,14 @@
                 <h1>Informasi Umum</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Informasi Umum</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Seminar</a></div>
+                    <div class="breadcrumb-item"><a href="#">Data Sidang</a></div>
                 </div>
             </div>
 
             <div class="section-body">
                 <h2 class="section-title">Periode {{ $academicCalendar->periode_year }}</h2>
                 <p class="section-lead">
-                    Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
+                    Semua informasi mengenai data Sidang yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
 
                 @role('admin')
@@ -79,7 +79,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4>Cari berdasarkan tanggal</h4>
+                                <h4>Cari tanggal sidang</h4>
                             </div>
                             <div class="card-body">
                                 <form action="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}"

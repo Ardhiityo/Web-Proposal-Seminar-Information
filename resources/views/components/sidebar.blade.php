@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">Prosi
+            <a href="{{ route('dashboard') }}">SISKA
             </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
@@ -44,11 +44,11 @@
             <li class="nav-item {{ request()->is('proposals*') ? 'active' : '' }}">
                 <a href="{{ route('proposals.index') }}" class="nav-link">
                     <i class="fas fa-book-open-reader"></i>
-                    <span>Seminar Proposal</span>
+                    <span>Galeri Sidang</span>
                 </a>
             </li>
 
-            <li class="menu-header">Informasi Seminar</li>
+            <li class="menu-header">Informasi Sidang</li>
             @foreach ($academicCalendars as $academicCalendar)
                 <li class="nav-item {{ request()->is("periodes/$academicCalendar->id") ? 'active' : '' }}">
                     <a href="{{ route('periodes.show', ['periode' => $academicCalendar->id]) }}" class="nav-link">

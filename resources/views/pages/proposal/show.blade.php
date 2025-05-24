@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
-@section('title', 'Data Proposal')
+@section('title', 'Data Sidang')
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Informasi Seminar</h1>
+                <h1>Informasi Sidang</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Informasi Seminar</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Seminar</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Informasi Sidang</a></div>
+                    <div class="breadcrumb-item"><a href="#">Data Sidang</a></div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Data Seminar</h2>
+                <h2 class="section-title">Data Sidang</h2>
                 <p class="section-lead">
-                    Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
+                    Semua informasi mengenai data Sidang yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
                 <div class="row">
                     <div class="col-12">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Seminar')
+@section('title', 'Data Sidang')
 
 @section('main')
     <div class="main-content">
@@ -9,14 +9,14 @@
                 <h1>Informasi Umum</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Informasi Umum</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Seminar</a></div>
+                    <div class="breadcrumb-item"><a href="#">Data Sidang</a></div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Data Seminar</h2>
+                <h2 class="section-title">Data Sidang</h2>
                 <p class="section-lead">
-                    Semua informasi mengenai data Seminar yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
+                    Semua informasi mengenai data Sidang yang ada di Fakultas Ilmu Komputer Universitas Al-Khairiyah
                 </p>
                 <div class="row">
                     <div class="col-12">
@@ -42,13 +42,13 @@
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="session_date">Tanggal Seminar</label>
+                                                    <label for="session_date">Tanggal Sidang</label>
                                                     <input required type="date" class="form-control" id="session_date"
                                                         name="session_date"
                                                         value="{{ old('session_date', $proposal->raw_session_date) }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="session_time">Waktu Seminar</label>
+                                                    <label for="session_time">Waktu Sidang</label>
                                                     <input required type="time" name="session_time" class="form-control"
                                                         id="session_time" name="session_time"
                                                         value="{{ old('session_time', $proposal->session_time) }}">
