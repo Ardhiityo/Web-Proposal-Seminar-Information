@@ -240,6 +240,7 @@ class ProposalRepository implements ProposalInterface
                 'moderator_id'
             )
             ->orderBy('session_date')
+            ->orderBy('session_time')
             ->where('academic_calendar_id', $academicCalendarId)
             ->whereMonth('session_date', '>=', $startMonthNumber)
             ->whereMonth('session_date', '<=', $endMonthNumber)

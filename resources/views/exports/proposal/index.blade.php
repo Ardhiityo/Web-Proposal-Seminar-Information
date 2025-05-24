@@ -3,7 +3,7 @@
         <th rowspan="4">
             <img src="{{ public_path('img/unival.jpeg') }}" width="100" height="100">
         </th>
-        <th style="font-size: 14px; font-weight: bold; text-align: left;" colspan="8">
+        <th style="font-size: 14px; font-weight: bold; text-align: left;" colspan="10">
             UNIVERSITAS AL-KHAIRIYAH
         </th>
     </tr>
@@ -11,17 +11,21 @@
         <td>
             Website
         </td>
-        <td colspan="4">
+        <td colspan="14">
             : www.unival-cilegon.ac.id
+        </td>
+        <td style="font-size: 14px; font-weight: bold; text-align: right;" colspan="6">
+            FAKULTAS ILMU KOMPUTER
         </td>
     </tr>
     <tr>
         <td>
             e-Mail
         </td>
-        <td colspan="4">
+        <td colspan="14">
             : humas@unival-cilegon.ac.id
         </td>
+        <td style="font-size: 12px; font-weight: bold; text-align: right;" colspan="6">TEKNIK INFORMATIKA</td>
     </tr>
     <tr>
         <td>
@@ -30,6 +34,7 @@
         <td colspan="8">
             : Jalan Kh. Ahmad Dahlan Kel. Citangkil Kota Cilegon
         </td>
+        <td style="font-size: 12px; font-weight: bold; text-align: right;" colspan="12">MANAJEMEN INFORMATIKA</td>
     </tr>
 </table>
 
@@ -41,12 +46,12 @@
     <tr></tr>
     <tr>
         <td colspan="22" style="text-align: center; font-weight: bold; font-size: 14px;">
-            DAFTAR
-            PROPOSAL TUGAS AKHIR
+            JADWAL SIDANG AKHIR SKRIPSI/TUGAS AKHIR
         </td>
     </tr>
     <tr>
-        <td colspan="22" style="text-align: center; font-weight: bold; font-size: 12px;">FAKULTAS ILMU KOMPUTER</td>
+        <td colspan="22" style="text-align: center; font-weight: bold; font-size: 12px;">TEKNIK INFORMATIKA &amp;
+            MANAJEMEN INFORMATIKA</td>
     </tr>
     <tr>
         <td colspan="22" style="text-align: center; font-weight: bold; font-size: 12px;">TAHUN AKADEMIK
@@ -59,7 +64,7 @@
 <table>
     <thead>
         <tr>
-            <th style="font-weight: bold; border: 1px solid black; text-align: center;">No</th>
+            <th style="font-weight: bold; border: 1px solid black; text-align: center;">NO</th>
             <th style="font-weight: bold; border: 1px solid black; text-align: center;">NIM</th>
             <th style="font-weight: bold; border: 1px solid black; text-align: center;" colspan="2">
                 MAHASISWA</th>

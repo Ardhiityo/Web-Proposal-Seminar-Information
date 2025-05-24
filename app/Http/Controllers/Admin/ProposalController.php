@@ -120,21 +120,15 @@ class ProposalController extends Controller
             'format' => ['required', Rule::in(['excel', 'pdf'])]
         ]);
 
-        if ($request->query('format') === 'excel') {
-            $proposals = $this->proposalRepository->getProposalByMonth(
-                $academicCalendarId,
-                $validated['start_month'],
-                $validated['end_month']
-            );
+        $proposals = $this->proposalRepository->getProposalByMonth(
+            $academicCalendarId,
+            $validated['start_month'],
+            $validated['end_month']
+        );
 
+        if ($request->query('format') === 'excel') {
             return Excel::download(new ProposalExportByMonthExcel($proposals), 'proposals.xlsx');
         } else if ($request->query('format') === 'pdf') {
-            $proposals = $this->proposalRepository->getProposalByMonth(
-                $academicCalendarId,
-                $validated['start_month'],
-                $validated['end_month']
-            );
-
             return Excel::download(new ProposalExportByMonthPDF($proposals), 'proposals.pdf', \Maatwebsite\Excel\Excel::MPDF);
         }
 
